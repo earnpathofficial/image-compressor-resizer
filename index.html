@@ -191,7 +191,7 @@ input[type="range"]{
 
 .mode-buttons button{
   flex:1;
-  min-width:120px;
+  min-width:110px;
   background:#e5e7eb;
 }
 
@@ -245,7 +245,8 @@ input[type="range"]{
   line-height:1.5;
 }
 
-.converter-info{
+.converter-info,
+.resizer-info{
   background:#f0fdf4;
   padding:14px;
   border-radius:10px;
@@ -518,12 +519,14 @@ footer{
 <main class="container">
 
 <section class="hero">
+
   <h2>Compress, Resize, Crop & Convert Images</h2>
 
   <p>
     Reduce image file sizes, resize pictures, crop images and convert
     JPG, PNG and WebP. Everything happens directly in your browser.
   </p>
+
 </section>
 
 <section class="upload-box" id="dropZone">
@@ -566,21 +569,47 @@ footer{
 
   <button
     type="button"
+    id="resizeMode">
+    Resize Only
+  </button>
+
+  <button
+    type="button"
     id="convertMode">
     Convert Format
   </button>
 
 </div>
 
-<div
-  id="converterPanel"
-  class="hidden">
+<div id="converterPanel" class="hidden">
 
   <div class="converter-info">
     🔄 Convert your images between JPG, PNG and WebP.
     Conversion happens directly in your browser and keeps
     the original image dimensions.
   </div>
+
+</div>
+
+<div id="resizerPanel" class="hidden">
+
+  <div class="resizer-info">
+    📐 Resize images quickly while keeping their original
+    proportions. Choose a preset or enter your own dimensions.
+  </div>
+
+  <label>Resize Preset</label>
+
+  <select id="resizePreset">
+
+    <option value="custom">Custom Size</option>
+    <option value="1920">1920 px wide</option>
+    <option value="1600">1600 px wide</option>
+    <option value="1280">1280 px wide</option>
+    <option value="1080">1080 px wide</option>
+    <option value="800">800 px wide</option>
+
+  </select>
 
 </div>
 
@@ -603,8 +632,8 @@ footer{
 <div id="targetSettings" class="hidden">
 
   <p class="tip">
-    Choose Target File Size when you need an image to be approximately
-    a specific size, such as 200 KB.
+    Choose Target File Size when you need an image to be
+    approximately a specific size, such as 200 KB.
   </p>
 
   <label>Target Size</label>
@@ -619,16 +648,15 @@ footer{
     >
 
     <select id="targetUnit">
-
       <option value="KB">KB</option>
       <option value="MB">MB</option>
-
     </select>
 
   </div>
 
   <p class="tip">
-    The compressor will automatically search for a suitable quality level.
+    The compressor will automatically search for a suitable
+    quality level.
   </p>
 
 </div>
@@ -650,6 +678,44 @@ footer{
   </div>
 
 </div>
+
+</div>
+
+<div id="resizeControls">
+
+<label>Width (pixels)</label>
+
+<input
+  type="number"
+  id="width"
+  min="1"
+>
+
+<label>Height (pixels)</label>
+
+<input
+  type="number"
+  id="height"
+  min="1"
+>
+
+<div class="checkbox">
+
+  <input
+    type="checkbox"
+    id="aspect"
+    checked
+  >
+
+  <label for="aspect">
+    Keep original aspect ratio
+  </label>
+
+</div>
+
+</div>
+
+<div id="editingControls">
 
 <label>Image Editing</label>
 
@@ -736,21 +802,7 @@ footer{
 
 </div>
 
-<label>Width (pixels)</label>
-
-<input
-  type="number"
-  id="width"
-  min="1"
->
-
-<label>Height (pixels)</label>
-
-<input
-  type="number"
-  id="height"
-  min="1"
->
+</div>
 
 <label>Output Format</label>
 
@@ -762,27 +814,11 @@ footer{
 
 </select>
 
-<div class="checkbox">
-
-  <input
-    type="checkbox"
-    id="aspect"
-    checked
-  >
-
-  <label for="aspect">
-    Keep original aspect ratio
-  </label>
-
-</div>
-
 <p class="tip">
-  💡 Target file size works best with JPG or WebP.
-  PNG uses lossless compression, so very small target sizes
-  may not always be possible.
+  💡 Resize Only changes the image dimensions without applying
+  the target-size compression search. JPG and WebP may still
+  produce a different file size because they are encoded again.
 </p>
-
-</div>
 
 <br>
 
@@ -845,13 +881,13 @@ Your original images are not uploaded to our server by this tool.
 
 <div class="feature">
 
-  <div>✂️</div>
+  <div>📐</div>
 
-  <h3>Crop Images</h3>
+  <h3>Resize Images</h3>
 
   <p>
-    Crop images to square, 4:3, 16:9 or custom proportions
-    before processing.
+    Resize images to common widths or enter custom dimensions
+    while keeping the original proportions.
   </p>
 
 </div>
@@ -876,6 +912,30 @@ Your original images are not uploaded to our server by this tool.
 <h2>Frequently Asked Questions</h2>
 
 <details>
+<summary>How do I resize an image?</summary>
+<p>
+Upload your image, choose Resize Only, select a preset or
+enter custom dimensions, then tap Resize Images.
+</p>
+</details>
+
+<details>
+<summary>Can I resize an image without changing its proportions?</summary>
+<p>
+Yes. Keep Original Aspect Ratio enabled and ImageTools will
+automatically calculate the matching dimension.
+</p>
+</details>
+
+<details>
+<summary>What image sizes can I choose?</summary>
+<p>
+ImageTools includes common presets for 1920, 1600, 1280,
+1080 and 800 pixels wide, plus custom dimensions.
+</p>
+</details>
+
+<details>
 <summary>How do I convert JPG to WebP?</summary>
 <p>
 Upload your JPG image, choose Convert Format, select WebP
@@ -886,9 +946,8 @@ as the output format and process the image.
 <details>
 <summary>Can I convert PNG to JPG?</summary>
 <p>
-Yes. Upload the PNG image, choose Convert Format and select JPG.
-Transparent areas are placed on a white background when converting
-to JPG because JPG does not support transparency.
+Yes. Transparent areas are placed on a white background
+because JPG does not support transparency.
 </p>
 </details>
 
@@ -901,7 +960,7 @@ inside your browser.
 </details>
 
 <details>
-<summary>Does conversion change the image dimensions?</summary>
+<summary>Does conversion change image dimensions?</summary>
 <p>
 No. Convert Format mode keeps the original image dimensions.
 </p>
@@ -916,7 +975,7 @@ Choose Compress & Resize, select Target File Size, enter
 </details>
 
 <details>
-<summary>Can I crop an image before compressing it?</summary>
+<summary>Can I crop an image before resizing it?</summary>
 <p>
 Yes. Choose Compress & Resize, select Crop Image, choose
 a crop ratio and adjust the crop area before processing.
@@ -989,14 +1048,29 @@ const results =
 const processMode =
   document.getElementById("processMode");
 
+const resizeMode =
+  document.getElementById("resizeMode");
+
 const convertMode =
   document.getElementById("convertMode");
 
 const processingPanel =
   document.getElementById("processingPanel");
 
+const resizerPanel =
+  document.getElementById("resizerPanel");
+
 const converterPanel =
   document.getElementById("converterPanel");
+
+const resizePreset =
+  document.getElementById("resizePreset");
+
+const resizeControls =
+  document.getElementById("resizeControls");
+
+const editingControls =
+  document.getElementById("editingControls");
 
 const qualityMode =
   document.getElementById("qualityMode");
@@ -1102,33 +1176,23 @@ let cropApplied = false;
 let cropSourceFile = null;
 
 chooseBtn.addEventListener("click",()=>{
-
   fileInput.click();
-
 });
 
 fileInput.addEventListener("change",e=>{
-
   addFiles(Array.from(e.target.files));
-
 });
 
 dropZone.addEventListener("dragover",e=>{
-
   e.preventDefault();
-
   dropZone.classList.add("dragover");
-
 });
 
 dropZone.addEventListener("dragleave",()=>{
-
   dropZone.classList.remove("dragover");
-
 });
 
 dropZone.addEventListener("drop",e=>{
-
   e.preventDefault();
 
   dropZone.classList.remove("dragover");
@@ -1139,7 +1203,6 @@ dropZone.addEventListener("drop",e=>{
         file.type.startsWith("image/")
       )
   );
-
 });
 
 function addFiles(newFiles){
@@ -1158,7 +1221,6 @@ function addFiles(newFiles){
     loadFirstImage();
 
   }
-
 }
 
 function renderFiles(){
@@ -1236,52 +1298,139 @@ function escapeHtml(text){
   div.textContent = text;
 
   return div.innerHTML;
-
 }
 
-processMode.addEventListener("click",()=>{
+function setToolMode(mode){
 
-  toolMode = "process";
+  toolMode = mode;
 
-  processMode.classList.add("active");
+  processMode.classList.toggle(
+    "active",
+    mode === "process"
+  );
 
-  convertMode.classList.remove("active");
+  resizeMode.classList.toggle(
+    "active",
+    mode === "resize"
+  );
 
-  processingPanel.classList.remove("hidden");
+  convertMode.classList.toggle(
+    "active",
+    mode === "convert"
+  );
 
-  converterPanel.classList.add("hidden");
+  processingPanel.classList.toggle(
+    "hidden",
+    mode === "resize" || mode === "convert"
+  );
 
-  processBtn.textContent =
-    "Compress & Process Images";
+  resizerPanel.classList.toggle(
+    "hidden",
+    mode !== "resize"
+  );
 
-});
+  converterPanel.classList.toggle(
+    "hidden",
+    mode !== "convert"
+  );
 
-convertMode.addEventListener("click",()=>{
+  resizeControls.classList.remove("hidden");
 
-  toolMode = "convert";
+  editingControls.classList.toggle(
+    "hidden",
+    mode === "convert"
+  );
 
-  convertMode.classList.add("active");
+  if(mode === "process"){
 
-  processMode.classList.remove("active");
+    processBtn.textContent =
+      "Compress & Process Images";
 
-  processingPanel.classList.add("hidden");
+  }
 
-  converterPanel.classList.remove("hidden");
+  if(mode === "resize"){
 
-  cropEnabled = false;
+    processBtn.textContent =
+      "Resize Images";
 
-  cropApplied = false;
+  }
 
-  cropSettings.classList.add("hidden");
+  if(mode === "convert"){
 
-  noCropMode.classList.add("active");
+    processBtn.textContent =
+      "Convert Images";
 
-  cropMode.classList.remove("active");
+    cropEnabled = false;
 
-  processBtn.textContent =
-    "Convert Images";
+    cropApplied = false;
 
-});
+    cropSettings.classList.add("hidden");
+
+    noCropMode.classList.add("active");
+
+    cropMode.classList.remove("active");
+
+  }
+}
+
+processMode.addEventListener(
+  "click",
+  ()=>setToolMode("process")
+);
+
+resizeMode.addEventListener(
+  "click",
+  ()=>setToolMode("resize")
+);
+
+convertMode.addEventListener(
+  "click",
+  ()=>setToolMode("convert")
+);
+
+resizePreset.addEventListener(
+  "change",
+  ()=>{
+
+    if(
+      resizePreset.value === "custom"
+    ){
+
+      return;
+    }
+
+    const targetWidth =
+      Number(resizePreset.value);
+
+    if(
+      !originalWidth ||
+      !originalHeight
+    ){
+
+      return;
+    }
+
+    let newWidth =
+      Math.min(
+        targetWidth,
+        originalWidth
+      );
+
+    let newHeight =
+      Math.round(
+        newWidth *
+        originalHeight /
+        originalWidth
+      );
+
+    widthInput.value =
+      newWidth;
+
+    heightInput.value =
+      newHeight;
+
+  }
+);
 
 quality.addEventListener("input",()=>{
 
@@ -1397,22 +1546,19 @@ async function loadFirstImage(){
 
   heightInput.value = img.height;
 
+  resizePreset.value = "custom";
+
   cropSourceFile = file;
 
   if(cropEnabled){
-
     loadCropImage();
-
   }
-
 }
 
 async function loadCropImage(){
 
   if(!cropSourceFile && files.length){
-
     cropSourceFile = files[0];
-
   }
 
   if(!cropSourceFile) return;
@@ -1435,7 +1581,6 @@ async function loadCropImage(){
     initializeCrop();
 
   };
-
 }
 
 function initializeCrop(){
@@ -1444,7 +1589,8 @@ function initializeCrop(){
     cropStage.clientWidth;
 
   const imageRatio =
-    originalWidth / originalHeight;
+    originalWidth /
+    originalHeight;
 
   let displayWidth =
     Math.min(
@@ -1496,15 +1642,10 @@ function initializeCrop(){
     if(selectedRatio){
 
       if(w / h > selectedRatio){
-
         w = h * selectedRatio;
-
       }else{
-
         h = w / selectedRatio;
-
       }
-
     }
 
     cropState = {
@@ -1517,7 +1658,6 @@ function initializeCrop(){
     updateCropBox();
 
   });
-
 }
 
 function updateCropBox(){
@@ -1553,7 +1693,6 @@ function updateCropBox(){
 
   cropInfo.textContent =
     `Crop area: ${cropW} × ${cropH} pixels`;
-
 }
 
 let dragMode = null;
@@ -1647,53 +1786,31 @@ document.addEventListener("pointermove",e=>{
   }else{
 
     if(dragMode.includes("l")){
-
-      x =
-        startCrop.x + dx;
-
-      w =
-        startCrop.width - dx;
-
+      x = startCrop.x + dx;
+      w = startCrop.width - dx;
     }
 
     if(dragMode.includes("r")){
-
-      w =
-        startCrop.width + dx;
-
+      w = startCrop.width + dx;
     }
 
     if(dragMode.includes("t")){
-
-      y =
-        startCrop.y + dy;
-
-      h =
-        startCrop.height - dy;
-
+      y = startCrop.y + dy;
+      h = startCrop.height - dy;
     }
 
     if(dragMode.includes("b")){
-
-      h =
-        startCrop.height + dy;
-
+      h = startCrop.height + dy;
     }
 
     if(selectedRatio){
 
       if(w / h > selectedRatio){
-
         w = h * selectedRatio;
-
       }else{
-
         h = w / selectedRatio;
-
       }
-
     }
-
   }
 
   const imageLeft =
@@ -1712,82 +1829,46 @@ document.addEventListener("pointermove",e=>{
 
   const minSize = 30;
 
-  if(w < minSize){
+  if(w < minSize) w = minSize;
 
-    w = minSize;
-
-  }
-
-  if(h < minSize){
-
-    h = minSize;
-
-  }
+  if(h < minSize) h = minSize;
 
   if(x < imageLeft){
 
     if(dragMode === "move"){
-
       x = imageLeft;
-
     }else{
-
-      w -=
-        imageLeft - x;
-
+      w -= imageLeft - x;
       x = imageLeft;
-
     }
-
   }
 
   if(y < imageTop){
 
     if(dragMode === "move"){
-
       y = imageTop;
-
     }else{
-
-      h -=
-        imageTop - y;
-
+      h -= imageTop - y;
       y = imageTop;
-
     }
-
   }
 
   if(x + w > imageRight){
 
     if(dragMode === "move"){
-
-      x =
-        imageRight - w;
-
+      x = imageRight - w;
     }else{
-
-      w =
-        imageRight - x;
-
+      w = imageRight - x;
     }
-
   }
 
   if(y + h > imageBottom){
 
     if(dragMode === "move"){
-
-      y =
-        imageBottom - h;
-
+      y = imageBottom - h;
     }else{
-
-      h =
-        imageBottom - y;
-
+      h = imageBottom - y;
     }
-
   }
 
   cropState = {
@@ -1802,9 +1883,7 @@ document.addEventListener("pointermove",e=>{
 });
 
 document.addEventListener("pointerup",()=>{
-
   dragMode = null;
-
 });
 
 resetCropBtn.addEventListener("click",()=>{
@@ -1817,11 +1896,11 @@ resetCropBtn.addEventListener("click",()=>{
 
 applyCropBtn.addEventListener("click",()=>{
 
-  if(!cropState.width ||
-     !cropState.height){
-
+  if(
+    !cropState.width ||
+    !cropState.height
+  ){
     return;
-
   }
 
   const scale =
@@ -1851,6 +1930,8 @@ applyCropBtn.addEventListener("click",()=>{
 
 widthInput.addEventListener("input",()=>{
 
+  resizePreset.value = "custom";
+
   if(
     !aspect.checked ||
     !originalWidth ||
@@ -1874,6 +1955,8 @@ widthInput.addEventListener("input",()=>{
 });
 
 heightInput.addEventListener("input",()=>{
+
+  resizePreset.value = "custom";
 
   if(
     !aspect.checked ||
@@ -2045,9 +2128,7 @@ async function findBestTargetBlob(
       !smallestBlob ||
       blob.size < smallestBlob.size
     ){
-
       smallestBlob = blob;
-
     }
 
     if(blob.size <= targetBytes){
@@ -2061,28 +2142,22 @@ async function findBestTargetBlob(
       high = q;
 
     }
-
   }
 
   return {
-
     blob:
       bestUnderTarget ||
       smallestBlob,
 
     reached:
       !!bestUnderTarget
-
   };
-
 }
 
 function formatSize(bytes){
 
   if(bytes < 1024){
-
     return bytes + " B";
-
   }
 
   if(bytes < 1024 * 1024){
@@ -2097,7 +2172,6 @@ function formatSize(bytes){
     bytes /
     (1024 * 1024)
   ).toFixed(2) + " MB";
-
 }
 
 function getExtension(type){
@@ -2109,7 +2183,6 @@ function getExtension(type){
     return "webp";
 
   return "jpg";
-
 }
 
 function downloadBlob(
@@ -2137,7 +2210,6 @@ function downloadBlob(
     ()=>URL.revokeObjectURL(url),
     1000
   );
-
 }
 
 processBtn.addEventListener(
@@ -2151,7 +2223,6 @@ processBtn.addEventListener(
     );
 
     return;
-
   }
 
   progressWrap.style.display =
@@ -2168,14 +2239,385 @@ processBtn.addEventListener(
 
   processBtn.disabled = true;
 
-  /*
-    CONVERTER MODE
-  */
+  try{
 
-  if(toolMode === "convert"){
+    /*
+      CONVERTER MODE
+    */
+
+    if(toolMode === "convert"){
+
+      const type =
+        formatSelect.value;
+
+      for(
+        let i=0;
+        i<files.length;
+        i++
+      ){
+
+        const file =
+          files[i];
+
+        const img =
+          await loadImage(file);
+
+        const width =
+          img.width;
+
+        const height =
+          img.height;
+
+        const q =
+          type === "image/png"
+            ? undefined
+            : .92;
+
+        const blob =
+          await createImage(
+            file,
+            width,
+            height,
+            type,
+            q
+          );
+
+        const originalBytes =
+          file.size;
+
+        const newBytes =
+          blob.size;
+
+        let savedPercent = 0;
+
+        if(newBytes < originalBytes){
+
+          savedPercent =
+            Math.round(
+              (
+                (originalBytes -
+                 newBytes) /
+                originalBytes
+              ) * 100
+            );
+        }
+
+        const extension =
+          getExtension(type);
+
+        const baseName =
+          file.name.replace(
+            /\.[^/.]+$/,
+            ""
+          );
+
+        const outputName =
+          `${baseName}-converted.${extension}`;
+
+        const previewUrl =
+          URL.createObjectURL(blob);
+
+        const card =
+          document.createElement("div");
+
+        card.className =
+          "result-card";
+
+        card.innerHTML = `
+
+          <h4>
+            ${escapeHtml(file.name)}
+          </h4>
+
+          <img
+            class="result-preview"
+            src="${previewUrl}"
+            alt="Converted image"
+          >
+
+          <div class="stats">
+
+            <div class="stat">
+              <strong>${formatSize(originalBytes)}</strong>
+              <span>Original</span>
+            </div>
+
+            <div class="stat">
+              <strong>${formatSize(newBytes)}</strong>
+              <span>New Size</span>
+            </div>
+
+            <div class="stat">
+              <strong>${savedPercent}%</strong>
+              <span>Saved</span>
+            </div>
+
+          </div>
+
+          <div class="success">
+            🔄 Converted to ${extension.toUpperCase()}
+            · ${width} × ${height}px
+          </div>
+
+          <button class="primary download-button">
+            Download
+          </button>
+        `;
+
+        results.appendChild(card);
+
+        card
+          .querySelector(".download-button")
+          .addEventListener(
+            "click",
+            ()=>{
+              downloadBlob(
+                blob,
+                outputName
+              );
+            }
+          );
+
+        progressBar.style.width =
+          `${Math.round(
+            ((i + 1) /
+            files.length) * 100
+          )}%`;
+      }
+
+      return;
+    }
+
+    /*
+      RESIZE ONLY MODE
+    */
+
+    if(toolMode === "resize"){
+
+      const type =
+        formatSelect.value;
+
+      for(
+        let i=0;
+        i<files.length;
+        i++
+      ){
+
+        const file =
+          files[i];
+
+        const img =
+          await loadImage(file);
+
+        let width =
+          Number(widthInput.value) ||
+          img.width;
+
+        let height =
+          Number(heightInput.value) ||
+          img.height;
+
+        if(aspect.checked){
+
+          const ratio =
+            img.width /
+            img.height;
+
+          if(
+            resizePreset.value !== "custom" &&
+            Number(resizePreset.value)
+          ){
+
+            width =
+              Math.min(
+                Number(resizePreset.value),
+                img.width
+              );
+
+            height =
+              Math.round(
+                width / ratio
+              );
+
+          }else{
+
+            height =
+              Math.round(
+                width / ratio
+              );
+          }
+
+        }
+
+        width =
+          Math.max(1,Math.round(width));
+
+        height =
+          Math.max(1,Math.round(height));
+
+        const blob =
+          await createImage(
+            file,
+            width,
+            height,
+            type,
+            type === "image/png"
+              ? undefined
+              : .92
+          );
+
+        const originalBytes =
+          file.size;
+
+        const newBytes =
+          blob.size;
+
+        let savedPercent = 0;
+
+        if(newBytes < originalBytes){
+
+          savedPercent =
+            Math.round(
+              (
+                (originalBytes -
+                 newBytes) /
+                originalBytes
+              ) * 100
+            );
+        }
+
+        const extension =
+          getExtension(type);
+
+        const baseName =
+          file.name.replace(
+            /\.[^/.]+$/,
+            ""
+          );
+
+        const outputName =
+          `${baseName}-resized.${extension}`;
+
+        const previewUrl =
+          URL.createObjectURL(blob);
+
+        const card =
+          document.createElement("div");
+
+        card.className =
+          "result-card";
+
+        card.innerHTML = `
+
+          <h4>
+            ${escapeHtml(file.name)}
+          </h4>
+
+          <img
+            class="result-preview"
+            src="${previewUrl}"
+            alt="Resized image"
+          >
+
+          <div class="stats">
+
+            <div class="stat">
+              <strong>${formatSize(originalBytes)}</strong>
+              <span>Original</span>
+            </div>
+
+            <div class="stat">
+              <strong>${formatSize(newBytes)}</strong>
+              <span>New Size</span>
+            </div>
+
+            <div class="stat">
+              <strong>${savedPercent}%</strong>
+              <span>Saved</span>
+            </div>
+
+          </div>
+
+          <div class="success">
+            📐 Resized to ${width} × ${height}px
+          </div>
+
+          <button class="primary download-button">
+            Download
+          </button>
+        `;
+
+        results.appendChild(card);
+
+        card
+          .querySelector(".download-button")
+          .addEventListener(
+            "click",
+            ()=>{
+              downloadBlob(
+                blob,
+                outputName
+              );
+            }
+          );
+
+        progressBar.style.width =
+          `${Math.round(
+            ((i + 1) /
+            files.length) * 100
+          )}%`;
+      }
+
+      return;
+    }
+
+    /*
+      NORMAL COMPRESSION MODE
+    */
 
     const type =
       formatSelect.value;
+
+    let cropData = null;
+
+    if(
+      cropEnabled &&
+      cropApplied
+    ){
+
+      const scale =
+        originalWidth /
+        cropImage.clientWidth;
+
+      cropData = {
+
+        x:
+          Math.round(
+            (cropState.x -
+             cropImage.offsetLeft) *
+            scale
+          ),
+
+        y:
+          Math.round(
+            (cropState.y -
+             cropImage.offsetTop) *
+            scale
+          ),
+
+        width:
+          Math.round(
+            cropState.width *
+            scale
+          ),
+
+        height:
+          Math.round(
+            cropState.height *
+            scale
+          )
+      };
+    }
 
     for(
       let i=0;
@@ -2189,35 +2631,155 @@ processBtn.addEventListener(
       const img =
         await loadImage(file);
 
-      const width =
+      let sourceWidth =
         img.width;
 
-      const height =
+      let sourceHeight =
         img.height;
 
-      const q =
-        type === "image/png"
-          ? undefined
-          : .92;
+      if(cropData && i === 0){
 
-      const blob =
-        await createImage(
-          file,
-          width,
-          height,
-          type,
-          q
-        );
+        sourceWidth =
+          cropData.width;
+
+        sourceHeight =
+          cropData.height;
+      }
+
+      let width =
+        Number(widthInput.value) ||
+        sourceWidth;
+
+      let height =
+        Number(heightInput.value) ||
+        sourceHeight;
+
+      if(aspect.checked){
+
+        const ratio =
+          sourceWidth /
+          sourceHeight;
+
+        if(width && !height){
+
+          height =
+            Math.round(
+              width / ratio
+            );
+
+        }else if(height && !width){
+
+          width =
+            Math.round(
+              height * ratio
+            );
+        }
+      }
+
+      const currentCrop =
+        cropData && i === 0
+          ? cropData
+          : null;
+
+      let blob;
+
+      let targetReached = false;
 
       const originalBytes =
         file.size;
+
+      if(
+        selectedMode === "target" &&
+        (
+          type === "image/jpeg" ||
+          type === "image/webp"
+        )
+      ){
+
+        const targetBytes =
+          Number(targetSize.value) *
+          (
+            targetUnit.value === "MB"
+              ? 1024 * 1024
+              : 1024
+          );
+
+        const noChangeRequested =
+          !currentCrop &&
+          width === img.width &&
+          height === img.height &&
+          type === file.type;
+
+        if(
+          originalBytes <= targetBytes &&
+          noChangeRequested
+        ){
+
+          blob = file;
+
+          targetReached = true;
+
+        }else{
+
+          const result =
+            await findBestTargetBlob(
+              file,
+              width,
+              height,
+              type,
+              targetBytes,
+              currentCrop
+            );
+
+          blob =
+            result.blob;
+
+          targetReached =
+            result.reached &&
+            blob.size <= targetBytes;
+        }
+
+      }else{
+
+        const q =
+          Number(quality.value) /
+          100;
+
+        blob =
+          await createImage(
+            file,
+            width,
+            height,
+            type,
+            q,
+            currentCrop
+          );
+
+        if(
+          selectedMode === "target"
+        ){
+
+          const targetBytes =
+            Number(targetSize.value) *
+            (
+              targetUnit.value === "MB"
+                ? 1024 * 1024
+                : 1024
+            );
+
+          targetReached =
+            blob.size <= targetBytes;
+        }
+      }
 
       const newBytes =
         blob.size;
 
       let savedPercent = 0;
 
-      if(newBytes < originalBytes){
+      if(
+        newBytes < originalBytes
+      ){
 
         savedPercent =
           Math.round(
@@ -2227,7 +2789,26 @@ processBtn.addEventListener(
               originalBytes
             ) * 100
           );
+      }
 
+      let statusHtml = "";
+
+      if(
+        selectedMode === "target"
+      ){
+
+        statusHtml =
+          targetReached
+          ? `
+            <div class="success">
+              🎯 Target reached
+            </div>
+          `
+          : `
+            <div class="warning">
+              ⚠️ Closest practical size
+            </div>
+          `;
       }
 
       const extension =
@@ -2240,7 +2821,7 @@ processBtn.addEventListener(
         );
 
       const outputName =
-        `${baseName}-converted.${extension}`;
+        `${baseName}-processed.${extension}`;
 
       const previewUrl =
         URL.createObjectURL(blob);
@@ -2260,61 +2841,46 @@ processBtn.addEventListener(
         <img
           class="result-preview"
           src="${previewUrl}"
-          alt="Converted image"
+          alt="Processed image"
         >
 
         <div class="stats">
 
           <div class="stat">
-            <strong>
-              ${formatSize(originalBytes)}
-            </strong>
+            <strong>${formatSize(originalBytes)}</strong>
             <span>Original</span>
           </div>
 
           <div class="stat">
-            <strong>
-              ${formatSize(newBytes)}
-            </strong>
+            <strong>${formatSize(newBytes)}</strong>
             <span>New Size</span>
           </div>
 
           <div class="stat">
-            <strong>
-              ${savedPercent}%
-            </strong>
+            <strong>${savedPercent}%</strong>
             <span>Saved</span>
           </div>
 
         </div>
 
-        <div class="success">
-          🔄 Converted to ${extension.toUpperCase()}
-          · ${width} × ${height}px
-        </div>
+        ${statusHtml}
 
-        <button
-          class="primary download-button">
+        <button class="primary download-button">
           Download
         </button>
-
       `;
 
       results.appendChild(card);
 
       card
-        .querySelector(
-          ".download-button"
-        )
+        .querySelector(".download-button")
         .addEventListener(
           "click",
           ()=>{
-
             downloadBlob(
               blob,
               outputName
             );
-
           }
         );
 
@@ -2323,361 +2889,21 @@ processBtn.addEventListener(
           ((i + 1) /
           files.length) * 100
         )}%`;
-
     }
+
+  }catch(error){
+
+    console.error(error);
+
+    alert(
+      "Something went wrong while processing the image."
+    );
+
+  }finally{
 
     processBtn.disabled = false;
 
-    return;
-
   }
-
-  /*
-    NORMAL PROCESSING MODE
-  */
-
-  const type =
-    formatSelect.value;
-
-  let cropData = null;
-
-  if(
-    cropEnabled &&
-    cropApplied
-  ){
-
-    const scale =
-      originalWidth /
-      cropImage.clientWidth;
-
-    cropData = {
-
-      x:
-        Math.round(
-          (cropState.x -
-           cropImage.offsetLeft) *
-          scale
-        ),
-
-      y:
-        Math.round(
-          (cropState.y -
-           cropImage.offsetTop) *
-          scale
-        ),
-
-      width:
-        Math.round(
-          cropState.width *
-          scale
-        ),
-
-      height:
-        Math.round(
-          cropState.height *
-          scale
-        )
-
-    };
-
-  }
-
-  for(
-    let i=0;
-    i<files.length;
-    i++
-  ){
-
-    const file =
-      files[i];
-
-    const img =
-      await loadImage(file);
-
-    let sourceWidth =
-      img.width;
-
-    let sourceHeight =
-      img.height;
-
-    if(cropData && i === 0){
-
-      sourceWidth =
-        cropData.width;
-
-      sourceHeight =
-        cropData.height;
-
-    }
-
-    let width =
-      Number(widthInput.value) ||
-      sourceWidth;
-
-    let height =
-      Number(heightInput.value) ||
-      sourceHeight;
-
-    if(aspect.checked){
-
-      const ratio =
-        sourceWidth /
-        sourceHeight;
-
-      if(width && !height){
-
-        height =
-          Math.round(
-            width / ratio
-          );
-
-      }else if(height && !width){
-
-        width =
-          Math.round(
-            height * ratio
-          );
-
-      }
-
-    }
-
-    const currentCrop =
-      cropData && i === 0
-        ? cropData
-        : null;
-
-    let blob;
-
-    let targetReached = false;
-
-    const originalBytes =
-      file.size;
-
-    if(
-      selectedMode === "target" &&
-      (
-        type === "image/jpeg" ||
-        type === "image/webp"
-      )
-    ){
-
-      const targetBytes =
-        Number(targetSize.value) *
-        (
-          targetUnit.value === "MB"
-            ? 1024 * 1024
-            : 1024
-        );
-
-      const noChangeRequested =
-        !currentCrop &&
-        width === img.width &&
-        height === img.height &&
-        type === file.type;
-
-      if(
-        originalBytes <= targetBytes &&
-        noChangeRequested
-      ){
-
-        blob = file;
-
-        targetReached = true;
-
-      }else{
-
-        const result =
-          await findBestTargetBlob(
-            file,
-            width,
-            height,
-            type,
-            targetBytes,
-            currentCrop
-          );
-
-        blob =
-          result.blob;
-
-        targetReached =
-          result.reached &&
-          blob.size <= targetBytes;
-
-      }
-
-    }else{
-
-      const q =
-        Number(quality.value) /
-        100;
-
-      blob =
-        await createImage(
-          file,
-          width,
-          height,
-          type,
-          q,
-          currentCrop
-        );
-
-      if(
-        selectedMode === "target"
-      ){
-
-        const targetBytes =
-          Number(targetSize.value) *
-          (
-            targetUnit.value === "MB"
-              ? 1024 * 1024
-              : 1024
-          );
-
-        targetReached =
-          blob.size <= targetBytes;
-
-      }
-
-    }
-
-    const newBytes =
-      blob.size;
-
-    let savedPercent = 0;
-
-    if(
-      newBytes < originalBytes
-    ){
-
-      savedPercent =
-        Math.round(
-          (
-            (originalBytes -
-             newBytes) /
-            originalBytes
-          ) * 100
-        );
-
-    }
-
-    let statusHtml = "";
-
-    if(
-      selectedMode === "target"
-    ){
-
-      statusHtml =
-        targetReached
-
-        ? `
-          <div class="success">
-            🎯 Target reached
-          </div>
-        `
-
-        : `
-          <div class="warning">
-            ⚠️ Closest practical size
-          </div>
-        `;
-
-    }
-
-    const extension =
-      getExtension(type);
-
-    const baseName =
-      file.name.replace(
-        /\.[^/.]+$/,
-        ""
-      );
-
-    const outputName =
-      `${baseName}-processed.${extension}`;
-
-    const previewUrl =
-      URL.createObjectURL(blob);
-
-    const card =
-      document.createElement("div");
-
-    card.className =
-      "result-card";
-
-    card.innerHTML = `
-
-      <h4>
-        ${escapeHtml(file.name)}
-      </h4>
-
-      <img
-        class="result-preview"
-        src="${previewUrl}"
-        alt="Processed image"
-      >
-
-      <div class="stats">
-
-        <div class="stat">
-          <strong>
-            ${formatSize(originalBytes)}
-          </strong>
-          <span>Original</span>
-        </div>
-
-        <div class="stat">
-          <strong>
-            ${formatSize(newBytes)}
-          </strong>
-          <span>New Size</span>
-        </div>
-
-        <div class="stat">
-          <strong>
-            ${savedPercent}%
-          </strong>
-          <span>Saved</span>
-        </div>
-
-      </div>
-
-      ${statusHtml}
-
-      <button
-        class="primary download-button">
-        Download
-      </button>
-
-    `;
-
-    results.appendChild(card);
-
-    card
-      .querySelector(
-        ".download-button"
-      )
-      .addEventListener(
-        "click",
-        ()=>{
-
-          downloadBlob(
-            blob,
-            outputName
-          );
-
-        }
-      );
-
-    progressBar.style.width =
-      `${Math.round(
-        ((i + 1) /
-        files.length) * 100
-      )}%`;
-
-  }
-
-  processBtn.disabled = false;
 
 });
 
@@ -2718,11 +2944,17 @@ startOverBtn.addEventListener(
 
     processMode.classList.add("active");
 
+    resizeMode.classList.remove("active");
+
     convertMode.classList.remove("active");
 
     processingPanel.classList.remove("hidden");
 
+    resizerPanel.classList.add("hidden");
+
     converterPanel.classList.add("hidden");
+
+    editingControls.classList.remove("hidden");
 
     processBtn.textContent =
       "Compress & Process Images";
