@@ -4,10 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Free Image Compressor & Resizer | ImageTools</title>
+<title>Free Image Compressor, Resizer & Cropper | ImageTools</title>
 
-<meta name="description" content="Free online image compressor, resizer and converter. Reduce image file size, resize images and convert JPG, PNG and WebP directly in your browser.">
-<meta name="keywords" content="image compressor, image resizer, compress image, resize image, JPG compressor, PNG compressor, WebP converter">
+<meta name="description" content="Free online image compressor, resizer and cropper. Compress, resize, crop and convert JPG, PNG and WebP images directly in your browser.">
 
 <style>
 *{
@@ -56,7 +55,7 @@ header p{
 
 .hero p{
   margin:0 auto;
-  max-width:650px;
+  max-width:680px;
   line-height:1.6;
   color:#596579;
 }
@@ -93,6 +92,11 @@ button{
   cursor:pointer;
 }
 
+button:disabled{
+  opacity:.55;
+  cursor:not-allowed;
+}
+
 .primary{
   background:#2563eb;
   color:white;
@@ -101,6 +105,11 @@ button{
 .secondary{
   background:#e5e7eb;
   color:#111827;
+}
+
+.danger{
+  background:#fee2e2;
+  color:#b91c1c;
 }
 
 #fileInput{
@@ -126,6 +135,12 @@ button{
 .file-name{
   overflow:hidden;
   text-overflow:ellipsis;
+  white-space:nowrap;
+}
+
+.file-size{
+  color:#667085;
+  font-size:13px;
   white-space:nowrap;
 }
 
@@ -164,6 +179,10 @@ input[type="number"]{
   background:white;
 }
 
+input[type="range"]{
+  width:100%;
+}
+
 .mode-buttons{
   display:flex;
   gap:8px;
@@ -172,11 +191,28 @@ input[type="number"]{
 
 .mode-buttons button{
   flex:1;
-  min-width:140px;
+  min-width:120px;
   background:#e5e7eb;
 }
 
 .mode-buttons button.active{
+  background:#2563eb;
+  color:white;
+}
+
+.crop-ratios{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+}
+
+.crop-ratios button{
+  flex:1;
+  min-width:100px;
+  background:#e5e7eb;
+}
+
+.crop-ratios button.active{
   background:#2563eb;
   color:white;
 }
@@ -209,6 +245,91 @@ input[type="number"]{
   line-height:1.5;
 }
 
+.crop-preview-wrap{
+  display:none;
+  margin-top:18px;
+}
+
+.crop-preview-title{
+  font-weight:bold;
+  margin-bottom:8px;
+}
+
+.crop-stage{
+  position:relative;
+  width:100%;
+  max-height:500px;
+  overflow:hidden;
+  background:#111827;
+  border-radius:12px;
+  text-align:center;
+}
+
+.crop-stage img{
+  max-width:100%;
+  max-height:500px;
+  display:block;
+  margin:auto;
+}
+
+.crop-box{
+  position:absolute;
+  border:3px solid white;
+  box-shadow:0 0 0 9999px rgba(0,0,0,.5);
+  cursor:move;
+  display:none;
+}
+
+.crop-handle{
+  position:absolute;
+  width:18px;
+  height:18px;
+  background:white;
+  border:2px solid #2563eb;
+  border-radius:50%;
+}
+
+.handle-tl{
+  left:-9px;
+  top:-9px;
+  cursor:nwse-resize;
+}
+
+.handle-tr{
+  right:-9px;
+  top:-9px;
+  cursor:nesw-resize;
+}
+
+.handle-bl{
+  left:-9px;
+  bottom:-9px;
+  cursor:nesw-resize;
+}
+
+.handle-br{
+  right:-9px;
+  bottom:-9px;
+  cursor:nwse-resize;
+}
+
+.crop-info{
+  margin-top:10px;
+  font-size:13px;
+  color:#667085;
+  text-align:center;
+}
+
+.crop-buttons{
+  display:flex;
+  gap:8px;
+  margin-top:12px;
+}
+
+.crop-buttons button{
+  flex:1;
+}
+
 .progress-wrap{
   display:none;
   margin-top:20px;
@@ -238,6 +359,15 @@ input[type="number"]{
 .result-card h4{
   margin:0 0 12px;
   word-break:break-word;
+}
+
+.result-preview{
+  width:100%;
+  max-height:300px;
+  object-fit:contain;
+  background:#f8fafc;
+  border-radius:10px;
+  margin-bottom:12px;
 }
 
 .stats{
@@ -344,6 +474,7 @@ footer{
 }
 
 @media(max-width:650px){
+
   .hero h2{
     font-size:25px;
   }
@@ -359,6 +490,10 @@ footer{
   .stats{
     grid-template-columns:1fr;
   }
+
+  .crop-buttons{
+    flex-direction:column;
+  }
 }
 </style>
 </head>
@@ -373,16 +508,19 @@ footer{
 <main class="container">
 
 <section class="hero">
-  <h2>Compress, Resize & Convert Images</h2>
+  <h2>Compress, Resize, Crop & Convert Images</h2>
   <p>
-    Reduce image file sizes, resize pictures and convert JPG, PNG and WebP.
-    Everything happens directly in your browser.
+    Reduce image file sizes, resize pictures, crop images and convert
+    JPG, PNG and WebP. Everything happens directly in your browser.
   </p>
 </section>
 
 <section class="upload-box" id="dropZone">
+
   <div class="upload-icon">🖼️</div>
+
   <strong>Drop your images here</strong>
+
   <p>or choose images from your device</p>
 
   <button class="primary" type="button" id="chooseBtn">
@@ -397,6 +535,7 @@ footer{
   >
 
   <div class="file-list" id="fileList"></div>
+
 </section>
 
 <section class="card hidden" id="settingsCard">
@@ -406,6 +545,7 @@ footer{
 <label>Compression Mode</label>
 
 <div class="mode-buttons">
+
   <button type="button" id="qualityMode" class="active">
     Quality
   </button>
@@ -413,6 +553,7 @@ footer{
   <button type="button" id="targetMode">
     Target File Size
   </button>
+
 </div>
 
 <div id="targetSettings" class="hidden">
@@ -425,6 +566,7 @@ footer{
   <label>Target Size</label>
 
   <div class="row">
+
     <input
       type="number"
       id="targetSize"
@@ -433,9 +575,12 @@ footer{
     >
 
     <select id="targetUnit">
+
       <option value="KB">KB</option>
       <option value="MB">MB</option>
+
     </select>
+
   </div>
 
   <p class="tip">
@@ -446,9 +591,7 @@ footer{
 
 <div id="qualitySettings">
 
-  <label>
-    Compression Quality
-  </label>
+  <label>Compression Quality</label>
 
   <input
     type="range"
@@ -464,28 +607,135 @@ footer{
 
 </div>
 
+<label>Image Editing</label>
+
+<div class="mode-buttons">
+
+  <button type="button" id="noCropMode" class="active">
+    No Crop
+  </button>
+
+  <button type="button" id="cropMode">
+    Crop Image
+  </button>
+
+</div>
+
+<div id="cropSettings" class="hidden">
+
+  <label>Crop Ratio</label>
+
+  <div class="crop-ratios">
+
+    <button type="button" data-ratio="free" class="active">
+      Free
+    </button>
+
+    <button type="button" data-ratio="1">
+      1:1
+    </button>
+
+    <button type="button" data-ratio="1.333333">
+      4:3
+    </button>
+
+    <button type="button" data-ratio="1.777778">
+      16:9
+    </button>
+
+  </div>
+
+  <div class="crop-preview-wrap" id="cropPreviewWrap">
+
+    <div class="crop-preview-title">
+      Crop Preview
+    </div>
+
+    <div class="crop-stage" id="cropStage">
+
+      <img id="cropImage">
+
+      <div class="crop-box" id="cropBox">
+
+        <div class="crop-handle handle-tl"></div>
+        <div class="crop-handle handle-tr"></div>
+        <div class="crop-handle handle-bl"></div>
+        <div class="crop-handle handle-br"></div>
+
+      </div>
+
+    </div>
+
+    <div class="crop-info" id="cropInfo">
+      Select an area to crop.
+    </div>
+
+    <div class="crop-buttons">
+
+      <button
+        type="button"
+        class="secondary"
+        id="resetCropBtn">
+        Reset Crop
+      </button>
+
+      <button
+        type="button"
+        class="primary"
+        id="applyCropBtn">
+        Apply Crop
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
 <label>Width (pixels)</label>
-<input type="number" id="width" min="1">
+
+<input
+  type="number"
+  id="width"
+  min="1"
+>
 
 <label>Height (pixels)</label>
-<input type="number" id="height" min="1">
+
+<input
+  type="number"
+  id="height"
+  min="1"
+>
 
 <label>Output Format</label>
 
 <select id="format">
+
   <option value="image/jpeg">JPG</option>
   <option value="image/png">PNG</option>
   <option value="image/webp">WebP</option>
+
 </select>
 
 <div class="checkbox">
-  <input type="checkbox" id="aspect" checked>
-  <label for="aspect">Keep original aspect ratio</label>
+
+  <input
+    type="checkbox"
+    id="aspect"
+    checked
+  >
+
+  <label for="aspect">
+    Keep original aspect ratio
+  </label>
+
 </div>
 
 <p class="tip">
-  💡 Target file size works best with JPG or WebP. PNG uses lossless
-  compression, so very small target sizes may not always be possible.
+  💡 Target file size works best with JPG or WebP.
+  PNG uses lossless compression, so very small target sizes
+  may not always be possible.
 </p>
 
 <br>
@@ -499,9 +749,16 @@ footer{
 </button>
 
 <div class="progress-wrap" id="progressWrap">
+
   <div class="progress">
-    <div class="progress-bar" id="progressBar"></div>
+
+    <div
+      class="progress-bar"
+      id="progressBar">
+    </div>
+
   </div>
+
 </div>
 
 </section>
@@ -528,29 +785,42 @@ Your original images are not uploaded to our server by this tool.
 <section class="feature-grid">
 
 <div class="feature">
+
   <div>🎯</div>
+
   <h3>Target File Size</h3>
+
   <p>
-    Need an image under 200 KB? Set your target size and let the browser
-    find a suitable compression level.
+    Need an image under 200 KB? Set your target size and let
+    the browser find a suitable compression level.
   </p>
+
 </div>
 
 <div class="feature">
+
+  <div>✂️</div>
+
+  <h3>Crop Images</h3>
+
+  <p>
+    Crop images to square, 4:3, 16:9 or custom proportions
+    before processing.
+  </p>
+
+</div>
+
+<div class="feature">
+
   <div>⚡</div>
-  <h3>Fast Processing</h3>
-  <p>
-    Images are processed locally on your device without waiting for
-    a remote server.
-  </p>
-</div>
 
-<div class="feature">
-  <div>🌎</div>
-  <h3>Free Worldwide</h3>
+  <h3>Fast Processing</h3>
+
   <p>
-    Compress, resize and convert images without creating an account.
+    Images are processed locally on your device without
+    waiting for a remote server.
   </p>
+
 </div>
 
 </section>
@@ -568,11 +838,19 @@ The compressor will search for a suitable quality level.
 </details>
 
 <details>
+<summary>Can I crop an image before compressing it?</summary>
+<p>
+Yes. Choose Crop Image, select a crop ratio and adjust the
+crop area before processing the image.
+</p>
+</details>
+
+<details>
 <summary>Does target size guarantee the exact file size?</summary>
 <p>
-No. The result depends on the image, dimensions, format and browser.
-The tool aims to get the image at or below the requested target when
-practical.
+No. The result depends on the image, dimensions, format and
+browser. The tool aims to get the image at or below the
+requested target when practical.
 </p>
 </details>
 
@@ -586,8 +864,8 @@ No. Processing happens directly in your browser.
 <details>
 <summary>Can I compress multiple images?</summary>
 <p>
-Yes. You can select multiple images or drag multiple images into the
-upload area.
+Yes. You can select multiple images or drag multiple images
+into the upload area.
 </p>
 </details>
 
@@ -603,87 +881,201 @@ You can export images as JPG, PNG or WebP.
 </main>
 
 <footer>
-  <strong>ImageTools</strong>
-  <p>Free image compression, resizing and conversion tools.</p>
-  <p>© 2026 ImageTools. All rights reserved.</p>
+
+<strong>ImageTools</strong>
+
+<p>
+Free image compression, resizing, cropping and conversion tools.
+</p>
+
+<p>
+© 2026 ImageTools. All rights reserved.
+</p>
+
 </footer>
 
 <script>
 
-const fileInput = document.getElementById("fileInput");
-const chooseBtn = document.getElementById("chooseBtn");
-const dropZone = document.getElementById("dropZone");
-const fileList = document.getElementById("fileList");
+const fileInput =
+  document.getElementById("fileInput");
 
-const settingsCard = document.getElementById("settingsCard");
-const resultsCard = document.getElementById("resultsCard");
-const results = document.getElementById("results");
+const chooseBtn =
+  document.getElementById("chooseBtn");
 
-const qualityMode = document.getElementById("qualityMode");
-const targetMode = document.getElementById("targetMode");
+const dropZone =
+  document.getElementById("dropZone");
 
-const targetSettings = document.getElementById("targetSettings");
-const qualitySettings = document.getElementById("qualitySettings");
+const fileList =
+  document.getElementById("fileList");
 
-const targetSize = document.getElementById("targetSize");
-const targetUnit = document.getElementById("targetUnit");
+const settingsCard =
+  document.getElementById("settingsCard");
 
-const quality = document.getElementById("quality");
-const qualityLabel = document.getElementById("qualityLabel");
+const resultsCard =
+  document.getElementById("resultsCard");
 
-const widthInput = document.getElementById("width");
-const heightInput = document.getElementById("height");
+const results =
+  document.getElementById("results");
 
-const formatSelect = document.getElementById("format");
-const aspect = document.getElementById("aspect");
+const qualityMode =
+  document.getElementById("qualityMode");
 
-const processBtn = document.getElementById("processBtn");
-const startOverBtn = document.getElementById("startOverBtn");
+const targetMode =
+  document.getElementById("targetMode");
 
-const progressWrap = document.getElementById("progressWrap");
-const progressBar = document.getElementById("progressBar");
+const targetSettings =
+  document.getElementById("targetSettings");
+
+const qualitySettings =
+  document.getElementById("qualitySettings");
+
+const targetSize =
+  document.getElementById("targetSize");
+
+const targetUnit =
+  document.getElementById("targetUnit");
+
+const quality =
+  document.getElementById("quality");
+
+const qualityLabel =
+  document.getElementById("qualityLabel");
+
+const widthInput =
+  document.getElementById("width");
+
+const heightInput =
+  document.getElementById("height");
+
+const formatSelect =
+  document.getElementById("format");
+
+const aspect =
+  document.getElementById("aspect");
+
+const processBtn =
+  document.getElementById("processBtn");
+
+const startOverBtn =
+  document.getElementById("startOverBtn");
+
+const progressWrap =
+  document.getElementById("progressWrap");
+
+const progressBar =
+  document.getElementById("progressBar");
+
+const noCropMode =
+  document.getElementById("noCropMode");
+
+const cropMode =
+  document.getElementById("cropMode");
+
+const cropSettings =
+  document.getElementById("cropSettings");
+
+const cropPreviewWrap =
+  document.getElementById("cropPreviewWrap");
+
+const cropStage =
+  document.getElementById("cropStage");
+
+const cropImage =
+  document.getElementById("cropImage");
+
+const cropBox =
+  document.getElementById("cropBox");
+
+const cropInfo =
+  document.getElementById("cropInfo");
+
+const resetCropBtn =
+  document.getElementById("resetCropBtn");
+
+const applyCropBtn =
+  document.getElementById("applyCropBtn");
 
 let files = [];
+
 let selectedMode = "quality";
+
+let cropEnabled = false;
+
+let selectedRatio = null;
+
 let originalWidth = 0;
+
 let originalHeight = 0;
 
-chooseBtn.addEventListener("click", () => {
+let cropState = {
+  x:0,
+  y:0,
+  width:0,
+  height:0
+};
+
+let cropApplied = false;
+
+let cropSourceFile = null;
+
+chooseBtn.addEventListener("click",()=>{
+
   fileInput.click();
+
 });
 
-fileInput.addEventListener("change", e => {
+fileInput.addEventListener("change",e=>{
+
   addFiles(Array.from(e.target.files));
+
 });
 
-dropZone.addEventListener("dragover", e => {
+dropZone.addEventListener("dragover",e=>{
+
   e.preventDefault();
+
   dropZone.classList.add("dragover");
+
 });
 
-dropZone.addEventListener("dragleave", () => {
+dropZone.addEventListener("dragleave",()=>{
+
   dropZone.classList.remove("dragover");
+
 });
 
-dropZone.addEventListener("drop", e => {
+dropZone.addEventListener("drop",e=>{
+
   e.preventDefault();
+
   dropZone.classList.remove("dragover");
 
   addFiles(
     Array.from(e.dataTransfer.files)
-      .filter(file => file.type.startsWith("image/"))
+      .filter(file =>
+        file.type.startsWith("image/")
+      )
   );
+
 });
 
 function addFiles(newFiles){
 
-  files = [...files, ...newFiles];
+  files = [
+    ...files,
+    ...newFiles
+  ];
 
   renderFiles();
 
   if(files.length){
+
     settingsCard.classList.remove("hidden");
+
+    loadFirstImage();
+
   }
+
 }
 
 function renderFiles(){
@@ -692,65 +1084,88 @@ function renderFiles(){
 
   files.forEach((file,index)=>{
 
-    const item = document.createElement("div");
+    const item =
+      document.createElement("div");
 
     item.className = "file-item";
 
     item.innerHTML = `
-      <div class="file-name">
-        ${escapeHtml(file.name)}
+
+      <div style="min-width:0">
+
+        <div class="file-name">
+          ${escapeHtml(file.name)}
+        </div>
+
+        <div class="file-size">
+          ${formatSize(file.size)}
+        </div>
+
       </div>
 
       <button
         type="button"
-        class="remove-file"
+        class="remove-file danger"
         data-index="${index}">
         Remove
       </button>
+
     `;
 
     fileList.appendChild(item);
+
   });
 
-  document.querySelectorAll(".remove-file").forEach(button=>{
+  document
+    .querySelectorAll(".remove-file")
+    .forEach(button=>{
 
-    button.addEventListener("click",()=>{
+      button.addEventListener("click",()=>{
 
-      const index = Number(button.dataset.index);
+        const index =
+          Number(button.dataset.index);
 
-      files.splice(index,1);
+        files.splice(index,1);
 
-      renderFiles();
+        renderFiles();
 
-      if(!files.length){
-        settingsCard.classList.add("hidden");
-      }
+        if(files.length){
+
+          loadFirstImage();
+
+        }else{
+
+          settingsCard.classList.add("hidden");
+
+        }
+
+      });
 
     });
-
-  });
 
 }
 
 function escapeHtml(text){
 
-  const div = document.createElement("div");
+  const div =
+    document.createElement("div");
 
   div.textContent = text;
 
   return div.innerHTML;
+
 }
 
 quality.addEventListener("input",()=>{
 
   qualityLabel.textContent =
     quality.value >= 90
-    ? `Maximum — ${quality.value}%`
-    : quality.value >= 70
-    ? `High — ${quality.value}%`
-    : quality.value >= 40
-    ? `Medium — ${quality.value}%`
-    : `Low — ${quality.value}%`;
+      ? `Maximum — ${quality.value}%`
+      : quality.value >= 70
+      ? `High — ${quality.value}%`
+      : quality.value >= 40
+      ? `Medium — ${quality.value}%`
+      : `Low — ${quality.value}%`;
 
 });
 
@@ -759,9 +1174,11 @@ qualityMode.addEventListener("click",()=>{
   selectedMode = "quality";
 
   qualityMode.classList.add("active");
+
   targetMode.classList.remove("active");
 
   targetSettings.classList.add("hidden");
+
   qualitySettings.classList.remove("hidden");
 
 });
@@ -771,23 +1188,559 @@ targetMode.addEventListener("click",()=>{
   selectedMode = "target";
 
   targetMode.classList.add("active");
+
   qualityMode.classList.remove("active");
 
   targetSettings.classList.remove("hidden");
+
   qualitySettings.classList.add("hidden");
+
+});
+
+noCropMode.addEventListener("click",()=>{
+
+  cropEnabled = false;
+
+  cropApplied = false;
+
+  noCropMode.classList.add("active");
+
+  cropMode.classList.remove("active");
+
+  cropSettings.classList.add("hidden");
+
+});
+
+cropMode.addEventListener("click",()=>{
+
+  cropEnabled = true;
+
+  noCropMode.classList.remove("active");
+
+  cropMode.classList.add("active");
+
+  cropSettings.classList.remove("hidden");
+
+  loadCropImage();
+
+});
+
+document
+  .querySelectorAll(".crop-ratios button")
+  .forEach(button=>{
+
+    button.addEventListener("click",()=>{
+
+      document
+        .querySelectorAll(".crop-ratios button")
+        .forEach(btn =>
+          btn.classList.remove("active")
+        );
+
+      button.classList.add("active");
+
+      const ratio =
+        button.dataset.ratio;
+
+      selectedRatio =
+        ratio === "free"
+          ? null
+          : Number(ratio);
+
+      loadCropImage();
+
+    });
+
+  });
+
+async function loadFirstImage(){
+
+  const file = files[0];
+
+  if(!file) return;
+
+  const img =
+    await loadImage(file);
+
+  originalWidth = img.width;
+
+  originalHeight = img.height;
+
+  widthInput.value = img.width;
+
+  heightInput.value = img.height;
+
+  cropSourceFile = file;
+
+  if(cropEnabled){
+
+    loadCropImage();
+
+  }
+
+}
+
+async function loadCropImage(){
+
+  if(!cropSourceFile && files.length){
+
+    cropSourceFile = files[0];
+
+  }
+
+  if(!cropSourceFile) return;
+
+  const img =
+    await loadImage(cropSourceFile);
+
+  originalWidth = img.width;
+
+  originalHeight = img.height;
+
+  cropImage.src =
+    URL.createObjectURL(cropSourceFile);
+
+  cropImage.onload = ()=>{
+
+    cropPreviewWrap.style.display =
+      "block";
+
+    initializeCrop();
+
+  };
+
+}
+
+function initializeCrop(){
+
+  const stageWidth =
+    cropStage.clientWidth;
+
+  const imageRatio =
+    originalWidth / originalHeight;
+
+  let displayWidth =
+    Math.min(
+      stageWidth,
+      originalWidth
+    );
+
+  let displayHeight =
+    displayWidth / imageRatio;
+
+  if(displayHeight > 500){
+
+    displayHeight = 500;
+
+    displayWidth =
+      displayHeight * imageRatio;
+
+  }
+
+  cropImage.style.width =
+    displayWidth + "px";
+
+  cropImage.style.height =
+    displayHeight + "px";
+
+  cropImage.style.margin =
+    "auto";
+
+  requestAnimationFrame(()=>{
+
+    const rect =
+      cropImage.getBoundingClientRect();
+
+    const stageRect =
+      cropStage.getBoundingClientRect();
+
+    const left =
+      rect.left - stageRect.left;
+
+    const top =
+      rect.top - stageRect.top;
+
+    let w =
+      rect.width * .8;
+
+    let h =
+      rect.height * .8;
+
+    if(selectedRatio){
+
+      if(w / h > selectedRatio){
+
+        w = h * selectedRatio;
+
+      }else{
+
+        h = w / selectedRatio;
+
+      }
+
+    }
+
+    cropState = {
+      x:left + (rect.width-w)/2,
+      y:top + (rect.height-h)/2,
+      width:w,
+      height:h
+    };
+
+    updateCropBox();
+
+  });
+
+}
+
+function updateCropBox(){
+
+  cropBox.style.display =
+    "block";
+
+  cropBox.style.left =
+    cropState.x + "px";
+
+  cropBox.style.top =
+    cropState.y + "px";
+
+  cropBox.style.width =
+    cropState.width + "px";
+
+  cropBox.style.height =
+    cropState.height + "px";
+
+  const scale =
+    originalWidth /
+    cropImage.clientWidth;
+
+  const cropW =
+    Math.round(
+      cropState.width * scale
+    );
+
+  const cropH =
+    Math.round(
+      cropState.height * scale
+    );
+
+  cropInfo.textContent =
+    `Crop area: ${cropW} × ${cropH} pixels`;
+
+}
+
+let dragMode = null;
+
+let startPointer = null;
+
+let startCrop = null;
+
+cropBox.addEventListener("pointerdown",e=>{
+
+  e.preventDefault();
+
+  dragMode = "move";
+
+  startPointer = {
+    x:e.clientX,
+    y:e.clientY
+  };
+
+  startCrop = {
+    ...cropState
+  };
+
+  cropBox.setPointerCapture(e.pointerId);
+
+});
+
+document
+  .querySelectorAll(".crop-handle")
+  .forEach(handle=>{
+
+    handle.addEventListener("pointerdown",e=>{
+
+      e.preventDefault();
+
+      e.stopPropagation();
+
+      dragMode =
+        handle.classList.contains("handle-tl")
+          ? "tl"
+          : handle.classList.contains("handle-tr")
+          ? "tr"
+          : handle.classList.contains("handle-bl")
+          ? "bl"
+          : "br";
+
+      startPointer = {
+        x:e.clientX,
+        y:e.clientY
+      };
+
+      startCrop = {
+        ...cropState
+      };
+
+      handle.setPointerCapture(e.pointerId);
+
+    });
+
+  });
+
+document.addEventListener("pointermove",e=>{
+
+  if(!dragMode) return;
+
+  const dx =
+    e.clientX -
+    startPointer.x;
+
+  const dy =
+    e.clientY -
+    startPointer.y;
+
+  let x =
+    startCrop.x;
+
+  let y =
+    startCrop.y;
+
+  let w =
+    startCrop.width;
+
+  let h =
+    startCrop.height;
+
+  if(dragMode === "move"){
+
+    x += dx;
+    y += dy;
+
+  }else{
+
+    if(dragMode.includes("l")){
+
+      x =
+        startCrop.x + dx;
+
+      w =
+        startCrop.width - dx;
+
+    }
+
+    if(dragMode.includes("r")){
+
+      w =
+        startCrop.width + dx;
+
+    }
+
+    if(dragMode.includes("t")){
+
+      y =
+        startCrop.y + dy;
+
+      h =
+        startCrop.height - dy;
+
+    }
+
+    if(dragMode.includes("b")){
+
+      h =
+        startCrop.height + dy;
+
+    }
+
+    if(selectedRatio){
+
+      if(w / h > selectedRatio){
+
+        w = h * selectedRatio;
+
+      }else{
+
+        h = w / selectedRatio;
+
+      }
+
+    }
+
+  }
+
+  const imageLeft =
+    cropImage.offsetLeft;
+
+  const imageTop =
+    cropImage.offsetTop;
+
+  const imageRight =
+    imageLeft +
+    cropImage.clientWidth;
+
+  const imageBottom =
+    imageTop +
+    cropImage.clientHeight;
+
+  const minSize = 30;
+
+  if(w < minSize){
+
+    w = minSize;
+
+  }
+
+  if(h < minSize){
+
+    h = minSize;
+
+  }
+
+  if(x < imageLeft){
+
+    if(dragMode === "move"){
+
+      x = imageLeft;
+
+    }else{
+
+      w -=
+        imageLeft - x;
+
+      x = imageLeft;
+
+    }
+
+  }
+
+  if(y < imageTop){
+
+    if(dragMode === "move"){
+
+      y = imageTop;
+
+    }else{
+
+      h -=
+        imageTop - y;
+
+      y = imageTop;
+
+    }
+
+  }
+
+  if(x + w > imageRight){
+
+    if(dragMode === "move"){
+
+      x =
+        imageRight - w;
+
+    }else{
+
+      w =
+        imageRight - x;
+
+    }
+
+  }
+
+  if(y + h > imageBottom){
+
+    if(dragMode === "move"){
+
+      y =
+        imageBottom - h;
+
+    }else{
+
+      h =
+        imageBottom - y;
+
+    }
+
+  }
+
+  cropState = {
+    x,
+    y,
+    width:w,
+    height:h
+  };
+
+  updateCropBox();
+
+});
+
+document.addEventListener("pointerup",()=>{
+
+  dragMode = null;
+
+});
+
+resetCropBtn.addEventListener("click",()=>{
+
+  initializeCrop();
+
+  cropApplied = false;
+
+});
+
+applyCropBtn.addEventListener("click",()=>{
+
+  if(!cropState.width ||
+     !cropState.height){
+
+    return;
+
+  }
+
+  const scale =
+    originalWidth /
+    cropImage.clientWidth;
+
+  const cropW =
+    Math.round(
+      cropState.width * scale
+    );
+
+  const cropH =
+    Math.round(
+      cropState.height * scale
+    );
+
+  widthInput.value = cropW;
+
+  heightInput.value = cropH;
+
+  cropApplied = true;
+
+  cropInfo.textContent =
+    `Crop applied: ${cropW} × ${cropH} pixels`;
 
 });
 
 widthInput.addEventListener("input",()=>{
 
-  if(!aspect.checked || !originalWidth || !originalHeight) return;
+  if(
+    !aspect.checked ||
+    !originalWidth ||
+    !originalHeight
+  ) return;
 
-  const width = Number(widthInput.value);
+  const width =
+    Number(widthInput.value);
 
   if(width > 0){
 
     heightInput.value =
-      Math.round(width * originalHeight / originalWidth);
+      Math.round(
+        width *
+        originalHeight /
+        originalWidth
+      );
 
   }
 
@@ -795,32 +1748,25 @@ widthInput.addEventListener("input",()=>{
 
 heightInput.addEventListener("input",()=>{
 
-  if(!aspect.checked || !originalWidth || !originalHeight) return;
+  if(
+    !aspect.checked ||
+    !originalWidth ||
+    !originalHeight
+  ) return;
 
-  const height = Number(heightInput.value);
+  const height =
+    Number(heightInput.value);
 
   if(height > 0){
 
     widthInput.value =
-      Math.round(height * originalWidth / originalHeight);
+      Math.round(
+        height *
+        originalWidth /
+        originalHeight
+      );
 
   }
-
-});
-
-fileInput.addEventListener("change", async e => {
-
-  const file = e.target.files[0];
-
-  if(!file) return;
-
-  const img = await loadImage(file);
-
-  originalWidth = img.width;
-  originalHeight = img.height;
-
-  widthInput.value = img.width;
-  heightInput.value = img.height;
 
 });
 
@@ -828,24 +1774,33 @@ async function loadImage(file){
 
   return new Promise((resolve,reject)=>{
 
-    const img = new Image();
+    const img =
+      new Image();
 
-    img.onload = () => resolve(img);
+    img.onload = ()=>{
+      URL.revokeObjectURL(img.src);
+      resolve(img);
+    };
 
     img.onerror = reject;
 
-    img.src = URL.createObjectURL(file);
+    img.src =
+      URL.createObjectURL(file);
 
   });
 
 }
 
-function canvasToBlob(canvas,type,qualityValue){
+function canvasToBlob(
+  canvas,
+  type,
+  qualityValue
+){
 
   return new Promise(resolve=>{
 
     canvas.toBlob(
-      blob => resolve(blob),
+      blob=>resolve(blob),
       type,
       qualityValue
     );
@@ -854,20 +1809,31 @@ function canvasToBlob(canvas,type,qualityValue){
 
 }
 
-async function createImage(file, width, height, type, qualityValue){
+async function createImage(
+  file,
+  width,
+  height,
+  type,
+  qualityValue,
+  cropData = null
+){
 
-  const img = await loadImage(file);
+  const img =
+    await loadImage(file);
 
-  const canvas = document.createElement("canvas");
+  const canvas =
+    document.createElement("canvas");
 
   canvas.width = width;
   canvas.height = height;
 
-  const ctx = canvas.getContext("2d");
+  const ctx =
+    canvas.getContext("2d");
 
   if(type === "image/jpeg"){
 
-    ctx.fillStyle = "#ffffff";
+    ctx.fillStyle =
+      "#ffffff";
 
     ctx.fillRect(
       0,
@@ -878,13 +1844,31 @@ async function createImage(file, width, height, type, qualityValue){
 
   }
 
-  ctx.drawImage(
-    img,
-    0,
-    0,
-    width,
-    height
-  );
+  if(cropData){
+
+    ctx.drawImage(
+      img,
+      cropData.x,
+      cropData.y,
+      cropData.width,
+      cropData.height,
+      0,
+      0,
+      width,
+      height
+    );
+
+  }else{
+
+    ctx.drawImage(
+      img,
+      0,
+      0,
+      width,
+      height
+    );
+
+  }
 
   return await canvasToBlob(
     canvas,
@@ -899,29 +1883,40 @@ async function findBestTargetBlob(
   width,
   height,
   type,
-  targetBytes
+  targetBytes,
+  cropData
 ){
 
-  let low = 0.05;
-  let high = 0.95;
+  let low = .05;
+
+  let high = .95;
 
   let bestUnderTarget = null;
+
   let smallestBlob = null;
 
   for(let i=0;i<9;i++){
 
-    const q = (low + high) / 2;
+    const q =
+      (low + high) / 2;
 
-    const blob = await createImage(
-      file,
-      width,
-      height,
-      type,
-      q
-    );
+    const blob =
+      await createImage(
+        file,
+        width,
+        height,
+        type,
+        q,
+        cropData
+      );
 
-    if(!smallestBlob || blob.size < smallestBlob.size){
+    if(
+      !smallestBlob ||
+      blob.size < smallestBlob.size
+    ){
+
       smallestBlob = blob;
+
     }
 
     if(blob.size <= targetBytes){
@@ -939,8 +1934,14 @@ async function findBestTargetBlob(
   }
 
   return {
-    blob: bestUnderTarget || smallestBlob,
-    reached: !!bestUnderTarget
+
+    blob:
+      bestUnderTarget ||
+      smallestBlob,
+
+    reached:
+      !!bestUnderTarget
+
   };
 
 }
@@ -955,31 +1956,44 @@ function formatSize(bytes){
 
   if(bytes < 1024 * 1024){
 
-    return (bytes / 1024).toFixed(2) + " KB";
+    return (
+      bytes / 1024
+    ).toFixed(2) + " KB";
 
   }
 
-  return (bytes / (1024 * 1024)).toFixed(2) + " MB";
+  return (
+    bytes /
+    (1024 * 1024)
+  ).toFixed(2) + " MB";
 
 }
 
 function getExtension(type){
 
-  if(type === "image/png") return "png";
+  if(type === "image/png")
+    return "png";
 
-  if(type === "image/webp") return "webp";
+  if(type === "image/webp")
+    return "webp";
 
   return "jpg";
 
 }
 
-function downloadBlob(blob,name){
+function downloadBlob(
+  blob,
+  name
+){
 
-  const url = URL.createObjectURL(blob);
+  const url =
+    URL.createObjectURL(blob);
 
-  const a = document.createElement("a");
+  const a =
+    document.createElement("a");
 
   a.href = url;
+
   a.download = name;
 
   document.body.appendChild(a);
@@ -988,79 +2002,204 @@ function downloadBlob(blob,name){
 
   a.remove();
 
-  URL.revokeObjectURL(url);
+  setTimeout(
+    ()=>URL.revokeObjectURL(url),
+    1000
+  );
 
 }
 
-processBtn.addEventListener("click", async()=>{
+processBtn.addEventListener(
+  "click",
+  async()=>{
 
   if(!files.length){
 
-    alert("Please choose at least one image.");
+    alert(
+      "Please choose at least one image."
+    );
 
     return;
+
   }
 
-  progressWrap.style.display = "block";
-  progressBar.style.width = "0%";
+  progressWrap.style.display =
+    "block";
+
+  progressBar.style.width =
+    "0%";
 
   results.innerHTML = "";
 
-  resultsCard.classList.remove("hidden");
+  resultsCard.classList.remove(
+    "hidden"
+  );
 
   processBtn.disabled = true;
 
-  const type = formatSelect.value;
+  const type =
+    formatSelect.value;
 
-  for(let i=0;i<files.length;i++){
+  let cropData = null;
 
-    const file = files[i];
+  /*
+    Crop coordinates are stored in
+    original-image pixels.
+  */
 
-    const img = await loadImage(file);
+  if(
+    cropEnabled &&
+    cropApplied
+  ){
 
-    let width = Number(widthInput.value) || img.width;
-    let height = Number(heightInput.value) || img.height;
+    const scale =
+      originalWidth /
+      cropImage.clientWidth;
+
+    cropData = {
+
+      x:
+        Math.round(
+          (cropState.x -
+           cropImage.offsetLeft) *
+          scale
+        ),
+
+      y:
+        Math.round(
+          (cropState.y -
+           cropImage.offsetTop) *
+          scale
+        ),
+
+      width:
+        Math.round(
+          cropState.width *
+          scale
+        ),
+
+      height:
+        Math.round(
+          cropState.height *
+          scale
+        )
+
+    };
+
+  }
+
+  for(
+    let i=0;
+    i<files.length;
+    i++
+  ){
+
+    const file =
+      files[i];
+
+    const img =
+      await loadImage(file);
+
+    let sourceWidth =
+      img.width;
+
+    let sourceHeight =
+      img.height;
+
+    if(cropData && i === 0){
+
+      sourceWidth =
+        cropData.width;
+
+      sourceHeight =
+        cropData.height;
+
+    }
+
+    let width =
+      Number(widthInput.value) ||
+      sourceWidth;
+
+    let height =
+      Number(heightInput.value) ||
+      sourceHeight;
 
     if(aspect.checked){
 
-      const ratio = img.width / img.height;
+      const ratio =
+        sourceWidth /
+        sourceHeight;
 
       if(width && !height){
 
-        height = Math.round(width / ratio);
+        height =
+          Math.round(
+            width / ratio
+          );
 
       }else if(height && !width){
 
-        width = Math.round(height * ratio);
+        width =
+          Math.round(
+            height * ratio
+          );
 
       }
 
     }
 
+    /*
+      Only the first image uses the
+      visual crop because the crop
+      preview represents the selected
+      image.
+    */
+
+    const currentCrop =
+      cropData && i === 0
+        ? cropData
+        : null;
+
     let blob;
+
     let targetReached = false;
 
-    const originalBytes = file.size;
+    const originalBytes =
+      file.size;
 
     if(
       selectedMode === "target" &&
-      (type === "image/jpeg" || type === "image/webp")
+      (
+        type === "image/jpeg" ||
+        type === "image/webp"
+      )
     ){
 
-      let targetBytes =
+      const targetBytes =
         Number(targetSize.value) *
-        (targetUnit.value === "MB"
-          ? 1024 * 1024
-          : 1024);
+        (
+          targetUnit.value === "MB"
+            ? 1024 * 1024
+            : 1024
+        );
 
       /*
-        IMPORTANT FIX:
-
-        If the original file is already smaller than
-        the requested target, do not create a larger file.
+        Never enlarge a file that is
+        already smaller than the target
+        unless cropping/resizing/format
+        conversion is intentionally requested.
       */
 
-      if(originalBytes <= targetBytes){
+      const noChangeRequested =
+        !currentCrop &&
+        width === img.width &&
+        height === img.height &&
+        type === file.type;
+
+      if(
+        originalBytes <= targetBytes &&
+        noChangeRequested
+      ){
 
         blob = file;
 
@@ -1074,10 +2213,12 @@ processBtn.addEventListener("click", async()=>{
             width,
             height,
             type,
-            targetBytes
+            targetBytes,
+            currentCrop
           );
 
-        blob = result.blob;
+        blob =
+          result.blob;
 
         targetReached =
           result.reached &&
@@ -1088,7 +2229,8 @@ processBtn.addEventListener("click", async()=>{
     }else{
 
       const q =
-        Number(quality.value) / 100;
+        Number(quality.value) /
+        100;
 
       blob =
         await createImage(
@@ -1096,80 +2238,74 @@ processBtn.addEventListener("click", async()=>{
           width,
           height,
           type,
-          q
+          q,
+          currentCrop
         );
 
-      if(selectedMode === "target"){
-        targetReached = blob.size <=
+      if(
+        selectedMode === "target"
+      ){
+
+        const targetBytes =
           Number(targetSize.value) *
-          (targetUnit.value === "MB"
-            ? 1024 * 1024
-            : 1024);
+          (
+            targetUnit.value === "MB"
+              ? 1024 * 1024
+              : 1024
+          );
+
+        targetReached =
+          blob.size <= targetBytes;
+
       }
 
     }
 
     /*
-      FINAL SAFETY CHECK:
-
-      Never claim savings if the generated file
-      is larger than the original.
+      Safety:
+      Do not report negative savings.
     */
 
-    let finalBlob = blob;
-
-    if(blob.size > originalBytes){
-
-      if(
-        width === img.width &&
-        height === img.height &&
-        type === file.type
-      ){
-
-        finalBlob = file;
-
-      }
-
-    }
-
-    const newBytes = finalBlob.size;
+    const newBytes =
+      blob.size;
 
     let savedPercent = 0;
 
-    if(newBytes < originalBytes){
+    if(
+      newBytes < originalBytes
+    ){
 
       savedPercent =
         Math.round(
-          ((originalBytes - newBytes) /
-          originalBytes) * 100
+          (
+            (originalBytes -
+             newBytes) /
+            originalBytes
+          ) * 100
         );
 
     }
 
-    const targetText =
-      selectedMode === "target"
-      ? targetReached
-        ? "🎯 Target reached"
-        : "⚠️ Closest practical size"
-      : "";
-
-    const resultCard =
-      document.createElement("div");
-
-    resultCard.className = "result-card";
-
     let statusHtml = "";
 
-    if(selectedMode === "target"){
+    if(
+      selectedMode === "target"
+    ){
 
       statusHtml =
         targetReached
-        ? `<div class="success">
-             ${targetText}
-           </div>`
-        : `<div class="warning">
-             ${targetText}
-           </div>`;
+
+        ? `
+          <div class="success">
+            🎯 Target reached
+          </div>
+        `
+
+        : `
+          <div class="warning">
+            ⚠️ Closest practical size
+          </div>
+        `;
 
     }
 
@@ -1177,31 +2313,55 @@ processBtn.addEventListener("click", async()=>{
       getExtension(type);
 
     const baseName =
-      file.name.replace(/\.[^/.]+$/,"");
+      file.name.replace(
+        /\.[^/.]+$/,
+        ""
+      );
 
     const outputName =
-      `${baseName}-compressed.${extension}`;
+      `${baseName}-processed.${extension}`;
 
-    resultCard.innerHTML = `
+    const previewUrl =
+      URL.createObjectURL(blob);
+
+    const card =
+      document.createElement("div");
+
+    card.className =
+      "result-card";
+
+    card.innerHTML = `
 
       <h4>
         ${escapeHtml(file.name)}
       </h4>
 
+      <img
+        class="result-preview"
+        src="${previewUrl}"
+        alt="Processed image"
+      >
+
       <div class="stats">
 
         <div class="stat">
-          <strong>${formatSize(originalBytes)}</strong>
+          <strong>
+            ${formatSize(originalBytes)}
+          </strong>
           <span>Original</span>
         </div>
 
         <div class="stat">
-          <strong>${formatSize(newBytes)}</strong>
+          <strong>
+            ${formatSize(newBytes)}
+          </strong>
           <span>New Size</span>
         </div>
 
         <div class="stat">
-          <strong>${savedPercent}%</strong>
+          <strong>
+            ${savedPercent}%
+          </strong>
           <span>Saved</span>
         </div>
 
@@ -1216,21 +2376,29 @@ processBtn.addEventListener("click", async()=>{
 
     `;
 
-    results.appendChild(resultCard);
+    results.appendChild(card);
 
-    resultCard
-      .querySelector(".download-button")
-      .addEventListener("click",()=>{
+    card
+      .querySelector(
+        ".download-button"
+      )
+      .addEventListener(
+        "click",
+        ()=>{
 
-        downloadBlob(
-          finalBlob,
-          outputName
-        );
+          downloadBlob(
+            blob,
+            outputName
+          );
 
-      });
+        }
+      );
 
     progressBar.style.width =
-      `${Math.round(((i+1)/files.length)*100)}%`;
+      `${Math.round(
+        ((i + 1) /
+        files.length) * 100
+      )}%`;
 
   }
 
@@ -1238,25 +2406,41 @@ processBtn.addEventListener("click", async()=>{
 
 });
 
-startOverBtn.addEventListener("click",()=>{
+startOverBtn.addEventListener(
+  "click",
+  ()=>{
 
-  files = [];
+    files = [];
 
-  fileInput.value = "";
+    fileInput.value = "";
 
-  fileList.innerHTML = "";
+    fileList.innerHTML = "";
 
-  results.innerHTML = "";
+    results.innerHTML = "";
 
-  settingsCard.classList.add("hidden");
+    settingsCard.classList.add(
+      "hidden"
+    );
 
-  resultsCard.classList.add("hidden");
+    resultsCard.classList.add(
+      "hidden"
+    );
 
-  progressWrap.style.display = "none";
+    progressWrap.style.display =
+      "none";
 
-  progressBar.style.width = "0%";
+    progressBar.style.width =
+      "0%";
 
-});
+    cropPreviewWrap.style.display =
+      "none";
+
+    cropSourceFile = null;
+
+    cropApplied = false;
+
+  }
+);
 
 </script>
 
