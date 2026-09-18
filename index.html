@@ -8,7 +8,7 @@
 
 <meta name="description" content="Free online image compressor, resizer, cropper and converter. Compress images, resize photos, crop pictures and convert JPG, PNG and WebP directly in your browser.">
 
-<meta name="keywords" content="image compressor, compress image, image resizer, resize image, image cropper, crop image, image converter, JPG compressor, PNG compressor, WebP converter, JPG to WebP, PNG to JPG, resize photo">
+<meta name="keywords" content="image compressor, compress image, image resizer, resize image, image cropper, crop image, image converter, JPG compressor, PNG compressor, WebP converter, JPG to WebP, JPG to PNG, PNG to JPG, resize photo">
 
 <meta name="robots" content="index, follow">
 <meta name="author" content="ImageTools">
@@ -441,6 +441,11 @@ Choose a specific tool below or use the full ImageTools editor above.
 <span>Convert JPG and JPEG images to WebP directly in your browser.</span>
 </a>
 
+<a class="tool-link" href="jpg-to-png.html">
+<strong>🔄 JPG to PNG Converter</strong>
+<span>Convert JPG and JPEG images to PNG directly in your browser.</span>
+</a>
+
 <a class="tool-link" href="png-to-jpg.html">
 <strong>🔄 PNG to JPG Converter</strong>
 <span>Convert PNG images to JPG while keeping image dimensions.</span>
@@ -501,6 +506,14 @@ so you can balance image quality and file size.
 <p>
 Choose Convert Format, select WebP as the output format
 and process your image.
+</p>
+</details>
+
+<details>
+<summary>How do I convert JPG to PNG?</summary>
+<p>
+Choose Convert Format, select PNG as the output format
+and process your JPG or JPEG image.
 </p>
 </details>
 
@@ -1586,7 +1599,7 @@ resizeQuality.value="0.90";
 
 }
 
-if(convert==="webp" || convert==="jpg"){
+if(convert==="webp" || convert==="jpg" || convert==="png"){
 
 setMode("convert");
 
@@ -1596,6 +1609,10 @@ formatSelect.value="image/webp";
 
 if(convert==="jpg"){
 formatSelect.value="image/jpeg";
+}
+
+if(convert==="png"){
+formatSelect.value="image/png";
 }
 
 }
