@@ -1465,6 +1465,7 @@ const params=new URLSearchParams(window.location.search);
 
 const target=params.get("target");
 const resize=params.get("resize");
+const convert=params.get("convert");
 
 if(target==="200kb" || target==="100kb"){
 
@@ -1491,6 +1492,15 @@ resizePreset.value="1080";
 resizeQuality.value="0.90";
 
 }
+
+if(convert==="webp"){
+
+setMode("convert");
+
+formatSelect.value="image/webp";
+
+}
+
 }
 
 /* START */
