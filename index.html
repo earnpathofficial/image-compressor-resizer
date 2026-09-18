@@ -421,6 +421,11 @@ Choose a specific tool below or use the full ImageTools editor above.
 <span>Reduce an image to around 200 KB with target file size compression.</span>
 </a>
 
+<a class="tool-link" href="resize-image-online.html">
+<strong>🖼️ Resize Image Online</strong>
+<span>Resize JPG, PNG and WebP images to custom or common dimensions.</span>
+</a>
+
 <a class="tool-link" href="resize-image-to-1080px.html">
 <strong>📐 Resize Image to 1080px</strong>
 <span>Resize images to 1080 pixels wide while keeping proportions.</span>
@@ -1551,6 +1556,16 @@ if(resize==="1080"){
 setMode("resize");
 
 resizePreset.value="1080";
+
+resizeQuality.value="0.90";
+
+}
+
+if(resize==="custom"){
+
+setMode("resize");
+
+resizePreset.value="custom";
 
 resizeQuality.value="0.90";
 
