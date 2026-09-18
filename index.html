@@ -393,8 +393,6 @@ without uploading them.
 
 </section>
 
-<!-- POPULAR IMAGE TOOLS -->
-
 <section class="card">
 
 <h3>Popular Image Tools</h3>
@@ -1536,6 +1534,8 @@ quality.value="0.90";
 resizePreset.value="custom";
 resizeQuality.value="0.90";
 
+formatSelect.value="image/jpeg";
+
 updateQualityVisibility();
 
 setMode("process");
@@ -1574,7 +1574,6 @@ if(resize==="1080"){
 setMode("resize");
 
 resizePreset.value="1080";
-
 resizeQuality.value="0.90";
 
 }
@@ -1584,7 +1583,6 @@ if(resize==="custom"){
 setMode("resize");
 
 resizePreset.value="custom";
-
 resizeQuality.value="0.90";
 
 }
@@ -1594,26 +1592,52 @@ if(resize==="social"){
 setMode("resize");
 
 resizePreset.value="custom";
-
 resizeQuality.value="0.90";
 
 }
 
-if(convert==="webp" || convert==="jpg" || convert==="png"){
+/* JPG TO WEBP */
+
+if(convert==="webp"){
 
 setMode("convert");
 
-if(convert==="webp"){
 formatSelect.value="image/webp";
+
 }
 
-if(convert==="jpg"){
-formatSelect.value="image/jpeg";
-}
+/* PNG OUTPUT */
 
 if(convert==="png"){
+
+setMode("convert");
+
+/* Force PNG output */
+formatSelect.selectedIndex=1;
 formatSelect.value="image/png";
+
+/* Make sure converter mode remains active */
+convertMode.classList.add("active");
+processMode.classList.remove("active");
+resizeMode.classList.remove("active");
+
+converterPanel.classList.remove("hidden");
+compressionPanel.classList.add("hidden");
+resizerPanel.classList.add("hidden");
+dimensionPanel.classList.add("hidden");
+editingControls.classList.add("hidden");
+
+processBtn.textContent="Convert Images";
+
 }
+
+/* JPG OUTPUT */
+
+if(convert==="jpg"){
+
+setMode("convert");
+
+formatSelect.value="image/jpeg";
 
 }
 
@@ -1636,6 +1660,16 @@ setMode("process");
 updateCropUI();
 updateQualityVisibility();
 applyUrlSettings();
+
+/*
+Apply URL settings once more after the page finishes loading.
+This makes converter deep links reliable when the live site/browser
+restores an older page state.
+*/
+window.addEventListener("load",()=>{
+applyUrlSettings();
+});
+
 </script>
 
 </body>
