@@ -85,13 +85,18 @@ select,input[type=number]{width:100%;padding:11px;border:1px solid #d0d5dd;borde
 .feature-icon{font-size:28px}
 .feature h3{margin-bottom:7px}
 .feature p{color:#667085;font-size:14px;line-height:1.5}
+.tool-navigation{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.tool-link{display:block;text-decoration:none;background:#f8fafc;border:1px solid #e5e7eb;border-radius:12px;padding:15px;color:#172033}
+.tool-link strong{display:block;margin-bottom:5px}
+.tool-link span{font-size:13px;color:#667085;line-height:1.4}
+.tool-link:hover{border-color:#2563eb;background:#eff6ff}
 .faq details{border-bottom:1px solid #eee;padding:13px 0}
 .faq summary{cursor:pointer;font-weight:bold}
 footer{text-align:center;color:#667085;padding:30px 15px;font-size:13px}
 
 @media(max-width:700px){
 .hero h2{font-size:25px}
-.control-grid,.feature-grid{grid-template-columns:1fr}
+.control-grid,.feature-grid,.tool-navigation{grid-template-columns:1fr}
 .mode-buttons{grid-template-columns:1fr}
 .result-grid{grid-template-columns:1fr 1fr}
 }
@@ -384,6 +389,63 @@ while keeping the original proportions and controlling output quality.
 Convert JPG, PNG and WebP images directly in your browser
 without uploading them.
 </p>
+</div>
+
+</section>
+
+<!-- POPULAR IMAGE TOOLS -->
+
+<section class="card">
+
+<h3>Popular Image Tools</h3>
+
+<p>
+Quickly access our most useful free image tools.
+Choose a specific tool below or use the full ImageTools editor above.
+</p>
+
+<div class="tool-navigation">
+
+<a class="tool-link" href="compress-image-online.html">
+<strong>🗜️ Compress Image Online</strong>
+<span>Reduce JPG, PNG and WebP file sizes directly in your browser.</span>
+</a>
+
+<a class="tool-link" href="compress-image-to-100kb.html">
+<strong>🎯 Compress Image to 100KB</strong>
+<span>Compress an image to around 100 KB for uploads and sharing.</span>
+</a>
+
+<a class="tool-link" href="compress-image-to-200kb.html">
+<strong>🎯 Compress Image to 200KB</strong>
+<span>Reduce an image to around 200 KB with target file size compression.</span>
+</a>
+
+<a class="tool-link" href="resize-image-to-1080px.html">
+<strong>📐 Resize Image to 1080px</strong>
+<span>Resize images to 1080 pixels wide while keeping proportions.</span>
+</a>
+
+<a class="tool-link" href="jpg-to-webp.html">
+<strong>🔄 JPG to WebP Converter</strong>
+<span>Convert JPG and JPEG images to WebP directly in your browser.</span>
+</a>
+
+<a class="tool-link" href="png-to-jpg.html">
+<strong>🔄 PNG to JPG Converter</strong>
+<span>Convert PNG images to JPG while keeping image dimensions.</span>
+</a>
+
+<a class="tool-link" href="webp-to-jpg.html">
+<strong>🔄 WebP to JPG Converter</strong>
+<span>Convert WebP images to JPG directly in your browser.</span>
+</a>
+
+<a class="tool-link" href="crop-image-online.html">
+<strong>✂️ Crop Image Online</strong>
+<span>Crop images to 1:1, 4:3, 16:9 or use free cropping.</span>
+</a>
+
 </div>
 
 </section>
