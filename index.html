@@ -558,15 +558,11 @@ let toolMode="process";
 let originalWidth=0;
 let originalHeight=0;
 
-/* FILE PICKER */
-
 chooseBtn.addEventListener("click",()=>fileInput.click());
 
 fileInput.addEventListener("change",()=>{
 addFiles(Array.from(fileInput.files));
 });
-
-/* DRAG AND DROP */
 
 dropZone.addEventListener("dragover",e=>{
 e.preventDefault();
@@ -582,8 +578,6 @@ e.preventDefault();
 dropZone.classList.remove("dragover");
 addFiles(Array.from(e.dataTransfer.files));
 });
-
-/* FILES */
 
 function addFiles(newFiles){
 
@@ -651,8 +645,6 @@ return text.replace(/[&<>"']/g,char=>({
 
 }
 
-/* LOAD IMAGE */
-
 function loadImage(file){
 
 return new Promise((resolve,reject)=>{
@@ -694,8 +686,6 @@ console.error(error);
 }
 }
 
-/* MODES */
-
 function setMode(mode){
 
 toolMode=mode;
@@ -730,8 +720,6 @@ processMode.addEventListener("click",()=>setMode("process"));
 resizeMode.addEventListener("click",()=>setMode("resize"));
 convertMode.addEventListener("click",()=>setMode("convert"));
 
-/* COMPRESSION */
-
 compressionMode.addEventListener("change",()=>{
 
 const target=compressionMode.value==="target";
@@ -757,8 +745,6 @@ quality.value=qualityPreset.value;
 }
 }
 
-/* RESIZE PRESET */
-
 resizePreset.addEventListener("change",()=>{
 
 if(resizePreset.value==="custom")return;
@@ -776,8 +762,6 @@ newWidth*originalHeight/originalWidth
 widthInput.value=newWidth;
 heightInput.value=newHeight;
 });
-
-/* DIMENSIONS */
 
 widthInput.addEventListener("input",()=>{
 
@@ -823,8 +807,6 @@ width*originalHeight/originalWidth
 );
 }
 });
-
-/* CROP */
 
 cropMode.addEventListener("change",updateCropUI);
 cropRatio.addEventListener("change",updateCropUI);
@@ -877,8 +859,6 @@ height:cropHeight
 };
 }
 
-/* FORMAT HELPERS */
-
 function formatBytes(bytes){
 
 if(bytes<1024)return bytes+" B";
@@ -910,8 +890,6 @@ return Math.max(
 Math.round((1-newSize/original)*100)
 );
 }
-
-/* CANVAS */
 
 function createCanvas(img,outputWidth,outputHeight,type){
 
@@ -964,8 +942,6 @@ qualityValue
 });
 }
 
-/* CREATE IMAGE */
-
 async function createImage(
 file,
 width,
@@ -989,8 +965,6 @@ type,
 qualityValue
 );
 }
-
-/* TARGET SIZE */
 
 async function compressToTarget(
 file,
@@ -1079,8 +1053,6 @@ reached:fallback.size<=targetBytes
 };
 }
 
-/* PROCESS */
-
 async function processFiles(){
 
 if(!files.length)return;
@@ -1138,8 +1110,6 @@ processBtn.disabled=false;
 startOverBtn.classList.remove("hidden");
 }
 
-/* CONVERTER */
-
 async function convertFile(file){
 
 const type=formatSelect.value;
@@ -1169,8 +1139,6 @@ img.height,
 `Converted to ${extensionFor(type).toUpperCase()}`
 );
 }
-
-/* RESIZE */
 
 async function resizeFile(file){
 
@@ -1242,8 +1210,6 @@ height,
 `📐 Resized to ${width} × ${height}px`
 );
 }
-
-/* COMPRESS */
 
 async function compressFile(file){
 
@@ -1348,8 +1314,6 @@ statusText
 );
 }
 
-/* RESULTS */
-
 function addResult(
 file,
 blob,
@@ -1450,8 +1414,6 @@ card.innerHTML=`
 results.appendChild(card);
 }
 
-/* RESET */
-
 processBtn.addEventListener("click",processFiles);
 startOverBtn.addEventListener("click",resetAll);
 
@@ -1486,6 +1448,9 @@ cropRatio.value="free";
 qualityPreset.value="0.90";
 quality.value="0.90";
 
+resizePreset.value="custom";
+resizeQuality.value="0.90";
+
 updateQualityVisibility();
 
 setMode("process");
@@ -1499,6 +1464,7 @@ function applyUrlSettings(){
 const params=new URLSearchParams(window.location.search);
 
 const target=params.get("target");
+const resize=params.get("resize");
 
 if(target==="200kb" || target==="100kb"){
 
@@ -1513,6 +1479,16 @@ targetUnit.value="KB";
 qualityControl.classList.add("hidden");
 customQualityControl.classList.add("hidden");
 targetPanel.classList.remove("hidden");
+
+}
+
+if(resize==="1080"){
+
+setMode("resize");
+
+resizePreset.value="1080";
+
+resizeQuality.value="0.90";
 
 }
 }
