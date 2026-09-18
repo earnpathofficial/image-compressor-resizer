@@ -35,10 +35,13 @@
 </script>
 
 <style>
-*{box-sizing:border-box}
+*{
+box-sizing:border-box;
+}
 
 html{
 overflow-x:hidden;
+scroll-behavior:smooth;
 }
 
 body{
@@ -48,6 +51,7 @@ background:#f5f7fb;
 color:#172033;
 overflow-x:hidden;
 -webkit-text-size-adjust:100%;
+-webkit-tap-highlight-color:transparent;
 }
 
 header{
@@ -60,6 +64,7 @@ text-align:center;
 header h1{
 margin:0;
 font-size:24px;
+line-height:1.2;
 }
 
 header p{
@@ -88,6 +93,9 @@ line-height:1.2;
 .hero p{
 color:#667085;
 line-height:1.6;
+margin-left:auto;
+margin-right:auto;
+max-width:760px;
 }
 
 .card{
@@ -114,19 +122,27 @@ background:#eff6ff;
 
 .upload-icon{
 font-size:40px;
+line-height:1;
 }
 
 .upload strong{
 display:block;
 font-size:18px;
-margin:8px 0;
+margin:10px 0 7px;
+}
+
+.upload span{
+display:inline-block;
+line-height:1.5;
 }
 
 input[type=file]{
 display:none;
 }
 
-button,select,input{
+button,
+select,
+input{
 font:inherit;
 }
 
@@ -135,13 +151,19 @@ border:0;
 border-radius:10px;
 padding:11px 16px;
 cursor:pointer;
-min-height:44px;
+min-height:46px;
 touch-action:manipulation;
+transition:transform .12s ease,box-shadow .12s ease,background .12s ease;
+}
+
+button:active{
+transform:scale(.98);
 }
 
 .primary{
 background:#2563eb;
 color:#fff;
+box-shadow:0 2px 6px rgba(37,99,235,.18);
 }
 
 .secondary{
@@ -152,6 +174,7 @@ color:#172033;
 button:disabled{
 opacity:.55;
 cursor:not-allowed;
+transform:none;
 }
 
 .file-list{
@@ -163,7 +186,7 @@ display:flex;
 justify-content:space-between;
 align-items:center;
 gap:10px;
-padding:10px 0;
+padding:11px 0;
 border-bottom:1px solid #eee;
 font-size:14px;
 min-width:0;
@@ -175,13 +198,18 @@ text-overflow:ellipsis;
 white-space:nowrap;
 min-width:0;
 flex:1;
+line-height:1.5;
+}
+
+.file-name small{
+color:#667085;
 }
 
 .remove-btn{
 background:#fee2e2;
 color:#b91c1c;
-padding:7px 10px;
-min-height:38px;
+padding:8px 11px;
+min-height:40px;
 flex-shrink:0;
 }
 
@@ -195,11 +223,13 @@ margin:15px 0;
 .mode-buttons button{
 background:#eef2f7;
 color:#344054;
+font-weight:600;
 }
 
 .mode-buttons button.active{
 background:#2563eb;
 color:#fff;
+box-shadow:0 2px 6px rgba(37,99,235,.18);
 }
 
 .control-grid{
@@ -219,26 +249,38 @@ margin-bottom:7px;
 font-size:14px;
 }
 
-select,input[type=number]{
+select,
+input[type=number]{
 width:100%;
 padding:11px;
 border:1px solid #d0d5dd;
 border-radius:9px;
 background:#fff;
-min-height:44px;
+min-height:46px;
+outline:none;
+}
+
+select:focus,
+input[type=number]:focus{
+border-color:#2563eb;
+box-shadow:0 0 0 3px rgba(37,99,235,.10);
 }
 
 .checkbox{
 display:flex;
 align-items:center;
-gap:8px;
+gap:9px;
 margin:10px 0;
 font-size:14px;
+min-height:42px;
+cursor:pointer;
 }
 
 .checkbox input{
 width:18px;
 height:18px;
+margin:0;
+accent-color:#2563eb;
 }
 
 .info{
@@ -289,6 +331,7 @@ border-radius:12px;
 padding:15px;
 margin-bottom:12px;
 overflow:hidden;
+background:#fff;
 }
 
 .result h4{
@@ -296,6 +339,7 @@ margin:0 0 10px;
 overflow:hidden;
 text-overflow:ellipsis;
 white-space:nowrap;
+line-height:1.4;
 }
 
 .result-grid{
@@ -308,9 +352,10 @@ margin-bottom:12px;
 
 .stat{
 background:#f8fafc;
-padding:9px;
+padding:10px;
 border-radius:8px;
 overflow-wrap:anywhere;
+line-height:1.45;
 }
 
 .stat strong{
@@ -322,6 +367,8 @@ margin-top:3px;
 width:100%;
 background:#16a34a;
 color:#fff;
+font-weight:600;
+min-height:48px;
 }
 
 .feature-grid{
@@ -339,6 +386,7 @@ box-shadow:0 5px 18px rgba(0,0,0,.05);
 
 .feature-icon{
 font-size:28px;
+line-height:1;
 }
 
 .feature h3{
@@ -366,11 +414,13 @@ border-radius:12px;
 padding:15px;
 color:#172033;
 transition:.15s;
+min-height:100%;
 }
 
 .tool-link strong{
 display:block;
 margin-bottom:5px;
+line-height:1.4;
 }
 
 .tool-link span{
@@ -384,6 +434,10 @@ border-color:#2563eb;
 background:#eff6ff;
 }
 
+.tool-link:active{
+transform:scale(.99);
+}
+
 .faq details{
 border-bottom:1px solid #eee;
 padding:13px 0;
@@ -393,6 +447,7 @@ padding:13px 0;
 cursor:pointer;
 font-weight:bold;
 line-height:1.45;
+padding:4px 0;
 }
 
 .faq p{
@@ -405,6 +460,7 @@ text-align:center;
 color:#667085;
 padding:30px 15px;
 font-size:13px;
+line-height:1.5;
 }
 
 /* TABLET */
@@ -450,6 +506,7 @@ gap:9px;
 
 .mode-buttons button{
 width:100%;
+min-height:48px;
 }
 
 .control-grid,
@@ -464,6 +521,7 @@ grid-template-columns:1fr 1fr;
 
 .tool-link{
 padding:16px;
+min-height:84px;
 }
 
 .feature{
@@ -498,6 +556,7 @@ font-size:23px;
 
 .hero p{
 font-size:14px;
+line-height:1.55;
 }
 
 .card{
@@ -516,6 +575,7 @@ font-size:36px;
 
 .upload strong{
 font-size:16px;
+margin-top:9px;
 }
 
 .upload span{
@@ -526,6 +586,7 @@ line-height:1.4;
 .upload .primary{
 width:100%;
 margin-top:4px;
+min-height:48px;
 }
 
 .file-item{
@@ -536,10 +597,12 @@ padding:12px 0;
 
 .file-name{
 font-size:13px;
+line-height:1.45;
 }
 
 .remove-btn{
 padding:8px 10px;
+min-height:42px;
 }
 
 .control{
@@ -552,21 +615,35 @@ font-size:13px;
 
 select,
 input[type=number]{
-min-height:46px;
+min-height:48px;
 padding:11px 10px;
+font-size:16px;
 }
 
 button{
 width:100%;
-min-height:46px;
+min-height:48px;
+font-size:15px;
 }
 
 .processBtn{
 width:100%;
 }
 
+.checkbox{
+font-size:14px;
+padding:3px 0;
+}
+
+.info{
+font-size:13px;
+padding:11px;
+line-height:1.5;
+}
+
 .result{
 padding:13px;
+border-radius:11px;
 }
 
 .result h4{
@@ -582,6 +659,10 @@ gap:7px;
 padding:10px;
 }
 
+.result .download{
+min-height:50px;
+}
+
 .feature{
 padding:15px;
 }
@@ -592,6 +673,7 @@ font-size:17px;
 
 .tool-link{
 padding:15px;
+min-height:0;
 }
 
 .tool-link strong{
@@ -601,18 +683,64 @@ line-height:1.35;
 
 .tool-link span{
 font-size:13px;
+line-height:1.45;
 }
 
 .faq summary{
 font-size:14px;
+padding:5px 0;
 }
 
 .faq p{
 font-size:13px;
+line-height:1.55;
 }
 
 footer{
 padding:25px 10px;
+}
+
+}
+
+/* VERY SMALL PHONES */
+
+@media(max-width:360px){
+
+header h1{
+font-size:21px;
+}
+
+main{
+padding-left:8px;
+padding-right:8px;
+}
+
+.card{
+padding:12px;
+}
+
+.hero h2{
+font-size:21px;
+}
+
+.upload{
+padding:24px 8px;
+}
+
+.mode-buttons{
+gap:8px;
+}
+
+.mode-buttons button{
+font-size:14px;
+}
+
+.tool-link{
+padding:13px;
+}
+
+.result{
+padding:11px;
 }
 
 }
