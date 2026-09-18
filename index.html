@@ -1,13 +1,27 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Free Image Compressor, Resizer, Cropper & Converter | ImageTools</title><meta name="description" content="Free online image compressor, resizer, cropper and converter. Compress images, resize photos, crop pictures and convert JPG, PNG and WebP directly in your browser."><meta name="keywords" content="image compressor, compress image, image resizer, resize image, image cropper, crop image, image converter, JPG compressor, PNG compressor, WebP converter, JPG to WebP, JPG to PNG, WebP to PNG, PNG to JPG, resize photo"><meta name="robots" content="index, follow">
-<meta name="author" content="ImageTools"><meta property="og:type" content="website">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<meta name="google-site-verification" content="rjiAn6FY46_tcN-DQzYyTKr8FttbQp1F48o9rE9gR50" />
+
+<title>Free Image Compressor, Resizer, Cropper & Converter | ImageTools</title>
+<meta name="description" content="Free online image compressor, resizer, cropper and converter. Compress images, resize photos, crop pictures and convert JPG, PNG and WebP directly in your browser.">
+<meta name="keywords" content="image compressor, compress image, image resizer, resize image, image cropper, crop image, image converter, JPG compressor, PNG compressor, WebP converter, JPG to WebP, JPG to PNG, WebP to PNG, PNG to JPG, resize photo">
+<meta name="robots" content="index, follow">
+<meta name="author" content="ImageTools">
+
+<meta property="og:type" content="website">
 <meta property="og:title" content="Free Image Compressor, Resizer, Cropper & Converter | ImageTools">
 <meta property="og:description" content="Compress, resize, crop and convert JPG, PNG and WebP images directly in your browser.">
-<meta property="og:site_name" content="ImageTools"><meta name="twitter:card" content="summary">
+<meta property="og:site_name" content="ImageTools">
+
+<meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Free Image Compressor, Resizer, Cropper & Converter | ImageTools">
-<meta name="twitter:description" content="Free browser-based tools to compress, resize, crop and convert JPG, PNG and WebP images."><script type="application/ld+json">
+<meta name="twitter:description" content="Free browser-based tools to compress, resize, crop and convert JPG, PNG and WebP images.">
+
+<script type="application/ld+json">
 {
   "@context":"https://schema.org",
   "@type":"WebApplication",
@@ -17,7 +31,9 @@
   "operatingSystem":"Web Browser",
   "isAccessibleForFree":true
 }
-</script><style>
+</script>
+
+<style>
 *{
 box-sizing:border-box;
 }
@@ -713,52 +729,105 @@ padding:11px;
 }
 
 }
-</style></head><body><header>
+</style>
+</head>
+
+<body>
+
+<header>
 <h1>ImageTools</h1>
 <p>Free Image Tools</p>
-</header><main><section class="hero">
+</header>
+
+<main>
+
+<section class="hero">
 <h2>Compress, Resize, Crop & Convert Images</h2>
 <p>
 Free online image tools for compressing, resizing, cropping and
 converting JPG, PNG and WebP images. Everything happens directly
 in your browser.
 </p>
-</section><section class="card"><div class="upload" id="dropZone">
+</section>
+
+<section class="card">
+
+<div class="upload" id="dropZone">
 <div class="upload-icon">🖼️</div>
 <strong>Drop your images here</strong>
 <span>or choose images from your device</span>
-<br><br><label>
+<br><br>
+
+<label>
 <button type="button" class="primary" id="chooseBtn">
 Choose Images
 </button>
+
 <input
 type="file"
 id="fileInput"
 accept="image/jpeg,image/png,image/webp"
 multiple>
 </label>
-</div><div id="fileList" class="file-list"></div><div id="toolCard" class="hidden"><h3>Image Tools</h3><div class="mode-buttons">
+
+</div>
+
+<div id="fileList" class="file-list"></div>
+
+<div id="toolCard" class="hidden">
+
+<h3>Image Tools</h3>
+
+<div class="mode-buttons">
+
 <button type="button" id="processMode" class="active">
 Compress & Resize
-</button><button type="button" id="resizeMode">
+</button>
+
+<button type="button" id="resizeMode">
 Resize Only
-</button><button type="button" id="convertMode">
+</button>
+
+<button type="button" id="convertMode">
 Convert Format
 </button>
-</div><div id="compressionPanel"><div class="control-grid"><div class="control">
-<label>Compression Mode</label><select id="compressionMode">
+
+</div>
+
+<div id="compressionPanel">
+
+<div class="control-grid">
+
+<div class="control">
+<label>Compression Mode</label>
+
+<select id="compressionMode">
 <option value="quality">Quality Compression</option>
 <option value="target">Target File Size</option>
 </select>
-</div><div class="control" id="qualityControl">
-<label>Quality</label><select id="qualityPreset">
+
+</div>
+
+<div class="control" id="qualityControl">
+
+<label>Quality</label>
+
+<select id="qualityPreset">
 <option value="0.90">Best Quality — 90%</option>
 <option value="0.75">Balanced — 75%</option>
 <option value="0.55">Small File — 55%</option>
 <option value="custom">Custom Quality</option>
 </select>
-</div></div><div class="control hidden" id="customQualityControl">
-<label>Custom Quality</label><select id="quality">
+
+</div>
+
+</div>
+
+<div class="control hidden" id="customQualityControl">
+
+<label>Custom Quality</label>
+
+<select id="quality">
 <option value="0.95">Very High — 95%</option>
 <option value="0.90" selected>High — 90%</option>
 <option value="0.80">Good — 80%</option>
@@ -767,24 +836,61 @@ Convert Format
 <option value="0.50">Small — 50%</option>
 <option value="0.40">Very Small — 40%</option>
 </select>
-</div><div id="targetPanel" class="hidden"><div class="control-grid"><div class="control">
+
+</div>
+
+<div id="targetPanel" class="hidden">
+
+<div class="control-grid">
+
+<div class="control">
+
 <label>Target Size</label>
+
 <input type="number" id="targetSize" value="200" min="1">
-</div><div class="control">
-<label>Unit</label><select id="targetUnit">
+
+</div>
+
+<div class="control">
+
+<label>Unit</label>
+
+<select id="targetUnit">
 <option value="KB">KB</option>
 <option value="MB">MB</option>
 </select>
-</div></div><div class="info">
+
+</div>
+
+</div>
+
+<div class="info">
 🎯 ImageTools will automatically search for a suitable
 quality level to get as close as possible to your target file size.
-</div></div><div class="info">
+</div>
+
+</div>
+
+<div class="info">
 💡 Choose a simple preset or select Custom Quality for more control.
-</div></div><div id="resizerPanel" class="hidden"><div class="info">
+</div>
+
+</div>
+
+<div id="resizerPanel" class="hidden">
+
+<div class="info">
 📐 Resize images quickly while keeping their original proportions.
 Choose a preset or enter your own dimensions.
-</div><div class="control-grid"><div class="control">
-<label>Resize Preset</label><select id="resizePreset">
+</div>
+
+<div class="control-grid">
+
+<div class="control">
+
+<label>Resize Preset</label>
+
+<select id="resizePreset">
 <option value="custom">Custom Size</option>
 <option value="1920">1920 px wide</option>
 <option value="1600">1600 px wide</option>
@@ -792,216 +898,433 @@ Choose a preset or enter your own dimensions.
 <option value="1080">1080 px wide</option>
 <option value="800">800 px wide</option>
 </select>
-</div><div class="control">
-<label>Resize Quality</label><select id="resizeQuality">
+
+</div>
+
+<div class="control">
+
+<label>Resize Quality</label>
+
+<select id="resizeQuality">
 <option value="0.95">Very High — 95%</option>
 <option value="0.90" selected>High — 90%</option>
 <option value="0.80">Good — 80%</option>
 <option value="0.70">Balanced — 70%</option>
 <option value="0.60">Smaller — 60%</option>
 </select>
-</div></div><div class="info">
+
+</div>
+
+</div>
+
+<div class="info">
 ✨ Smart Resize uses your selected quality while keeping
 the requested dimensions. Lower quality can produce
 significantly smaller files.
-</div></div><div id="converterPanel" class="hidden"><div class="info">
+</div>
+
+</div>
+
+<div id="converterPanel" class="hidden">
+
+<div class="info">
 🔄 Convert JPG, PNG and WebP images directly in your browser.
 Conversion keeps the original image dimensions.
-</div></div><div id="dimensionPanel"><div class="control-grid"><div class="control">
+</div>
+
+</div>
+
+<div id="dimensionPanel">
+
+<div class="control-grid">
+
+<div class="control">
+
 <label>Width (pixels)</label>
+
 <input type="number" id="width" min="1">
-</div><div class="control">
+
+</div>
+
+<div class="control">
+
 <label>Height (pixels)</label>
+
 <input type="number" id="height" min="1">
-</div></div><label class="checkbox">
+
+</div>
+
+</div>
+
+<label class="checkbox">
+
 <input type="checkbox" id="aspect" checked>
+
 Keep original aspect ratio
-</label></div><div id="editingControls"><h3>Image Editing</h3><div class="control-grid"><div class="control">
-<label>Crop</label><select id="cropMode">
+
+</label>
+
+</div>
+
+<div id="editingControls">
+
+<h3>Image Editing</h3>
+
+<div class="control-grid">
+
+<div class="control">
+
+<label>Crop</label>
+
+<select id="cropMode">
 <option value="none">No Crop</option>
 <option value="crop">Crop Image</option>
 </select>
-</div><div class="control hidden" id="cropRatioControl">
-<label>Crop Ratio</label><select id="cropRatio">
+
+</div>
+
+<div class="control hidden" id="cropRatioControl">
+
+<label>Crop Ratio</label>
+
+<select id="cropRatio">
 <option value="free">Free</option>
 <option value="1">1:1</option>
 <option value="4/3">4:3</option>
 <option value="16/9">16:9</option>
 </select>
-</div></div><div id="cropInfo" class="info hidden">
+
+</div>
+
+</div>
+
+<div id="cropInfo" class="info hidden">
 ✂️ ImageTools will automatically crop from the center
 using your selected ratio before resizing or compression.
-</div></div><div class="control">
-<label>Output Format</label><select id="format">
+</div>
+
+</div>
+
+<div class="control">
+
+<label>Output Format</label>
+
+<select id="format">
 <option value="image/jpeg">JPG</option>
 <option value="image/png">PNG</option>
 <option value="image/webp">WebP</option>
 </select>
-</div><button type="button" class="primary" id="processBtn">
+
+</div>
+
+<button type="button" class="primary" id="processBtn">
 Compress & Process Images
-</button><button type="button" class="secondary hidden" id="startOverBtn">
+</button>
+
+<button type="button" class="secondary hidden" id="startOverBtn">
 Start Over
-</button><div class="progress-wrap hidden" id="progressWrap"><div class="progress-bar">
+</button>
+
+<div class="progress-wrap hidden" id="progressWrap">
+
+<div class="progress-bar">
+
 <div class="progress" id="progress"></div>
-</div><p id="progressText">Processing...</p></div></div>
-</section><section id="resultsSection" class="card hidden"><h3>Processed Images</h3><div id="results"></div></section><section class="card"><div class="info">
+
+</div>
+
+<p id="progressText">Processing...</p>
+
+</div>
+
+</div>
+
+</section>
+
+<section id="resultsSection" class="card hidden">
+
+<h3>Processed Images</h3>
+
+<div id="results"></div>
+
+</section>
+
+<section class="card">
+
+<div class="info">
+
 🔒 <strong>Your privacy matters</strong><br>
+
 Images are processed directly inside your browser.
 Your original images are not uploaded to our server by this tool.
-</div></section><section class="feature-grid"><div class="feature">
+
+</div>
+
+</section>
+
+<section class="feature-grid">
+
+<div class="feature">
+
 <div class="feature-icon">🎯</div>
-<h3>Target File Size</h3><p>
+
+<h3>Target File Size</h3>
+
+<p>
 Need an image under 200 KB? Set your target size and let
 the browser find a suitable compression level.
 </p>
-</div><div class="feature">
+
+</div>
+
+<div class="feature">
+
 <div class="feature-icon">📐</div>
-<h3>Smart Resize</h3><p>
+
+<h3>Smart Resize</h3>
+
+<p>
 Resize images to common widths or enter custom dimensions
 while keeping the original proportions and controlling output quality.
 </p>
-</div><div class="feature">
+
+</div>
+
+<div class="feature">
+
 <div class="feature-icon">🔄</div>
-<h3>Convert Formats</h3><p>
+
+<h3>Convert Formats</h3>
+
+<p>
 Convert JPG, PNG and WebP images directly in your browser
 without uploading them.
 </p>
-</div></section><section class="card"><h3>Popular Image Tools</h3><p>
+
+</div>
+
+</section>
+
+<section class="card">
+
+<h3>Popular Image Tools</h3>
+
+<p>
 Quickly access our most useful free image tools.
 Choose a specific tool below or use the full ImageTools editor above.
-</p><div class="tool-navigation"><a class="tool-link" href="compress-image-online.html">
+</p>
+
+<div class="tool-navigation">
+
+<a class="tool-link" href="compress-image-online.html">
 <strong>🗜️ Compress Image Online</strong>
 <span>Reduce JPG, PNG and WebP file sizes directly in your browser.</span>
-</a><a class="tool-link" href="compress-image-to-100kb.html">
+</a>
+
+<a class="tool-link" href="compress-image-to-100kb.html">
 <strong>🎯 Compress Image to 100KB</strong>
 <span>Compress an image to around 100 KB for uploads and sharing.</span>
-</a><a class="tool-link" href="compress-image-to-200kb.html">
+</a>
+
+<a class="tool-link" href="compress-image-to-200kb.html">
 <strong>🎯 Compress Image to 200KB</strong>
 <span>Reduce an image to around 200 KB with target file size compression.</span>
-</a><a class="tool-link" href="compress-image-to-500kb.html">
+</a>
+
+<a class="tool-link" href="compress-image-to-500kb.html">
 <strong>🎯 Compress Image to 500KB</strong>
 <span>Compress an image to around 500 KB for uploads and sharing.</span>
-</a><a class="tool-link" href="resize-image-online.html">
+</a>
+
+<a class="tool-link" href="resize-image-online.html">
 <strong>🖼️ Resize Image Online</strong>
 <span>Resize JPG, PNG and WebP images to custom or common dimensions.</span>
-</a><a class="tool-link" href="social-media-image-resizer.html">
+</a>
+
+<a class="tool-link" href="social-media-image-resizer.html">
 <strong>📱 Social Media Image Resizer</strong>
 <span>Resize images for social media using custom dimensions in your browser.</span>
-</a><a class="tool-link" href="resize-image-to-1080px.html">
+</a>
+
+<a class="tool-link" href="resize-image-to-1080px.html">
 <strong>📐 Resize Image to 1080px</strong>
 <span>Resize images to 1080 pixels wide while keeping proportions.</span>
-</a><a class="tool-link" href="jpg-to-webp.html">
+</a>
+
+<a class="tool-link" href="jpg-to-webp.html">
 <strong>🔄 JPG to WebP Converter</strong>
 <span>Convert JPG and JPEG images to WebP directly in your browser.</span>
-</a><a class="tool-link" href="jpg-to-png.html">
+</a>
+
+<a class="tool-link" href="jpg-to-png.html">
 <strong>🔄 JPG to PNG Converter</strong>
 <span>Convert JPG and JPEG images to PNG directly in your browser.</span>
-</a><a class="tool-link" href="webp-to-png.html">
+</a>
+
+<a class="tool-link" href="webp-to-png.html">
 <strong>🔄 WebP to PNG Converter</strong>
 <span>Convert WebP images to PNG directly in your browser.</span>
-</a><a class="tool-link" href="png-to-jpg.html">
+</a>
+
+<a class="tool-link" href="png-to-jpg.html">
 <strong>🔄 PNG to JPG Converter</strong>
 <span>Convert PNG images to JPG while keeping image dimensions.</span>
-</a><a class="tool-link" href="webp-to-jpg.html">
+</a>
+
+<a class="tool-link" href="webp-to-jpg.html">
 <strong>🔄 WebP to JPG Converter</strong>
 <span>Convert WebP images to JPG directly in your browser.</span>
-</a><a class="tool-link" href="crop-image-online.html">
+</a>
+
+<a class="tool-link" href="crop-image-online.html">
 <strong>✂️ Crop Image Online</strong>
 <span>Crop images to 1:1, 4:3, 16:9 or use free cropping.</span>
-</a></div></section><section class="card faq"><h3>Frequently Asked Questions</h3><details>
+</a>
+
+</div>
+
+</section>
+
+<section class="card faq">
+
+<h3>Frequently Asked Questions</h3>
+
+<details>
 <summary>How do I resize an image?</summary>
 <p>
 Choose Resize Only, select a preset or enter custom dimensions,
 then tap Resize Images.
 </p>
-</details><details>
+</details>
+
+<details>
 <summary>Can I resize an image without changing its proportions?</summary>
 <p>
 Yes. Keep original aspect ratio enabled and ImageTools will
 automatically calculate the other dimension.
 </p>
-</details><details>
+</details>
+
+<details>
 <summary>What image sizes can I choose?</summary>
 <p>
 ImageTools currently provides 1920, 1600, 1280, 1080 and
 800 pixel width presets, plus custom dimensions.
 </p>
-</details><details>
+</details>
+
+<details>
 <summary>Can I control the quality when resizing?</summary>
 <p>
 Yes. Resize Only includes a Smart Resize quality setting
 so you can balance image quality and file size.
 </p>
-</details><details>
+</details>
+
+<details>
 <summary>How do I convert JPG to WebP?</summary>
 <p>
 Choose Convert Format, select WebP as the output format
 and process your image.
 </p>
-</details><details>
+</details>
+
+<details>
 <summary>How do I convert JPG to PNG?</summary>
 <p>
 Choose Convert Format, select PNG as the output format
 and process your JPG or JPEG image.
 </p>
-</details><details>
+</details>
+
+<details>
 <summary>How do I convert WebP to PNG?</summary>
 <p>
 Choose Convert Format, select PNG as the output format
 and process your WebP image.
 </p>
-</details><details>
+</details>
+
+<details>
 <summary>Can I convert PNG to JPG?</summary>
 <p>
 Yes. PNG images can be converted to JPG. Transparent areas
 are rendered against a white background because JPG does not
 support transparency.
 </p>
-</details><details>
+</details>
+
+<details>
 <summary>Can I convert WebP to JPG?</summary>
 <p>
 Yes. WebP images can be converted to JPG directly in your browser.
 </p>
-</details><details>
+</details>
+
+<details>
 <summary>Does conversion change image dimensions?</summary>
 <p>
 No. Convert Format keeps the original image dimensions.
 </p>
-</details><details>
+</details>
+
+<details>
 <summary>How do I make an image smaller than 200 KB?</summary>
 <p>
 Choose Compress & Resize, select Target File Size,
 enter 200 KB and process the image.
 </p>
-</details><details>
+</details>
+
+<details>
 <summary>Can I crop an image?</summary>
 <p>
 Yes. Choose Crop Image and select 1:1, 4:3 or 16:9.
 ImageTools automatically crops from the center.
 </p>
-</details><details>
+</details>
+
+<details>
 <summary>Are my images uploaded?</summary>
 <p>
 No. ImageTools processes your images directly inside your browser.
 </p>
-</details><details>
+</details>
+
+<details>
 <summary>Can I process multiple images?</summary>
 <p>
 Yes. You can select multiple JPG, PNG or WebP images and process
 them together.
 </p>
-</details><details>
+</details>
+
+<details>
 <summary>Which formats can I export?</summary>
 <p>
 ImageTools supports JPG, PNG and WebP output.
 </p>
-</details></section></main><footer><strong>ImageTools</strong>
+</details>
+
+</section>
+
+</main>
+
+<footer>
+
+<strong>ImageTools</strong>
 
 <p>
 Free image compression, resizing, cropping and conversion tools.
-</p><p>
+</p>
+
+<p>
 © 2026 ImageTools. All rights reserved.
-</p></footer><script>
+</p>
+
+</footer>
+
+<script>
 
 const fileInput=document.getElementById("fileInput");
 const chooseBtn=document.getElementById("chooseBtn");
@@ -2377,5 +2700,7 @@ applyUrlSettings();
 }
 );
 
-</script></body>
+</script>
+
+</body>
 </html>
