@@ -1,786 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>ImageTools — Free Image Compressor, Resizer, Cropper & Converter</title>
-
-<meta name="description" content="Free online image compressor, resizer, cropper and converter. Compress, resize, crop and convert JPG, PNG and WebP images directly in your browser.">
-<meta name="keywords" content="image compressor, image resizer, image cropper, image converter, JPG compressor, PNG compressor, WebP converter, resize image, compress image">
-
-<style>
-*{
-  box-sizing:border-box;
-}
-
-body{
-  margin:0;
-  font-family:Arial,Helvetica,sans-serif;
-  background:#f5f7fb;
-  color:#172033;
-}
-
-header{
-  background:#ffffff;
-  border-bottom:1px solid #e5e7eb;
-  padding:18px 20px;
-  text-align:center;
-}
-
-header h1{
-  margin:0;
-  font-size:24px;
-}
-
-header p{
-  margin:5px 0 0;
-  color:#667085;
-  font-size:14px;
-}
-
-main{
-  max-width:900px;
-  margin:auto;
-  padding:25px 15px 50px;
-}
-
-.hero{
-  text-align:center;
-  margin-bottom:25px;
-}
-
-.hero h2{
-  font-size:32px;
-  margin:10px 0;
-}
-
-.hero p{
-  color:#667085;
-  line-height:1.6;
-}
-
-.card{
-  background:#fff;
-  border-radius:16px;
-  padding:20px;
-  margin-bottom:20px;
-  box-shadow:0 5px 20px rgba(0,0,0,.06);
-}
-
-.upload{
-  border:2px dashed #98a2b3;
-  border-radius:14px;
-  padding:35px 15px;
-  text-align:center;
-  background:#fafbfc;
-  transition:.2s;
-}
-
-.upload.dragover{
-  border-color:#2563eb;
-  background:#eff6ff;
-}
-
-.upload-icon{
-  font-size:40px;
-}
-
-.upload strong{
-  display:block;
-  font-size:18px;
-  margin:8px 0;
-}
-
-input[type=file]{
-  display:none;
-}
-
-button,
-select,
-input{
-  font:inherit;
-}
-
-button{
-  border:0;
-  border-radius:10px;
-  padding:11px 16px;
-  cursor:pointer;
-}
-
-.primary{
-  background:#2563eb;
-  color:#fff;
-}
-
-.secondary{
-  background:#eef2f7;
-  color:#172033;
-}
-
-button:disabled{
-  opacity:.55;
-  cursor:not-allowed;
-}
-
-.file-list{
-  margin-top:15px;
-}
-
-.file-item{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:10px;
-  padding:10px 0;
-  border-bottom:1px solid #eee;
-  font-size:14px;
-}
-
-.file-name{
-  overflow:hidden;
-  text-overflow:ellipsis;
-  white-space:nowrap;
-}
-
-.remove-btn{
-  background:#fee2e2;
-  color:#b91c1c;
-  padding:7px 10px;
-}
-
-.mode-buttons{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:8px;
-  margin:15px 0;
-}
-
-.mode-buttons button{
-  background:#eef2f7;
-  color:#344054;
-}
-
-.mode-buttons button.active{
-  background:#2563eb;
-  color:#fff;
-}
-
-.control-grid{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:15px;
-}
-
-.control{
-  margin-bottom:15px;
-}
-
-.control label{
-  display:block;
-  font-weight:bold;
-  margin-bottom:7px;
-  font-size:14px;
-}
-
-select,
-input[type=number]{
-  width:100%;
-  padding:11px;
-  border:1px solid #d0d5dd;
-  border-radius:9px;
-  background:#fff;
-}
-
-.checkbox{
-  display:flex;
-  align-items:center;
-  gap:8px;
-  margin:10px 0;
-  font-size:14px;
-}
-
-.info{
-  background:#eff6ff;
-  border-radius:10px;
-  padding:12px;
-  margin-bottom:15px;
-  color:#1e40af;
-  font-size:14px;
-  line-height:1.5;
-}
-
-.warning{
-  background:#fff7ed;
-  color:#9a3412;
-}
-
-.hidden{
-  display:none!important;
-}
-
-.progress-wrap{
-  margin-top:18px;
-}
-
-.progress-bar{
-  width:100%;
-  height:9px;
-  background:#e5e7eb;
-  border-radius:20px;
-  overflow:hidden;
-}
-
-.progress{
-  width:0%;
-  height:100%;
-  background:#2563eb;
-  transition:.2s;
-}
-
-.results{
-  margin-top:20px;
-}
-
-.result{
-  border:1px solid #e5e7eb;
-  border-radius:12px;
-  padding:15px;
-  margin-bottom:12px;
-}
-
-.result h4{
-  margin:0 0 10px;
-  overflow:hidden;
-  text-overflow:ellipsis;
-  white-space:nowrap;
-}
-
-.result-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:8px;
-  font-size:13px;
-  margin-bottom:12px;
-}
-
-.stat{
-  background:#f8fafc;
-  padding:9px;
-  border-radius:8px;
-}
-
-.stat strong{
-  display:block;
-  margin-top:3px;
-}
-
-.result .download{
-  width:100%;
-  background:#16a34a;
-  color:#fff;
-}
-
-.feature-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:15px;
-}
-
-.feature{
-  background:#fff;
-  border-radius:14px;
-  padding:18px;
-  box-shadow:0 5px 18px rgba(0,0,0,.05);
-}
-
-.feature-icon{
-  font-size:28px;
-}
-
-.feature h3{
-  margin-bottom:7px;
-}
-
-.feature p{
-  color:#667085;
-  font-size:14px;
-  line-height:1.5;
-}
-
-.faq details{
-  border-bottom:1px solid #eee;
-  padding:13px 0;
-}
-
-.faq summary{
-  cursor:pointer;
-  font-weight:bold;
-}
-
-footer{
-  text-align:center;
-  color:#667085;
-  padding:30px 15px;
-  font-size:13px;
-}
-
-@media(max-width:700px){
-  .hero h2{
-    font-size:25px;
-  }
-
-  .control-grid,
-  .feature-grid{
-    grid-template-columns:1fr;
-  }
-
-  .mode-buttons{
-    grid-template-columns:1fr;
-  }
-
-  .result-grid{
-    grid-template-columns:1fr 1fr;
-  }
-}
-</style>
-</head>
-
-<body>
-
-<header>
-  <h1>ImageTools</h1>
-  <p>Free Image Tools</p>
-</header>
-
-<main>
-
-<section class="hero">
-  <h2>Compress, Resize, Crop & Convert Images</h2>
-  <p>
-    Reduce image file sizes, resize pictures, crop images and convert
-    JPG, PNG and WebP. Everything happens directly in your browser.
-  </p>
-</section>
-
-<section class="card">
-
-  <div class="upload" id="dropZone">
-    <div class="upload-icon">🖼️</div>
-    <strong>Drop your images here</strong>
-    <span>or choose images from your device</span>
-    <br><br>
-
-    <label>
-      <button type="button" class="primary" id="chooseBtn">
-        Choose Images
-      </button>
-      <input type="file" id="fileInput" accept="image/jpeg,image/png,image/webp" multiple>
-    </label>
-  </div>
-
-  <div id="fileList" class="file-list"></div>
-
-  <div id="toolCard" class="hidden">
-
-    <h3>Image Tools</h3>
-
-    <div class="mode-buttons">
-      <button type="button" id="processMode" class="active">
-        Compress & Resize
-      </button>
-
-      <button type="button" id="resizeMode">
-        Resize Only
-      </button>
-
-      <button type="button" id="convertMode">
-        Convert Format
-      </button>
-    </div>
-
-    <!-- COMPRESSION -->
-    <div id="compressionPanel">
-
-      <div class="control-grid">
-
-        <div class="control">
-          <label>Compression Mode</label>
-
-          <select id="compressionMode">
-            <option value="quality">Quality Compression</option>
-            <option value="target">Target File Size</option>
-          </select>
-        </div>
-
-        <div class="control" id="qualityControl">
-          <label>Quality</label>
-
-          <select id="quality">
-            <option value="0.95">Very High — 95%</option>
-            <option value="0.90" selected>High — 90%</option>
-            <option value="0.80">Good — 80%</option>
-            <option value="0.70">Balanced — 70%</option>
-            <option value="0.60">Smaller — 60%</option>
-            <option value="0.50">Small — 50%</option>
-            <option value="0.40">Very Small — 40%</option>
-          </select>
-        </div>
-
-      </div>
-
-      <div id="targetPanel" class="hidden">
-
-        <div class="control-grid">
-
-          <div class="control">
-            <label>Target Size</label>
-
-            <input
-              type="number"
-              id="targetSize"
-              value="200"
-              min="1"
-            >
-          </div>
-
-          <div class="control">
-            <label>Unit</label>
-
-            <select id="targetUnit">
-              <option value="KB">KB</option>
-              <option value="MB">MB</option>
-            </select>
-          </div>
-
-        </div>
-
-        <div class="info">
-          🎯 ImageTools will automatically search for a suitable quality
-          level to get as close as possible to your target file size.
-        </div>
-
-      </div>
-
-    </div>
-
-    <!-- RESIZER -->
-    <div id="resizerPanel" class="hidden">
-
-      <div class="info">
-        📐 Resize images quickly while keeping their original proportions.
-        Choose a preset or enter your own dimensions.
-      </div>
-
-      <div class="control-grid">
-
-        <div class="control">
-          <label>Resize Preset</label>
-
-          <select id="resizePreset">
-            <option value="custom">Custom Size</option>
-            <option value="1920">1920 px wide</option>
-            <option value="1600">1600 px wide</option>
-            <option value="1280">1280 px wide</option>
-            <option value="1080">1080 px wide</option>
-            <option value="800">800 px wide</option>
-          </select>
-        </div>
-
-        <div class="control">
-          <label>Resize Quality</label>
-
-          <select id="resizeQuality">
-            <option value="0.95">Very High — 95%</option>
-            <option value="0.90" selected>High — 90%</option>
-            <option value="0.80">Good — 80%</option>
-            <option value="0.70">Balanced — 70%</option>
-            <option value="0.60">Smaller — 60%</option>
-          </select>
-        </div>
-
-      </div>
-
-      <div class="info">
-        ✨ Smart Resize uses your selected quality while keeping the
-        requested dimensions. Lower quality can produce significantly
-        smaller files.
-      </div>
-
-    </div>
-
-    <!-- CONVERTER -->
-    <div id="converterPanel" class="hidden">
-
-      <div class="info">
-        🔄 Convert JPG, PNG and WebP images directly in your browser.
-        Conversion keeps the original image dimensions.
-      </div>
-
-    </div>
-
-    <!-- DIMENSIONS -->
-    <div id="dimensionPanel">
-
-      <div class="control-grid">
-
-        <div class="control">
-          <label>Width (pixels)</label>
-          <input type="number" id="width" min="1">
-        </div>
-
-        <div class="control">
-          <label>Height (pixels)</label>
-          <input type="number" id="height" min="1">
-        </div>
-
-      </div>
-
-      <label class="checkbox">
-        <input type="checkbox" id="aspect" checked>
-        Keep original aspect ratio
-      </label>
-
-    </div>
-
-    <!-- CROP -->
-    <div id="editingControls">
-
-      <h3>Image Editing</h3>
-
-      <div class="control-grid">
-
-        <div class="control">
-          <label>Crop</label>
-
-          <select id="cropMode">
-            <option value="none">No Crop</option>
-            <option value="crop">Crop Image</option>
-          </select>
-        </div>
-
-        <div class="control hidden" id="cropRatioControl">
-          <label>Crop Ratio</label>
-
-          <select id="cropRatio">
-            <option value="free">Free</option>
-            <option value="1">1:1</option>
-            <option value="4/3">4:3</option>
-            <option value="16/9">16:9</option>
-          </select>
-        </div>
-
-      </div>
-
-      <div id="cropInfo" class="info hidden">
-        ✂️ Crop editing is applied before compression or resizing.
-        For best results, process one image at a time when cropping.
-      </div>
-
-    </div>
-
-    <!-- FORMAT -->
-    <div class="control">
-
-      <label>Output Format</label>
-
-      <select id="format">
-        <option value="image/jpeg">JPG</option>
-        <option value="image/png">PNG</option>
-        <option value="image/webp">WebP</option>
-      </select>
-
-    </div>
-
-    <button type="button" class="primary" id="processBtn">
-      Compress & Process Images
-    </button>
-
-    <button type="button" class="secondary hidden" id="startOverBtn">
-      Start Over
-    </button>
-
-    <div class="progress-wrap hidden" id="progressWrap">
-
-      <div class="progress-bar">
-        <div class="progress" id="progress"></div>
-      </div>
-
-      <p id="progressText">Processing...</p>
-
-    </div>
-
-  </div>
-
-</section>
-
-<section id="resultsSection" class="card hidden">
-
-  <h3>Processed Images</h3>
-
-  <div id="results"></div>
-
-</section>
-
-<section class="card">
-
-  <div class="info">
-    🔒 <strong>Your privacy matters</strong><br>
-    Images are processed directly inside your browser.
-    Your original images are not uploaded to our server by this tool.
-  </div>
-
-</section>
-
-<section class="feature-grid">
-
-  <div class="feature">
-    <div class="feature-icon">🎯</div>
-    <h3>Target File Size</h3>
-    <p>
-      Need an image under 200 KB? Set your target size and let the browser
-      find a suitable compression level.
-    </p>
-  </div>
-
-  <div class="feature">
-    <div class="feature-icon">📐</div>
-    <h3>Smart Resize</h3>
-    <p>
-      Resize images to common widths or enter custom dimensions while
-      keeping the original proportions and controlling output quality.
-    </p>
-  </div>
-
-  <div class="feature">
-    <div class="feature-icon">🔄</div>
-    <h3>Convert Formats</h3>
-    <p>
-      Convert JPG, PNG and WebP images directly in your browser
-      without uploading them.
-    </p>
-  </div>
-
-</section>
-
-<section class="card faq">
-
-  <h3>Frequently Asked Questions</h3>
-
-  <details>
-    <summary>How do I resize an image?</summary>
-    <p>
-      Choose Resize Only, select a preset or enter custom dimensions,
-      then tap Resize Images.
-    </p>
-  </details>
-
-  <details>
-    <summary>Can I resize an image without changing its proportions?</summary>
-    <p>
-      Yes. Keep Keep original aspect ratio enabled and ImageTools will
-      automatically calculate the other dimension.
-    </p>
-  </details>
-
-  <details>
-    <summary>What image sizes can I choose?</summary>
-    <p>
-      ImageTools currently provides 1920, 1600, 1280, 1080 and 800 pixel
-      width presets, plus custom dimensions.
-    </p>
-  </details>
-
-  <details>
-    <summary>Can I control the quality when resizing?</summary>
-    <p>
-      Yes. Resize Only includes a Smart Resize quality setting so you can
-      balance image quality and file size.
-    </p>
-  </details>
-
-  <details>
-    <summary>How do I convert JPG to WebP?</summary>
-    <p>
-      Choose Convert Format, select WebP as the output format and process
-      your image.
-    </p>
-  </details>
-
-  <details>
-    <summary>Can I convert PNG to JPG?</summary>
-    <p>
-      Yes. PNG images can be converted to JPG. Transparent areas are
-      rendered against a white background because JPG does not support
-      transparency.
-    </p>
-  </details>
-
-  <details>
-    <summary>Can I convert WebP to PNG?</summary>
-    <p>
-      Yes. Choose Convert Format and select PNG.
-    </p>
-  </details>
-
-  <details>
-    <summary>Does conversion change image dimensions?</summary>
-    <p>
-      No. Convert Format keeps the original image dimensions.
-    </p>
-  </details>
-
-  <details>
-    <summary>How do I make an image smaller than 200 KB?</summary>
-    <p>
-      Choose Compress & Resize, select Target File Size, enter 200 KB
-      and process the image.
-    </p>
-  </details>
-
-  <details>
-    <summary>Can I crop an image before resizing it?</summary>
-    <p>
-      Yes. Choose Crop Image, select your crop ratio and apply the crop
-      before processing.
-    </p>
-  </details>
-
-  <details>
-    <summary>Are my images uploaded?</summary>
-    <p>
-      No. ImageTools processes your images directly inside your browser.
-    </p>
-  </details>
-
-  <details>
-    <summary>Can I process multiple images?</summary>
-    <p>
-      Yes. You can select multiple JPG, PNG or WebP images and process
-      them together.
-    </p>
-  </details>
-
-  <details>
-    <summary>Which formats can I export?</summary>
-    <p>
-      ImageTools supports JPG, PNG and WebP output.
-    </p>
-  </details>
-
-</section>
-
-</main>
-
-<footer>
-  <strong>ImageTools</strong>
-  <p>
-    Free image compression, resizing, cropping and conversion tools.
-  </p>
-  <p>© 2026 ImageTools. All rights reserved.</p>
-</footer>
-
 <script>
 const fileInput = document.getElementById("fileInput");
 const chooseBtn = document.getElementById("chooseBtn");
@@ -834,50 +51,50 @@ let toolMode = "process";
 let originalWidth = 0;
 let originalHeight = 0;
 
-chooseBtn.addEventListener("click",()=>{
+chooseBtn.addEventListener("click", () => {
   fileInput.click();
 });
 
-fileInput.addEventListener("change",()=>{
+fileInput.addEventListener("change", () => {
   addFiles(Array.from(fileInput.files));
 });
 
-dropZone.addEventListener("dragover",(e)=>{
+dropZone.addEventListener("dragover", (e) => {
   e.preventDefault();
   dropZone.classList.add("dragover");
 });
 
-dropZone.addEventListener("dragleave",()=>{
+dropZone.addEventListener("dragleave", () => {
   dropZone.classList.remove("dragover");
 });
 
-dropZone.addEventListener("drop",(e)=>{
+dropZone.addEventListener("drop", (e) => {
   e.preventDefault();
   dropZone.classList.remove("dragover");
   addFiles(Array.from(e.dataTransfer.files));
 });
 
-function addFiles(newFiles){
+function addFiles(newFiles) {
 
   const valid = newFiles.filter(file =>
-    ["image/jpeg","image/png","image/webp"].includes(file.type)
+    ["image/jpeg", "image/png", "image/webp"].includes(file.type)
   );
 
-  files = [...files,...valid];
+  files = [...files, ...valid];
 
   renderFileList();
 
-  if(files.length){
+  if (files.length) {
     toolCard.classList.remove("hidden");
     loadFirstImageInfo();
   }
 }
 
-function renderFileList(){
+function renderFileList() {
 
   fileList.innerHTML = "";
 
-  files.forEach((file,index)=>{
+  files.forEach((file, index) => {
 
     const row = document.createElement("div");
     row.className = "file-item";
@@ -900,43 +117,43 @@ function renderFileList(){
   });
 }
 
-window.removeFile = function(index){
+window.removeFile = function(index) {
 
-  files.splice(index,1);
+  files.splice(index, 1);
 
   renderFileList();
 
-  if(!files.length){
+  if (!files.length) {
     resetAll();
-  }else{
+  } else {
     loadFirstImageInfo();
   }
 };
 
-function escapeHtml(text){
+function escapeHtml(text) {
 
-  return text.replace(/[&<>"']/g,char=>({
-    "&":"&amp;",
-    "<":"&lt;",
-    ">":"&gt;",
-    '"':"&quot;",
-    "'":"&#039;"
+  return text.replace(/[&<>"']/g, char => ({
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&#039;"
   })[char]);
 }
 
-function loadImage(file){
+function loadImage(file) {
 
-  return new Promise((resolve,reject)=>{
+  return new Promise((resolve, reject) => {
 
     const url = URL.createObjectURL(file);
     const img = new Image();
 
-    img.onload = ()=>{
+    img.onload = () => {
       URL.revokeObjectURL(url);
       resolve(img);
     };
 
-    img.onerror = ()=>{
+    img.onerror = () => {
       URL.revokeObjectURL(url);
       reject(new Error("Could not load image."));
     };
@@ -945,11 +162,11 @@ function loadImage(file){
   });
 }
 
-async function loadFirstImageInfo(){
+async function loadFirstImageInfo() {
 
-  if(!files.length) return;
+  if (!files.length) return;
 
-  try{
+  try {
 
     const img = await loadImage(files[0]);
 
@@ -959,75 +176,71 @@ async function loadFirstImageInfo(){
     widthInput.value = img.width;
     heightInput.value = img.height;
 
-  }catch(error){
+  } catch (error) {
     console.error(error);
   }
 }
 
-function setMode(mode){
+function setMode(mode) {
 
   toolMode = mode;
 
-  processMode.classList.toggle("active",mode==="process");
-  resizeMode.classList.toggle("active",mode==="resize");
-  convertMode.classList.toggle("active",mode==="convert");
+  processMode.classList.toggle("active", mode === "process");
+  resizeMode.classList.toggle("active", mode === "resize");
+  convertMode.classList.toggle("active", mode === "convert");
 
-  compressionPanel.classList.toggle("hidden",mode!=="process");
-  resizerPanel.classList.toggle("hidden",mode!=="resize");
-  converterPanel.classList.toggle("hidden",mode!=="convert");
+  compressionPanel.classList.toggle("hidden", mode !== "process");
+  resizerPanel.classList.toggle("hidden", mode !== "resize");
+  converterPanel.classList.toggle("hidden", mode !== "convert");
 
-  dimensionPanel.classList.toggle("hidden",mode==="convert");
+  dimensionPanel.classList.toggle("hidden", mode === "convert");
 
-  /*
-    Crop controls are available for compression/resizing.
-    Converter mode does not need cropping.
-  */
-  editingControls.classList.toggle("hidden",mode==="convert");
+  editingControls.classList.toggle("hidden", mode === "convert");
 
-  if(mode==="process"){
+  if (mode === "process") {
     processBtn.textContent = "Compress & Process Images";
   }
 
-  if(mode==="resize"){
+  if (mode === "resize") {
     processBtn.textContent = "Resize Images";
   }
 
-  if(mode==="convert"){
+  if (mode === "convert") {
     processBtn.textContent = "Convert Images";
   }
 
   updateCropUI();
 }
 
-processMode.addEventListener("click",()=>{
+processMode.addEventListener("click", () => {
   setMode("process");
 });
 
-resizeMode.addEventListener("click",()=>{
+resizeMode.addEventListener("click", () => {
   setMode("resize");
 });
 
-convertMode.addEventListener("click",()=>{
+convertMode.addEventListener("click", () => {
   setMode("convert");
 });
 
-compressionMode.addEventListener("change",()=>{
+compressionMode.addEventListener("change", () => {
 
   const target = compressionMode.value === "target";
 
-  qualityControl.classList.toggle("hidden",target);
-  targetPanel.classList.toggle("hidden",!target);
+  qualityControl.classList.toggle("hidden", target);
+  targetPanel.classList.toggle("hidden", !target);
 });
 
-resizePreset.addEventListener("change",()=>{
+resizePreset.addEventListener("change", () => {
 
-  if(resizePreset.value === "custom") return;
+  if (resizePreset.value === "custom") return;
 
-  if(!originalWidth || !originalHeight) return;
+  if (!originalWidth || !originalHeight) return;
 
   const targetWidth = Number(resizePreset.value);
 
-  const newWidth = Math.min(targetWidth,originalWidth);
+  const newWidth = Math.min(targetWidth, originalWidth);
 
   const newHeight = Math.round(
     newWidth * originalHeight / originalWidth
@@ -1037,17 +250,17 @@ resizePreset.addEventListener("change",()=>{
   heightInput.value = newHeight;
 });
 
-widthInput.addEventListener("input",()=>{
+widthInput.addEventListener("input", () => {
 
   resizePreset.value = "custom";
 
-  if(!aspect.checked || !originalWidth || !originalHeight){
+  if (!aspect.checked || !originalWidth || !originalHeight) {
     return;
   }
 
   const width = Number(widthInput.value);
 
-  if(width > 0){
+  if (width > 0) {
 
     heightInput.value = Math.round(
       width * originalHeight / originalWidth
@@ -1055,17 +268,17 @@ widthInput.addEventListener("input",()=>{
   }
 });
 
-heightInput.addEventListener("input",()=>{
+heightInput.addEventListener("input", () => {
 
   resizePreset.value = "custom";
 
-  if(!aspect.checked || !originalWidth || !originalHeight){
+  if (!aspect.checked || !originalWidth || !originalHeight) {
     return;
   }
 
   const height = Number(heightInput.value);
 
-  if(height > 0){
+  if (height > 0) {
 
     widthInput.value = Math.round(
       height * originalWidth / originalHeight
@@ -1073,15 +286,15 @@ heightInput.addEventListener("input",()=>{
   }
 });
 
-aspect.addEventListener("change",()=>{
+aspect.addEventListener("change", () => {
 
-  if(!aspect.checked) return;
+  if (!aspect.checked) return;
 
-  if(!originalWidth || !originalHeight) return;
+  if (!originalWidth || !originalHeight) return;
 
   const width = Number(widthInput.value);
 
-  if(width > 0){
+  if (width > 0) {
 
     heightInput.value = Math.round(
       width * originalHeight / originalWidth
@@ -1089,47 +302,132 @@ aspect.addEventListener("change",()=>{
   }
 });
 
-cropMode.addEventListener("change",updateCropUI);
-cropRatio.addEventListener("change",updateCropUI);
+cropMode.addEventListener("change", updateCropUI);
+cropRatio.addEventListener("change", updateCropUI);
 
-function updateCropUI(){
+function updateCropUI() {
 
-  const enabled = cropMode.value === "crop" &&
-                  toolMode !== "convert";
+  const enabled =
+    cropMode.value === "crop" &&
+    toolMode !== "convert";
 
-  cropRatioControl.classList.toggle("hidden",!enabled);
-  cropInfo.classList.toggle("hidden",!enabled);
+  cropRatioControl.classList.toggle("hidden", !enabled);
+  cropInfo.classList.toggle("hidden", !enabled);
+
+  if (enabled) {
+
+    cropInfo.innerHTML =
+      "✂️ Crop is now active. ImageTools will crop from the center using your selected ratio before resizing or compressing.";
+  }
 }
 
-function formatBytes(bytes){
+function getCropDimensions(imgWidth, imgHeight) {
 
-  if(bytes < 1024){
+  if (cropMode.value !== "crop") {
+
+    return {
+      sx: 0,
+      sy: 0,
+      sw: imgWidth,
+      sh: imgHeight
+    };
+  }
+
+  const selected = cropRatio.value;
+
+  if (selected === "free") {
+
+    return {
+      sx: 0,
+      sy: 0,
+      sw: imgWidth,
+      sh: imgHeight
+    };
+  }
+
+  let targetRatio;
+
+  if (selected === "1") {
+    targetRatio = 1;
+  } else if (selected === "4/3") {
+    targetRatio = 4 / 3;
+  } else if (selected === "16/9") {
+    targetRatio = 16 / 9;
+  } else {
+    return {
+      sx: 0,
+      sy: 0,
+      sw: imgWidth,
+      sh: imgHeight
+    };
+  }
+
+  const originalRatio = imgWidth / imgHeight;
+
+  let sw;
+  let sh;
+
+  if (originalRatio > targetRatio) {
+
+    /*
+      Image is wider than requested ratio.
+      Reduce width while keeping height.
+    */
+
+    sh = imgHeight;
+    sw = Math.round(sh * targetRatio);
+
+  } else {
+
+    /*
+      Image is taller than requested ratio.
+      Reduce height while keeping width.
+    */
+
+    sw = imgWidth;
+    sh = Math.round(sw / targetRatio);
+  }
+
+  const sx = Math.round((imgWidth - sw) / 2);
+  const sy = Math.round((imgHeight - sh) / 2);
+
+  return {
+    sx,
+    sy,
+    sw,
+    sh
+  };
+}
+
+function formatBytes(bytes) {
+
+  if (bytes < 1024) {
     return bytes + " B";
   }
 
-  if(bytes < 1024 * 1024){
+  if (bytes < 1024 * 1024) {
     return (bytes / 1024).toFixed(2) + " KB";
   }
 
   return (bytes / (1024 * 1024)).toFixed(2) + " MB";
 }
 
-function extensionFor(type){
+function extensionFor(type) {
 
-  if(type === "image/png") return "png";
-  if(type === "image/webp") return "webp";
+  if (type === "image/png") return "png";
+  if (type === "image/webp") return "webp";
 
   return "jpg";
 }
 
-function baseName(name){
+function baseName(name) {
 
-  return name.replace(/\.[^/.]+$/,"");
+  return name.replace(/\.[^/.]+$/, "");
 }
 
-function savedPercent(original,newSize){
+function savedPercent(original, newSize) {
 
-  if(original <= 0) return 0;
+  if (original <= 0) return 0;
 
   return Math.max(
     0,
@@ -1137,7 +435,13 @@ function savedPercent(original,newSize){
   );
 }
 
-function createCanvas(img,width,height,type){
+function createCanvas(
+  img,
+  width,
+  height,
+  type,
+  crop
+) {
 
   const canvas = document.createElement("canvas");
 
@@ -1146,28 +450,46 @@ function createCanvas(img,width,height,type){
 
   const ctx = canvas.getContext("2d");
 
-  /*
-    JPG does not support transparency.
-    White background prevents transparent PNG/WebP areas
-    from becoming black during JPG export.
-  */
-  if(type === "image/jpeg"){
+  if (type === "image/jpeg") {
 
     ctx.fillStyle = "#ffffff";
-    ctx.fillRect(0,0,width,height);
+    ctx.fillRect(0, 0, width, height);
   }
 
-  ctx.drawImage(img,0,0,width,height);
+  if (crop) {
+
+    ctx.drawImage(
+      img,
+      crop.sx,
+      crop.sy,
+      crop.sw,
+      crop.sh,
+      0,
+      0,
+      width,
+      height
+    );
+
+  } else {
+
+    ctx.drawImage(
+      img,
+      0,
+      0,
+      width,
+      height
+    );
+  }
 
   return canvas;
 }
 
-function canvasToBlob(canvas,type,qualityValue){
+function canvasToBlob(canvas, type, qualityValue) {
 
-  return new Promise(resolve=>{
+  return new Promise(resolve => {
 
     canvas.toBlob(
-      blob=>resolve(blob),
+      blob => resolve(blob),
       type,
       qualityValue
     );
@@ -1180,15 +502,21 @@ async function createImage(
   height,
   type,
   qualityValue
-){
+) {
 
   const img = await loadImage(file);
+
+  const crop = getCropDimensions(
+    img.width,
+    img.height
+  );
 
   const canvas = createCanvas(
     img,
     width,
     height,
-    type
+    type,
+    crop
   );
 
   return await canvasToBlob(
@@ -1204,13 +532,9 @@ async function compressToTarget(
   height,
   type,
   targetBytes
-){
+) {
 
-  /*
-    Never enlarge an image just because the target
-    is larger than the original file.
-  */
-  if(file.size <= targetBytes){
+  if (file.size <= targetBytes) {
 
     return {
       blob: await createImage(
@@ -1218,17 +542,15 @@ async function compressToTarget(
         width,
         height,
         type,
-        type === "image/png" ? undefined : .92
+        type === "image/png"
+          ? undefined
+          : .92
       ),
-      reached:true
+      reached: true
     };
   }
 
-  /*
-    PNG quality does not meaningfully control PNG size,
-    so export normally.
-  */
-  if(type === "image/png"){
+  if (type === "image/png") {
 
     const blob = await createImage(
       file,
@@ -1240,7 +562,7 @@ async function compressToTarget(
 
     return {
       blob,
-      reached:blob.size <= targetBytes
+      reached: blob.size <= targetBytes
     };
   }
 
@@ -1248,7 +570,7 @@ async function compressToTarget(
   let high = 1;
   let bestBlob = null;
 
-  for(let i=0;i<10;i++){
+  for (let i = 0; i < 10; i++) {
 
     const mid = (low + high) / 2;
 
@@ -1260,22 +582,22 @@ async function compressToTarget(
       mid
     );
 
-    if(blob.size <= targetBytes){
+    if (blob.size <= targetBytes) {
 
       bestBlob = blob;
       low = mid;
 
-    }else{
+    } else {
 
       high = mid;
     }
   }
 
-  if(bestBlob){
+  if (bestBlob) {
 
     return {
-      blob:bestBlob,
-      reached:true
+      blob: bestBlob,
+      reached: true
     };
   }
 
@@ -1288,25 +610,25 @@ async function compressToTarget(
   );
 
   return {
-    blob:fallback,
-    reached:fallback.size <= targetBytes
+    blob: fallback,
+    reached: fallback.size <= targetBytes
   };
 }
 
-async function processFiles(){
+async function processFiles() {
 
-  if(!files.length) return;
+  if (!files.length) return;
 
   results.innerHTML = "";
   resultsSection.classList.remove("hidden");
   progressWrap.classList.remove("hidden");
   processBtn.disabled = true;
 
-  for(let i=0;i<files.length;i++){
+  for (let i = 0; i < files.length; i++) {
 
     const file = files[i];
 
-    try{
+    try {
 
       progressText.textContent =
         `Processing ${i + 1} of ${files.length}: ${file.name}`;
@@ -1314,26 +636,27 @@ async function processFiles(){
       progress.style.width =
         Math.round((i / files.length) * 100) + "%";
 
-      if(toolMode === "convert"){
+      if (toolMode === "convert") {
 
         await convertFile(file);
 
-      }else if(toolMode === "resize"){
+      } else if (toolMode === "resize") {
 
         await resizeFile(file);
 
-      }else{
+      } else {
 
         await compressFile(file);
       }
 
-    }catch(error){
+    } catch (error) {
 
       console.error(error);
 
       addErrorResult(
         file,
-        error.message || "Could not process this image."
+        error.message ||
+        "Could not process this image."
       );
     }
 
@@ -1341,23 +664,57 @@ async function processFiles(){
       Math.round(((i + 1) / files.length) * 100) + "%";
   }
 
-  progressText.textContent = "Processing complete.";
+  progressText.textContent =
+    "Processing complete.";
+
   processBtn.disabled = false;
+
   startOverBtn.classList.remove("hidden");
 }
 
-async function convertFile(file){
+async function convertFile(file) {
 
   const type = formatSelect.value;
 
   const img = await loadImage(file);
 
-  const blob = await createImage(
-    file,
+  /*
+    Converter intentionally does not crop.
+    Conversion keeps the original dimensions.
+  */
+
+  const canvas = document.createElement("canvas");
+
+  canvas.width = img.width;
+  canvas.height = img.height;
+
+  const ctx = canvas.getContext("2d");
+
+  if (type === "image/jpeg") {
+
+    ctx.fillStyle = "#ffffff";
+    ctx.fillRect(
+      0,
+      0,
+      img.width,
+      img.height
+    );
+  }
+
+  ctx.drawImage(
+    img,
+    0,
+    0,
     img.width,
-    img.height,
+    img.height
+  );
+
+  const blob = await canvasToBlob(
+    canvas,
     type,
-    type === "image/png" ? undefined : .92
+    type === "image/png"
+      ? undefined
+      : .92
   );
 
   addResult(
@@ -1370,43 +727,71 @@ async function convertFile(file){
   );
 }
 
-async function resizeFile(file){
+async function resizeFile(file) {
 
   const img = await loadImage(file);
 
-  let width = Number(widthInput.value) || img.width;
-  let height = Number(heightInput.value) || img.height;
+  const crop = getCropDimensions(
+    img.width,
+    img.height
+  );
 
-  if(resizePreset.value !== "custom"){
+  const cropRatioWidth =
+    crop.sw / img.width;
 
-    const presetWidth = Number(resizePreset.value);
+  const cropRatioHeight =
+    crop.sh / img.height;
+
+  let width =
+    Number(widthInput.value) ||
+    crop.sw;
+
+  let height =
+    Number(heightInput.value) ||
+    crop.sh;
+
+  if (resizePreset.value !== "custom") {
+
+    const presetWidth =
+      Number(resizePreset.value);
 
     width = Math.min(
       presetWidth,
-      img.width
+      crop.sw
     );
 
     height = Math.round(
-      width * img.height / img.width
+      width * crop.sh / crop.sw
     );
 
-  }else if(aspect.checked){
+  } else if (aspect.checked) {
 
-    width = Math.max(1,width);
+    width = Math.max(
+      1,
+      width
+    );
 
     height = Math.round(
-      width * img.height / img.width
+      width * crop.sh / crop.sw
     );
   }
 
-  width = Math.max(1,Math.round(width));
-  height = Math.max(1,Math.round(height));
+  width = Math.max(
+    1,
+    Math.round(width)
+  );
+
+  height = Math.max(
+    1,
+    Math.round(height)
+  );
 
   const type = formatSelect.value;
 
-  const q = type === "image/png"
-    ? undefined
-    : Number(resizeQuality.value);
+  const q =
+    type === "image/png"
+      ? undefined
+      : Number(resizeQuality.value);
 
   const blob = await createImage(
     file,
@@ -1416,75 +801,124 @@ async function resizeFile(file){
     q
   );
 
+  let statusText =
+    `📐 Resized to ${width} × ${height}px`;
+
+  if (cropMode.value === "crop") {
+
+    statusText =
+      `✂️ Cropped & resized to ${width} × ${height}px`;
+  }
+
   addResult(
     file,
     blob,
     type,
     width,
     height,
-    `📐 Resized to ${width} × ${height}px`
+    statusText
   );
 }
 
-async function compressFile(file){
+async function compressFile(file) {
 
   const img = await loadImage(file);
 
-  let width = Number(widthInput.value) || img.width;
-  let height = Number(heightInput.value) || img.height;
+  const crop = getCropDimensions(
+    img.width,
+    img.height
+  );
 
-  if(aspect.checked){
+  let width =
+    Number(widthInput.value) ||
+    crop.sw;
 
-    const ratio = img.width / img.height;
+  let height =
+    Number(heightInput.value) ||
+    crop.sh;
 
-    height = Math.round(width / ratio);
+  if (cropMode.value === "crop") {
+
+    /*
+      After cropping, use the cropped image ratio.
+    */
+
+    if (aspect.checked) {
+
+      height = Math.round(
+        width * crop.sh / crop.sw
+      );
+    }
+
+  } else if (aspect.checked) {
+
+    const ratio =
+      img.width / img.height;
+
+    height = Math.round(
+      width / ratio
+    );
   }
 
-  width = Math.max(1,Math.round(width));
-  height = Math.max(1,Math.round(height));
+  width = Math.max(
+    1,
+    Math.round(width)
+  );
+
+  height = Math.max(
+    1,
+    Math.round(height)
+  );
 
   const type = formatSelect.value;
 
   let blob;
-  let statusText = "Compressed successfully";
+  let statusText =
+    "Compressed successfully";
 
-  if(compressionMode.value === "target"){
+  if (compressionMode.value === "target") {
 
     let targetBytes =
       Number(targetSize.value) || 200;
 
-    if(targetUnit.value === "KB"){
+    if (targetUnit.value === "KB") {
+
       targetBytes *= 1024;
-    }else{
-      targetBytes *= 1024 * 1024;
+
+    } else {
+
+      targetBytes *=
+        1024 * 1024;
     }
 
-    const result = await compressToTarget(
-      file,
-      width,
-      height,
-      type,
-      targetBytes
-    );
+    const result =
+      await compressToTarget(
+        file,
+        width,
+        height,
+        type,
+        targetBytes
+      );
 
     blob = result.blob;
 
-    if(result.reached){
+    if (result.reached) {
 
       statusText =
         `🎯 Target reached — ${formatBytes(blob.size)}`;
 
-    }else{
+    } else {
 
       statusText =
         `⚠️ Closest result — ${formatBytes(blob.size)}`;
     }
 
-  }else{
+  } else {
 
-    const q = type === "image/png"
-      ? undefined
-      : Number(quality.value);
+    const q =
+      type === "image/png"
+        ? undefined
+        : Number(quality.value);
 
     blob = await createImage(
       file,
@@ -1493,6 +927,12 @@ async function compressFile(file){
       type,
       q
     );
+  }
+
+  if (cropMode.value === "crop") {
+
+    statusText =
+      `✂️ Cropped & ${statusText}`;
   }
 
   addResult(
@@ -1512,29 +952,43 @@ function addResult(
   width,
   height,
   statusText
-){
+) {
 
-  const saved = savedPercent(
-    file.size,
-    blob.size
-  );
+  const saved =
+    savedPercent(
+      file.size,
+      blob.size
+    );
 
-  const card = document.createElement("div");
+  const card =
+    document.createElement("div");
+
   card.className = "result";
 
-  const url = URL.createObjectURL(blob);
+  const url =
+    URL.createObjectURL(blob);
 
   const extension =
     extensionFor(type);
 
   let suffix = "";
 
-  if(toolMode === "resize"){
+  if (toolMode === "resize") {
+
     suffix = "-resized";
-  }else if(toolMode === "convert"){
+
+  } else if (toolMode === "convert") {
+
     suffix = "-converted";
-  }else{
+
+  } else {
+
     suffix = "-compressed";
+  }
+
+  if (cropMode.value === "crop") {
+
+    suffix += "-cropped";
   }
 
   const downloadName =
@@ -1574,7 +1028,9 @@ function addResult(
       download="${downloadName}"
       style="text-decoration:none;"
     >
-      <button type="button" class="download">
+      <button
+        type="button"
+        class="download">
         Download
       </button>
     </a>
@@ -1583,9 +1039,13 @@ function addResult(
   results.appendChild(card);
 }
 
-function addErrorResult(file,message){
+function addErrorResult(
+  file,
+  message
+) {
 
-  const card = document.createElement("div");
+  const card =
+    document.createElement("div");
 
   card.className = "result";
 
@@ -1600,11 +1060,17 @@ function addErrorResult(file,message){
   results.appendChild(card);
 }
 
-processBtn.addEventListener("click",processFiles);
+processBtn.addEventListener(
+  "click",
+  processFiles
+);
 
-startOverBtn.addEventListener("click",resetAll);
+startOverBtn.addEventListener(
+  "click",
+  resetAll
+);
 
-function resetAll(){
+function resetAll() {
 
   files = [];
 
@@ -1626,7 +1092,8 @@ function resetAll(){
 
   progress.style.width = "0%";
 
-  progressText.textContent = "Processing...";
+  progressText.textContent =
+    "Processing...";
 
   originalWidth = 0;
   originalHeight = 0;
@@ -1637,6 +1104,7 @@ function resetAll(){
   setMode("process");
 
   cropMode.value = "none";
+  cropRatio.value = "free";
 
   updateCropUI();
 }
@@ -1644,6 +1112,3 @@ function resetAll(){
 setMode("process");
 updateCropUI();
 </script>
-
-</body>
-  </html>
