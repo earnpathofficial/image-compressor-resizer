@@ -1491,11 +1491,35 @@ setMode("process");
 updateCropUI();
 }
 
+/* SEO DEEP-LINK SETTINGS */
+
+function applyUrlSettings(){
+
+const params=new URLSearchParams(window.location.search);
+
+const target=params.get("target");
+
+if(target==="200kb"){
+
+setMode("process");
+
+compressionMode.value="target";
+targetSize.value="200";
+targetUnit.value="KB";
+
+qualityControl.classList.add("hidden");
+customQualityControl.classList.add("hidden");
+targetPanel.classList.remove("hidden");
+
+}
+}
+
 /* START */
 
 setMode("process");
 updateCropUI();
 updateQualityVisibility();
+applyUrlSettings();
 </script>
 
 </body>
