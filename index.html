@@ -1493,11 +1493,17 @@ resizeQuality.value="0.90";
 
 }
 
-if(convert==="webp"){
+if(convert==="webp" || convert==="jpg"){
 
 setMode("convert");
 
+if(convert==="webp"){
 formatSelect.value="image/webp";
+}
+
+if(convert==="jpg"){
+formatSelect.value="image/jpeg";
+}
 
 }
 
