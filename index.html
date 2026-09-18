@@ -1114,6 +1114,7 @@ await resizeFile(file);
 }else{
 
 await compressFile(file);
+
 }
 
 }catch(error){
@@ -1499,12 +1500,14 @@ const params=new URLSearchParams(window.location.search);
 
 const target=params.get("target");
 
-if(target==="200kb"){
+if(target==="200kb" || target==="100kb"){
+
+const kb=target==="100kb" ? 100 : 200;
 
 setMode("process");
 
 compressionMode.value="target";
-targetSize.value="200";
+targetSize.value=kb;
 targetUnit.value="KB";
 
 qualityControl.classList.add("hidden");
