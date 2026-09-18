@@ -426,6 +426,11 @@ Choose a specific tool below or use the full ImageTools editor above.
 <span>Resize JPG, PNG and WebP images to custom or common dimensions.</span>
 </a>
 
+<a class="tool-link" href="social-media-image-resizer.html">
+<strong>📱 Social Media Image Resizer</strong>
+<span>Resize images for social media using custom dimensions in your browser.</span>
+</a>
+
 <a class="tool-link" href="resize-image-to-1080px.html">
 <strong>📐 Resize Image to 1080px</strong>
 <span>Resize images to 1080 pixels wide while keeping proportions.</span>
@@ -1562,6 +1567,16 @@ resizeQuality.value="0.90";
 }
 
 if(resize==="custom"){
+
+setMode("resize");
+
+resizePreset.value="custom";
+
+resizeQuality.value="0.90";
+
+}
+
+if(resize==="social"){
 
 setMode("resize");
 
