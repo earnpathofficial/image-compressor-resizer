@@ -8,7 +8,7 @@
 
 <meta name="description" content="Free online image compressor, resizer, cropper and converter. Compress images, resize photos, crop pictures and convert JPG, PNG and WebP directly in your browser.">
 
-<meta name="keywords" content="image compressor, compress image, image resizer, resize image, image cropper, crop image, image converter, JPG compressor, PNG compressor, WebP converter, JPG to WebP, JPG to PNG, PNG to JPG, resize photo">
+<meta name="keywords" content="image compressor, compress image, image resizer, resize image, image cropper, crop image, image converter, JPG compressor, PNG compressor, WebP converter, JPG to WebP, JPG to PNG, WebP to PNG, PNG to JPG, resize photo">
 
 <meta name="robots" content="index, follow">
 <meta name="author" content="ImageTools">
@@ -444,6 +444,11 @@ Choose a specific tool below or use the full ImageTools editor above.
 <span>Convert JPG and JPEG images to PNG directly in your browser.</span>
 </a>
 
+<a class="tool-link" href="webp-to-png.html">
+<strong>🔄 WebP to PNG Converter</strong>
+<span>Convert WebP images to PNG directly in your browser.</span>
+</a>
+
 <a class="tool-link" href="png-to-jpg.html">
 <strong>🔄 PNG to JPG Converter</strong>
 <span>Convert PNG images to JPG while keeping image dimensions.</span>
@@ -516,6 +521,14 @@ and process your JPG or JPEG image.
 </details>
 
 <details>
+<summary>How do I convert WebP to PNG?</summary>
+<p>
+Choose Convert Format, select PNG as the output format
+and process your WebP image.
+</p>
+</details>
+
+<details>
 <summary>Can I convert PNG to JPG?</summary>
 <p>
 Yes. PNG images can be converted to JPG. Transparent areas
@@ -525,9 +538,9 @@ support transparency.
 </details>
 
 <details>
-<summary>Can I convert WebP to PNG?</summary>
+<summary>Can I convert WebP to JPG?</summary>
 <p>
-Yes. Choose Convert Format and select PNG.
+Yes. WebP images can be converted to JPG directly in your browser.
 </p>
 </details>
 
@@ -1612,11 +1625,9 @@ if(convert==="png"){
 
 setMode("convert");
 
-/* Force PNG output */
 formatSelect.selectedIndex=1;
 formatSelect.value="image/png";
 
-/* Make sure converter mode remains active */
 convertMode.classList.add("active");
 processMode.classList.remove("active");
 resizeMode.classList.remove("active");
@@ -1661,11 +1672,6 @@ updateCropUI();
 updateQualityVisibility();
 applyUrlSettings();
 
-/*
-Apply URL settings once more after the page finishes loading.
-This makes converter deep links reliable when the live site/browser
-restores an older page state.
-*/
 window.addEventListener("load",()=>{
 applyUrlSettings();
 });
