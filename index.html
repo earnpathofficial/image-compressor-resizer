@@ -1063,6 +1063,1521 @@ Choose a specific tool below or use the full ImageTools editor above.
 <span>Reduce an image to around 200 KB with target file size compression.</span>
 </a>
 
+<a class="tool-link" href="compress-image-to-500kb.html">
+<strong>🎯 Compress Image to 500KB</strong>
+<span>Compress an image to around 500 KB for uploads and sharing.</span>
+</a>
+
+<a class="tool-link" href="resize-image-online.html">
+<strong>🖼️ Resize Image Online</strong>
+<span>Resize JPG, PNG and WebP images to custom or common dimensions.</span>
+</a>
+
+<a class="tool-link" href="social-media-image-resizer.html">
+<strong>📱 Social Media Image Resizer</strong>
+<span>Resize images for social media using custom dimensions in your browser.</span>
+</a>
+
+<a class="tool-link" href="resize-image-to-1080px.html">
+<strong>📐 Resize Image to 1080px</strong>
+<span>Resize images to 1080 pixels wide while keeping proportions.</span>
+</a>
+
+<a class="tool-link" href="jpg-to-webp.html">
+<strong>🔄 JPG to WebP Converter</strong>
+<span>Convert JPG and JPEG images to WebP directly in your browser.</span>
+</a>
+
+<a class="tool-link" href="jpg-to-png.html">
+<strong>🔄 JPG to PNG Converter</strong>
+<span>Convert JPG and JPEG images to PNG directly in your browser.</span>
+</a>
+
+<a class="tool-link" href="webp-to-png.html">
+<strong>🔄 WebP to PNG Converter</strong>
+<span>Convert WebP images to PNG directly in your browser.</span>
+</a>
+
+<a class="tool-link" href="png-to-jpg.html">
+<strong>🔄 PNG to JPG Converter</strong>
+<span>Convert PNG images to JPG while keeping image dimensions.</span>
+</a>
+
+<a class="tool-link" href="webp-to-jpg.html">
+<strong>🔄 WebP to JPG Converter</strong>
+<span>Convert WebP images to JPG directly in your browser.</span>
+</a>
+
+<a class="tool-link" href="crop-image-online.html">
+<strong>✂️ Crop Image Online</strong>
+<span>Crop images to 1:1, 4:3, 16:9 or use free cropping.</span>
+</a>
+
+</div>
+
+</section>
+
+<section class="card faq">
+
+<h3>Frequently Asked Questions</h3>
+
+<details>
+<summary>How do I resize an image?</summary>
+<p>
+Choose Resize Only, select a preset or enter custom dimensions,
+then tap Resize Images.
+</p>
+</details>
+
+<details>
+<summary>Can I resize an image without changing its proportions?</summary>
+<p>
+Yes. Keep original aspect ratio enabled and ImageTools will
+automatically calculate the other dimension.
+</p>
+</details>
+
+<details>
+<summary>What image sizes can I choose?</summary>
+<p>
+ImageTools currently provides 1920, 1600, 1280, 1080 and
+800 pixel width presets, plus custom dimensions.
+</p>
+</details>
+
+<details>
+<summary>Can I control the quality when resizing?</summary>
+<p>
+Yes. Resize Only includes a Smart Resize quality setting
+so you can balance image quality and file size.
+</p>
+</details>
+
+<details>
+<summary>How do I convert JPG to WebP?</summary>
+<p>
+Choose Convert Format, select WebP as the output format
+and process your image.
+</p>
+</details>
+
+<details>
+<summary>How do I convert JPG to PNG?</summary>
+<p>
+Choose Convert Format, select PNG as the output format
+and process your JPG or JPEG image.
+</p>
+</details>
+
+<details>
+<summary>How do I convert WebP to PNG?</summary>
+<p>
+Choose Convert Format, select PNG as the output format
+and process your WebP image.
+</p>
+</details>
+
+<details>
+<summary>Can I convert PNG to JPG?</summary>
+<p>
+Yes. PNG images can be converted to JPG. Transparent areas
+are rendered against a white background because JPG does not
+support transparency.
+</p>
+</details>
+
+<details>
+<summary>Can I convert WebP to JPG?</summary>
+<p>
+Yes. WebP images can be converted to JPG directly in your browser.
+</p>
+</details>
+
+<details>
+<summary>Does conversion change image dimensions?</summary>
+<p>
+No. Convert Format keeps the original image dimensions.
+</p>
+</details>
+
+<details>
+<summary>How do I make an image smaller than 200 KB?</summary>
+<p>
+Choose Compress & Resize, select Target File Size,
+enter 200 KB and process the image.
+</p>
+</details>
+
+<details>
+<summary>Can I crop an image?</summary>
+<p>
+Yes. Choose Crop Image and select 1:1, 4:3 or 16:9.
+ImageTools automatically crops from the center.
+</p>
+</details>
+
+<details>
+<summary>Are my images uploaded?</summary>
+<p>
+No. ImageTools processes your images directly inside your browser.
+</p>
+</details>
+
+<details>
+<summary>Can I process multiple images?</summary>
+<p>
+Yes. You can select multiple JPG, PNG or WebP images and process
+them together.
+</p>
+</details>
+
+<details>
+<summary>Which formats can I export?</summary>
+<p>
+ImageTools supports JPG, PNG and WebP output.
+</p>
+</details>
+
+</section>
+
+</main>
+
+<footer>
+<strong>ImageTools</strong>
+<p>Free image compression, resizing, cropping and conversion tools.</p>
+<p>© 2026 ImageTools. All rights reserved.</p>
+</footer>
+
+<script>
+const fileInput=document.getElementById("fileInput");
+const chooseBtn=document.getElementById("chooseBtn");
+const dropZone=document.getElementById("dropZone");
+const fileList=document.getElementById("fileList");
+const toolCard=document.getElementById("toolCard");
+
+const processMode=document.getElementById("processMode");
+const resizeMode=document.getElementById("resizeMode");
+const convertMode=document.getElementById("convertMode");
+
+const compressionPanel=document.getElementById("compressionPanel");
+const resizerPanel=document.getElementById("resizerPanel");
+const converterPanel=document.getElementById("converterPanel");
+const dimensionPanel=document.getElementById("dimensionPanel");
+const editingControls=document.getElementById("editingControls");
+
+const compressionMode=document.getElementById("compressionMode");
+const qualityPreset=document.getElementById("qualityPreset");
+const quality=document.getElementById("quality");
+const qualityControl=document.getElementById("qualityControl");
+const customQualityControl=document.getElementById("customQualityControl");
+const targetPanel=document.getElementById("targetPanel");
+
+const targetSize=document.getElementById("targetSize");
+const targetUnit=document.getElementById("targetUnit");
+
+const resizePreset=document.getElementById("resizePreset");
+const resizeQuality=document.getElementById("resizeQuality");
+
+const widthInput=document.getElementById("width");
+const heightInput=document.getElementById("height");
+const aspect=document.getElementById("aspect");
+
+const cropMode=document.getElementById("cropMode");
+const cropRatioControl=document.getElementById("cropRatioControl");
+const cropRatio=document.getElementById("cropRatio");
+const cropInfo=document.getElementById("cropInfo");
+
+const formatSelect=document.getElementById("format");
+const processBtn=document.getElementById("processBtn");
+const startOverBtn=document.getElementById("startOverBtn");
+
+const progressWrap=document.getElementById("progressWrap");
+const progress=document.getElementById("progress");
+const progressText=document.getElementById("progressText");
+
+const resultsSection=document.getElementById("resultsSection");
+const results=document.getElementById("results");
+
+let files=[];
+let toolMode="process";
+let originalWidth=0;
+let originalHeight=0;
+
+chooseBtn.addEventListener("click",()=>fileInput.click());
+
+fileInput.addEventListener("change",()=>{
+addFiles(Array.from(fileInput.files));
+});
+
+dropZone.addEventListener("dragover",e=>{
+e.preventDefault();
+dropZone.classList.add("dragover");
+});
+
+dropZone.addEventListener("dragleave",()=>{
+dropZone.classList.remove("dragover");
+});
+
+dropZone.addEventListener("drop",e=>{
+e.preventDefault();
+dropZone.classList.remove("dragover");
+addFiles(Array.from(e.dataTransfer.files));
+});
+
+function addFiles(newFiles){
+
+const valid=newFiles.filter(file=>
+["image/jpeg","image/png","image/webp"].includes(file.type)
+);
+
+files=[...files,...valid];
+
+renderFileList();
+
+if(files.length){
+toolCard.classList.remove("hidden");
+loadFirstImageInfo();
+}
+}
+
+function renderFileList(){
+
+fileList.innerHTML="";
+
+files.forEach((file,index)=>{
+
+const row=document.createElement("div");
+row.className="file-item";
+
+row.innerHTML=`
+<span class="file-name">
+${escapeHtml(file.name)}
+<br>
+<small>${formatBytes(file.size)}</small>
+</span>
+
+<button type="button" class="remove-btn" onclick="removeFile(${index})">
+Remove
+</button>
+`;
+
+fileList.appendChild(row);
+
+});
+}
+
+window.removeFile=function(index){
+
+files.splice(index,1);
+renderFileList();
+
+if(!files.length){
+resetAll();
+}else{
+loadFirstImageInfo();
+}
+};
+
+function escapeHtml(text){
+
+return text.replace(/[&<>"']/g,char=>({
+"&":"&amp;",
+"<":"&lt;",
+">":"&gt;",
+'"':"&quot;",
+"'":"&#039;"
+})[char]);
+
+}
+
+function loadImage(file){
+
+return new Promise((resolve,reject)=>{
+
+const url=URL.createObjectURL(file);
+const img=new Image();
+
+img.onload=()=>{
+URL.revokeObjectURL(url);
+resolve(img);
+};
+
+img.onerror=()=>{
+URL.revokeObjectURL(url);
+reject(new Error("Could not load image."));
+};
+
+img.src=url;
+
+});
+}
+
+async function loadFirstImageInfo(){
+
+if(!files.length)return;
+
+try{
+
+const img=await loadImage(files[0]);
+
+originalWidth=img.width;
+originalHeight=img.height;
+
+widthInput.value=img.width;
+heightInput.value=img.height;
+
+}catch(error){
+console.error(error);
+}
+}
+
+function setMode(mode){
+
+toolMode=mode;
+
+processMode.classList.toggle("active",mode==="process");
+resizeMode.classList.toggle("active",mode==="resize");
+convertMode.classList.toggle("active",mode==="convert");
+
+compressionPanel.classList.toggle("hidden",mode!=="process");
+resizerPanel.classList.toggle("hidden",mode!=="resize");
+converterPanel.classList.toggle("hidden",mode!=="convert");
+
+dimensionPanel.classList.toggle("hidden",mode==="convert");
+editingControls.classList.toggle("hidden",mode==="convert");
+
+if(mode==="process"){
+processBtn.textContent="Compress & Process Images";
+}
+
+if(mode==="resize"){
+processBtn.textContent="Resize Images";
+}
+
+if(mode==="convert"){
+processBtn.textContent="Convert Images";
+}
+
+updateCropUI();
+}
+
+processMode.addEventListener("click",()=>setMode("process"));
+resizeMode.addEventListener("click",()=>setMode("resize"));
+convertMode.addEventListener("click",()=>setMode("convert"));
+
+compressionMode.addEventListener("change",()=>{
+
+const target=compressionMode.value==="target";
+
+qualityControl.classList.toggle("hidden",target);
+targetPanel.classList.toggle("hidden",!target);
+
+if(!target){
+updateQualityVisibility();
+}
+});
+
+qualityPreset.addEventListener("change",updateQualityVisibility);
+
+function updateQualityVisibility(){
+
+const custom=qualityPreset.value==="custom";
+
+customQualityControl.classList.toggle("hidden",custom===false);
+
+if(!custom){
+quality.value=qualityPreset.value;
+}
+}
+
+resizePreset.addEventListener("change",()=>{
+
+if(resizePreset.value==="custom")return;
+
+if(!originalWidth||!originalHeight)return;
+
+const targetWidth=Number(resizePreset.value);
+
+const newWidth=Math.min(targetWidth,originalWidth);
+
+const newHeight=Math.round(
+newWidth*originalHeight/originalWidth
+);
+
+widthInput.value=newWidth;
+heightInput.value=newHeight;
+});
+
+widthInput.addEv<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<title>Free Image Compressor, Resizer, Cropper & Converter | ImageTools</title>
+
+<meta name="description" content="Free online image compressor, resizer, cropper and converter. Compress images, resize photos, crop pictures and convert JPG, PNG and WebP directly in your browser.">
+
+<meta name="keywords" content="image compressor, compress image, image resizer, resize image, image cropper, crop image, image converter, JPG compressor, PNG compressor, WebP converter, JPG to WebP, JPG to PNG, WebP to PNG, PNG to JPG, resize photo">
+
+<meta name="robots" content="index, follow">
+<meta name="author" content="ImageTools">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Free Image Compressor, Resizer, Cropper & Converter | ImageTools">
+<meta property="og:description" content="Compress, resize, crop and convert JPG, PNG and WebP images directly in your browser.">
+<meta property="og:site_name" content="ImageTools">
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Free Image Compressor, Resizer, Cropper & Converter | ImageTools">
+<meta name="twitter:description" content="Free browser-based tools to compress, resize, crop and convert JPG, PNG and WebP images.">
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"WebApplication",
+  "name":"ImageTools",
+  "description":"Free browser-based image compression, resizing, cropping and conversion tools.",
+  "applicationCategory":"MultimediaApplication",
+  "operatingSystem":"Web Browser",
+  "isAccessibleForFree":true
+}
+</script>
+
+<style>
+*{
+box-sizing:border-box;
+}
+
+html{
+overflow-x:hidden;
+scroll-behavior:smooth;
+}
+
+body{
+margin:0;
+font-family:Arial,Helvetica,sans-serif;
+background:#f5f7fb;
+color:#172033;
+overflow-x:hidden;
+-webkit-text-size-adjust:100%;
+-webkit-tap-highlight-color:transparent;
+}
+
+header{
+background:#fff;
+border-bottom:1px solid #e5e7eb;
+padding:18px 20px;
+text-align:center;
+}
+
+header h1{
+margin:0;
+font-size:24px;
+line-height:1.2;
+}
+
+header p{
+margin:5px 0 0;
+color:#667085;
+font-size:14px;
+}
+
+main{
+max-width:900px;
+margin:auto;
+padding:25px 15px 50px;
+}
+
+.hero{
+text-align:center;
+margin-bottom:25px;
+}
+
+.hero h2{
+font-size:32px;
+margin:10px 0;
+line-height:1.2;
+}
+
+.hero p{
+color:#667085;
+line-height:1.6;
+margin-left:auto;
+margin-right:auto;
+max-width:760px;
+}
+
+.card{
+background:#fff;
+border-radius:16px;
+padding:20px;
+margin-bottom:20px;
+box-shadow:0 5px 20px rgba(0,0,0,.06);
+}
+
+.upload{
+border:2px dashed #98a2b3;
+border-radius:14px;
+padding:35px 15px;
+text-align:center;
+background:#fafbfc;
+transition:.2s;
+}
+
+.upload.dragover{
+border-color:#2563eb;
+background:#eff6ff;
+}
+
+.upload-icon{
+font-size:40px;
+line-height:1;
+}
+
+.upload strong{
+display:block;
+font-size:18px;
+margin:10px 0 7px;
+}
+
+.upload span{
+display:inline-block;
+line-height:1.5;
+}
+
+input[type=file]{
+display:none;
+}
+
+button,
+select,
+input{
+font:inherit;
+}
+
+button{
+border:0;
+border-radius:10px;
+padding:11px 16px;
+cursor:pointer;
+min-height:46px;
+touch-action:manipulation;
+transition:transform .12s ease,box-shadow .12s ease,background .12s ease;
+}
+
+button:active{
+transform:scale(.98);
+}
+
+.primary{
+background:#2563eb;
+color:#fff;
+box-shadow:0 2px 6px rgba(37,99,235,.18);
+}
+
+.secondary{
+background:#eef2f7;
+color:#172033;
+}
+
+button:disabled{
+opacity:.55;
+cursor:not-allowed;
+transform:none;
+}
+
+.file-list{
+margin-top:15px;
+}
+
+.file-item{
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:10px;
+padding:11px 0;
+border-bottom:1px solid #eee;
+font-size:14px;
+min-width:0;
+}
+
+.file-name{
+overflow:hidden;
+text-overflow:ellipsis;
+white-space:nowrap;
+min-width:0;
+flex:1;
+line-height:1.5;
+}
+
+.file-name small{
+color:#667085;
+}
+
+.remove-btn{
+background:#fee2e2;
+color:#b91c1c;
+padding:8px 11px;
+min-height:40px;
+flex-shrink:0;
+}
+
+.mode-buttons{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:8px;
+margin:15px 0;
+}
+
+.mode-buttons button{
+background:#eef2f7;
+color:#344054;
+font-weight:600;
+}
+
+.mode-buttons button.active{
+background:#2563eb;
+color:#fff;
+box-shadow:0 2px 6px rgba(37,99,235,.18);
+}
+
+.control-grid{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:15px;
+}
+
+.control{
+margin-bottom:15px;
+}
+
+.control label{
+display:block;
+font-weight:bold;
+margin-bottom:7px;
+font-size:14px;
+}
+
+select,
+input[type=number]{
+width:100%;
+padding:11px;
+border:1px solid #d0d5dd;
+border-radius:9px;
+background:#fff;
+min-height:46px;
+outline:none;
+}
+
+select:focus,
+input[type=number]:focus{
+border-color:#2563eb;
+box-shadow:0 0 0 3px rgba(37,99,235,.10);
+}
+
+.checkbox{
+display:flex;
+align-items:center;
+gap:9px;
+margin:10px 0;
+font-size:14px;
+min-height:42px;
+cursor:pointer;
+}
+
+.checkbox input{
+width:18px;
+height:18px;
+margin:0;
+accent-color:#2563eb;
+}
+
+.info{
+background:#eff6ff;
+border-radius:10px;
+padding:12px;
+margin-bottom:15px;
+color:#1e40af;
+font-size:14px;
+line-height:1.5;
+}
+
+.warning{
+background:#fff7ed;
+color:#9a3412;
+}
+
+.hidden{
+display:none!important;
+}
+
+.progress-wrap{
+margin-top:18px;
+}
+
+.progress-bar{
+width:100%;
+height:9px;
+background:#e5e7eb;
+border-radius:20px;
+overflow:hidden;
+}
+
+.progress{
+width:0;
+height:100%;
+background:#2563eb;
+transition:.2s;
+}
+
+.results{
+margin-top:20px;
+}
+
+.result{
+border:1px solid #e5e7eb;
+border-radius:12px;
+padding:15px;
+margin-bottom:12px;
+overflow:hidden;
+background:#fff;
+}
+
+.result h4{
+margin:0 0 10px;
+overflow:hidden;
+text-overflow:ellipsis;
+white-space:nowrap;
+line-height:1.4;
+}
+
+.result-grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:8px;
+font-size:13px;
+margin-bottom:12px;
+}
+
+.stat{
+background:#f8fafc;
+padding:10px;
+border-radius:8px;
+overflow-wrap:anywhere;
+line-height:1.45;
+}
+
+.stat strong{
+display:block;
+margin-top:3px;
+}
+
+.result .download{
+width:100%;
+background:#16a34a;
+color:#fff;
+font-weight:600;
+min-height:48px;
+}
+
+.feature-grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:15px;
+}
+
+.feature{
+background:#fff;
+border-radius:14px;
+padding:18px;
+box-shadow:0 5px 18px rgba(0,0,0,.05);
+}
+
+.feature-icon{
+font-size:28px;
+line-height:1;
+}
+
+.feature h3{
+margin-bottom:7px;
+}
+
+.feature p{
+color:#667085;
+font-size:14px;
+line-height:1.5;
+}
+
+.tool-navigation{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:12px;
+}
+
+.tool-link{
+display:block;
+text-decoration:none;
+background:#f8fafc;
+border:1px solid #e5e7eb;
+border-radius:12px;
+padding:15px;
+color:#172033;
+transition:.15s;
+min-height:100%;
+}
+
+.tool-link strong{
+display:block;
+margin-bottom:5px;
+line-height:1.4;
+}
+
+.tool-link span{
+font-size:13px;
+color:#667085;
+line-height:1.4;
+}
+
+.tool-link:hover{
+border-color:#2563eb;
+background:#eff6ff;
+}
+
+.tool-link:active{
+transform:scale(.99);
+}
+
+.faq details{
+border-bottom:1px solid #eee;
+padding:13px 0;
+}
+
+.faq summary{
+cursor:pointer;
+font-weight:bold;
+line-height:1.45;
+padding:4px 0;
+}
+
+.faq p{
+line-height:1.6;
+color:#667085;
+}
+
+footer{
+text-align:center;
+color:#667085;
+padding:30px 15px;
+font-size:13px;
+line-height:1.5;
+}
+
+/* TABLET */
+
+@media(max-width:700px){
+
+main{
+padding:20px 12px 40px;
+}
+
+.hero{
+margin-bottom:20px;
+}
+
+.hero h2{
+font-size:25px;
+line-height:1.25;
+}
+
+.hero p{
+font-size:14px;
+line-height:1.55;
+}
+
+.card{
+padding:16px;
+border-radius:14px;
+margin-bottom:16px;
+}
+
+.upload{
+padding:30px 12px;
+}
+
+.upload strong{
+font-size:17px;
+}
+
+.mode-buttons{
+grid-template-columns:1fr;
+gap:9px;
+}
+
+.mode-buttons button{
+width:100%;
+min-height:48px;
+}
+
+.control-grid,
+.feature-grid,
+.tool-navigation{
+grid-template-columns:1fr;
+}
+
+.result-grid{
+grid-template-columns:1fr 1fr;
+}
+
+.tool-link{
+padding:16px;
+min-height:84px;
+}
+
+.feature{
+padding:16px;
+}
+
+}
+
+/* PHONE */
+
+@media(max-width:480px){
+
+header{
+padding:16px 12px;
+}
+
+header h1{
+font-size:22px;
+}
+
+header p{
+font-size:13px;
+}
+
+main{
+padding:16px 10px 35px;
+}
+
+.hero h2{
+font-size:23px;
+}
+
+.hero p{
+font-size:14px;
+line-height:1.55;
+}
+
+.card{
+padding:14px;
+border-radius:13px;
+}
+
+.upload{
+padding:28px 10px;
+border-radius:12px;
+}
+
+.upload-icon{
+font-size:36px;
+}
+
+.upload strong{
+font-size:16px;
+margin-top:9px;
+}
+
+.upload span{
+font-size:13px;
+line-height:1.4;
+}
+
+.upload .primary{
+width:100%;
+margin-top:4px;
+min-height:48px;
+}
+
+.file-item{
+align-items:center;
+gap:8px;
+padding:12px 0;
+}
+
+.file-name{
+font-size:13px;
+line-height:1.45;
+}
+
+.remove-btn{
+padding:8px 10px;
+min-height:42px;
+}
+
+.control{
+margin-bottom:14px;
+}
+
+.control label{
+font-size:13px;
+}
+
+select,
+input[type=number]{
+min-height:48px;
+padding:11px 10px;
+font-size:16px;
+}
+
+button{
+width:100%;
+min-height:48px;
+font-size:15px;
+}
+
+.processBtn{
+width:100%;
+}
+
+.checkbox{
+font-size:14px;
+padding:3px 0;
+}
+
+.info{
+font-size:13px;
+padding:11px;
+line-height:1.5;
+}
+
+.result{
+padding:13px;
+border-radius:11px;
+}
+
+.result h4{
+font-size:14px;
+}
+
+.result-grid{
+grid-template-columns:1fr;
+gap:7px;
+}
+
+.stat{
+padding:10px;
+}
+
+.result .download{
+min-height:50px;
+}
+
+.feature{
+padding:15px;
+}
+
+.feature h3{
+font-size:17px;
+}
+
+.tool-link{
+padding:15px;
+min-height:0;
+}
+
+.tool-link strong{
+font-size:14px;
+line-height:1.35;
+}
+
+.tool-link span{
+font-size:13px;
+line-height:1.45;
+}
+
+.faq summary{
+font-size:14px;
+padding:5px 0;
+}
+
+.faq p{
+font-size:13px;
+line-height:1.55;
+}
+
+footer{
+padding:25px 10px;
+}
+
+}
+
+/* VERY SMALL PHONES */
+
+@media(max-width:360px){
+
+header h1{
+font-size:21px;
+}
+
+main{
+padding-left:8px;
+padding-right:8px;
+}
+
+.card{
+padding:12px;
+}
+
+.hero h2{
+font-size:21px;
+}
+
+.upload{
+padding:24px 8px;
+}
+
+.mode-buttons{
+gap:8px;
+}
+
+.mode-buttons button{
+font-size:14px;
+}
+
+.tool-link{
+padding:13px;
+}
+
+.result{
+padding:11px;
+}
+
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>ImageTools</h1>
+<p>Free Image Tools</p>
+</header>
+
+<main>
+
+<section class="hero">
+<h2>Compress, Resize, Crop & Convert Images</h2>
+<p>
+Free online image tools for compressing, resizing, cropping and
+converting JPG, PNG and WebP images. Everything happens directly
+in your browser.
+</p>
+</section>
+
+<section class="card">
+
+<div class="upload" id="dropZone">
+<div class="upload-icon">🖼️</div>
+<strong>Drop your images here</strong>
+<span>or choose images from your device</span>
+<br><br>
+<label>
+<button type="button" class="primary" id="chooseBtn">Choose Images</button>
+<input type="file" id="fileInput" accept="image/jpeg,image/png,image/webp" multiple>
+</label>
+</div>
+
+<div id="fileList" class="file-list"></div>
+
+<div id="toolCard" class="hidden">
+
+<h3>Image Tools</h3>
+
+<div class="mode-buttons">
+<button type="button" id="processMode" class="active">Compress & Resize</button>
+<button type="button" id="resizeMode">Resize Only</button>
+<button type="button" id="convertMode">Convert Format</button>
+</div>
+
+<div id="compressionPanel">
+
+<div class="control-grid">
+
+<div class="control">
+<label>Compression Mode</label>
+<select id="compressionMode">
+<option value="quality">Quality Compression</option>
+<option value="target">Target File Size</option>
+</select>
+</div>
+
+<div class="control" id="qualityControl">
+<label>Quality</label>
+<select id="qualityPreset">
+<option value="0.90">Best Quality — 90%</option>
+<option value="0.75">Balanced — 75%</option>
+<option value="0.55">Small File — 55%</option>
+<option value="custom">Custom Quality</option>
+</select>
+</div>
+
+</div>
+
+<div class="control hidden" id="customQualityControl">
+<label>Custom Quality</label>
+<select id="quality">
+<option value="0.95">Very High — 95%</option>
+<option value="0.90" selected>High — 90%</option>
+<option value="0.80">Good — 80%</option>
+<option value="0.70">Balanced — 70%</option>
+<option value="0.60">Smaller — 60%</option>
+<option value="0.50">Small — 50%</option>
+<option value="0.40">Very Small — 40%</option>
+</select>
+</div>
+
+<div id="targetPanel" class="hidden">
+
+<div class="control-grid">
+
+<div class="control">
+<label>Target Size</label>
+<input type="number" id="targetSize" value="200" min="1">
+</div>
+
+<div class="control">
+<label>Unit</label>
+<select id="targetUnit">
+<option value="KB">KB</option>
+<option value="MB">MB</option>
+</select>
+</div>
+
+</div>
+
+<div class="info">
+🎯 ImageTools will automatically search for a suitable
+quality level to get as close as possible to your target file size.
+</div>
+
+</div>
+
+<div class="info">
+💡 Choose a simple preset or select Custom Quality for more control.
+</div>
+
+</div>
+
+<div id="resizerPanel" class="hidden">
+
+<div class="info">
+📐 Resize images quickly while keeping their original proportions.
+Choose a preset or enter your own dimensions.
+</div>
+
+<div class="control-grid">
+
+<div class="control">
+<label>Resize Preset</label>
+<select id="resizePreset">
+<option value="custom">Custom Size</option>
+<option value="1920">1920 px wide</option>
+<option value="1600">1600 px wide</option>
+<option value="1280">1280 px wide</option>
+<option value="1080">1080 px wide</option>
+<option value="800">800 px wide</option>
+</select>
+</div>
+
+<div class="control">
+<label>Resize Quality</label>
+<select id="resizeQuality">
+<option value="0.95">Very High — 95%</option>
+<option value="0.90" selected>High — 90%</option>
+<option value="0.80">Good — 80%</option>
+<option value="0.70">Balanced — 70%</option>
+<option value="0.60">Smaller — 60%</option>
+</select>
+</div>
+
+</div>
+
+<div class="info">
+✨ Smart Resize uses your selected quality while keeping
+the requested dimensions. Lower quality can produce
+significantly smaller files.
+</div>
+
+</div>
+
+<div id="converterPanel" class="hidden">
+
+<div class="info">
+🔄 Convert JPG, PNG and WebP images directly in your browser.
+Conversion keeps the original image dimensions.
+</div>
+
+</div>
+
+<div id="dimensionPanel">
+
+<div class="control-grid">
+
+<div class="control">
+<label>Width (pixels)</label>
+<input type="number" id="width" min="1">
+</div>
+
+<div class="control">
+<label>Height (pixels)</label>
+<input type="number" id="height" min="1">
+</div>
+
+</div>
+
+<label class="checkbox">
+<input type="checkbox" id="aspect" checked>
+Keep original aspect ratio
+</label>
+
+</div>
+
+<div id="editingControls">
+
+<h3>Image Editing</h3>
+
+<div class="control-grid">
+
+<div class="control">
+<label>Crop</label>
+<select id="cropMode">
+<option value="none">No Crop</option>
+<option value="crop">Crop Image</option>
+</select>
+</div>
+
+<div class="control hidden" id="cropRatioControl">
+<label>Crop Ratio</label>
+<select id="cropRatio">
+<option value="free">Free</option>
+<option value="1">1:1</option>
+<option value="4/3">4:3</option>
+<option value="16/9">16:9</option>
+</select>
+</div>
+
+</div>
+
+<div id="cropInfo" class="info hidden">
+✂️ ImageTools will automatically crop from the center
+using your selected ratio before resizing or compression.
+</div>
+
+</div>
+
+<div class="control">
+<label>Output Format</label>
+<select id="format">
+<option value="image/jpeg">JPG</option>
+<option value="image/png">PNG</option>
+<option value="image/webp">WebP</option>
+</select>
+</div>
+
+<button type="button" class="primary" id="processBtn">
+Compress & Process Images
+</button>
+
+<button type="button" class="secondary hidden" id="startOverBtn">
+Start Over
+</button>
+
+<div class="progress-wrap hidden" id="progressWrap">
+<div class="progress-bar">
+<div class="progress" id="progress"></div>
+</div>
+<p id="progressText">Processing...</p>
+</div>
+
+</div>
+</section>
+
+<section id="resultsSection" class="card hidden">
+<h3>Processed Images</h3>
+<div id="results"></div>
+</section>
+
+<section class="card">
+<div class="info">
+🔒 <strong>Your privacy matters</strong><br>
+Images are processed directly inside your browser.
+Your original images are not uploaded to our server by this tool.
+</div>
+</section>
+
+<section class="feature-grid">
+
+<div class="feature">
+<div class="feature-icon">🎯</div>
+<h3>Target File Size</h3>
+<p>
+Need an image under 200 KB? Set your target size and let
+the browser find a suitable compression level.
+</p>
+</div>
+
+<div class="feature">
+<div class="feature-icon">📐</div>
+<h3>Smart Resize</h3>
+<p>
+Resize images to common widths or enter custom dimensions
+while keeping the original proportions and controlling output quality.
+</p>
+</div>
+
+<div class="feature">
+<div class="feature-icon">🔄</div>
+<h3>Convert Formats</h3>
+<p>
+Convert JPG, PNG and WebP images directly in your browser
+without uploading them.
+</p>
+</div>
+
+</section>
+
+<section class="card">
+
+<h3>Popular Image Tools</h3>
+
+<p>
+Quickly access our most useful free image tools.
+Choose a specific tool below or use the full ImageTools editor above.
+</p>
+
+<div class="tool-navigation">
+
+<a class="tool-link" href="compress-image-online.html">
+<strong>🗜️ Compress Image Online</strong>
+<span>Reduce JPG, PNG and WebP file sizes directly in your browser.</span>
+</a>
+
+<a class="tool-link" href="compress-image-to-100kb.html">
+<strong>🎯 Compress Image to 100KB</strong>
+<span>Compress an image to around 100 KB for uploads and sharing.</span>
+</a>
+
+<a class="tool-link" href="compress-image-to-200kb.html">
+<strong>🎯 Compress Image to 200KB</strong>
+<span>Reduce an image to around 200 KB with target file size compression.</span>
+</a>
+
+<a class="tool-link" href="compress-image-to-500kb.html">
+<strong>🎯 Compress Image to 500KB</strong>
+<span>Compress an image to around 500 KB for uploads and sharing.</span>
+</a>
+
 <a class="tool-link" href="resize-image-online.html">
 <strong>🖼️ Resize Image Online</strong>
 <span>Resize JPG, PNG and WebP images to custom or common dimensions.</span>
@@ -2230,9 +3745,859 @@ const resize=params.get("resize");
 const convert=params.get("convert");
 const crop=params.get("crop");
 
-if(target==="200kb" || target==="100kb"){
+if(target==="200kb" || target==="100kb" || target==="500kb"){
 
-const kb=target==="100kb" ? 100 : 200;
+const kb=
+target==="100kb"
+?100
+:target==="200kb"
+?200
+:500;
+
+setMode("process");
+
+compressionMode.value="target";
+targetSize.value=kb;
+targetUnit.value="KB";
+
+qualityControl.classList.add("hidden");
+customQualityControl.classList.add("hidden");
+targetPanel.classList.remove("hidden");
+
+}
+
+if(resize==="1080"){
+
+setMode("resize");
+
+resizePreset.value="1080";
+resizeQuality.value="0.90";
+
+}
+
+if(resize==="custom"){
+
+setMode("resize");
+
+resizePreset.value="custom";
+resizeQuality.value="0.90";
+
+}
+
+if(resize==="social"){
+
+setMode("resize");
+
+resizePreset.value="custom";
+resizeQuality.value="0.90";
+
+}
+
+/* JPG TO WEBP */
+
+if(convert==="webp"){
+
+setMode("convert");
+
+formatSelect.value="image/webp";
+
+}
+
+/* PNG OUTPUT */
+
+if(convert==="png"){
+
+setMode("convert");
+
+formatSelect.selectedIndex=1;
+formatSelect.value="image/png";
+
+convertMode.classList.add("active");
+processMode.classList.remove("active");
+resizeMode.classList.remove("active");
+
+converterPanel.classList.remove("hidden");
+compressionPanel.classList.add("hidden");
+resizerPanel.classList.add("hidden");
+dimensionPanel.classList.add("hidden");
+editingControls.classList.add("hidden");
+
+processBtn.textContent="Convert Images";
+
+}
+
+/* JPG OUTPUT */
+
+if(convert==="jpg"){
+
+setMode("convert");
+
+formatSelect.value="image/jpeg";
+
+}
+
+if(crop==="true"){
+
+setMode("process");
+
+cropMode.value="crop";
+cropRatio.value="free";
+
+updateCropUI();
+
+}
+
+}
+
+/* START */
+
+setMode("process");
+updateCropUI();
+updateQualityVisibility();
+applyUrlSettings();
+
+window.addEventListener("load",()=>{
+applyUrlSettings();
+});
+
+</script>
+
+</body>
+</html>entListener("input",()=>{
+
+resizePreset.value="custom";
+
+if(!aspect.checked||!originalWidth||!originalHeight)return;
+
+const width=Number(widthInput.value);
+
+if(width>0){
+heightInput.value=Math.round(
+width*originalHeight/originalWidth
+);
+}
+});
+
+heightInput.addEventListener("input",()=>{
+
+resizePreset.value="custom";
+
+if(!aspect.checked||!originalWidth||!originalHeight)return;
+
+const height=Number(heightInput.value);
+
+if(height>0){
+widthInput.value=Math.round(
+height*originalWidth/originalHeight
+);
+}
+});
+
+aspect.addEventListener("change",()=>{
+
+if(!aspect.checked)return;
+
+if(!originalWidth||!originalHeight)return;
+
+const width=Number(widthInput.value);
+
+if(width>0){
+heightInput.value=Math.round(
+width*originalHeight/originalWidth
+);
+}
+});
+
+cropMode.addEventListener("change",updateCropUI);
+cropRatio.addEventListener("change",updateCropUI);
+
+function updateCropUI(){
+
+const enabled=
+cropMode.value==="crop" &&
+toolMode!=="convert";
+
+cropRatioControl.classList.toggle("hidden",!enabled);
+cropInfo.classList.toggle("hidden",!enabled);
+}
+
+function getCropRect(imageWidth,imageHeight){
+
+if(cropMode.value!=="crop"){
+return{x:0,y:0,width:imageWidth,height:imageHeight};
+}
+
+if(cropRatio.value==="free"){
+return{x:0,y:0,width:imageWidth,height:imageHeight};
+}
+
+let ratio;
+
+if(cropRatio.value==="1"){
+ratio=1;
+}else if(cropRatio.value==="4/3"){
+ratio=4/3;
+}else if(cropRatio.value==="16/9"){
+ratio=16/9;
+}else{
+ratio=imageWidth/imageHeight;
+}
+
+let cropWidth=imageWidth;
+let cropHeight=Math.round(cropWidth/ratio);
+
+if(cropHeight>imageHeight){
+cropHeight=imageHeight;
+cropWidth=Math.round(cropHeight*ratio);
+}
+
+return{
+x:Math.floor((imageWidth-cropWidth)/2),
+y:Math.floor((imageHeight-cropHeight)/2),
+width:cropWidth,
+height:cropHeight
+};
+}
+
+function formatBytes(bytes){
+
+if(bytes<1024)return bytes+" B";
+
+if(bytes<1024*1024){
+return(bytes/1024).toFixed(2)+" KB";
+}
+
+return(bytes/(1024*1024)).toFixed(2)+" MB";
+}
+
+function extensionFor(type){
+
+if(type==="image/png")return"png";
+if(type==="image/webp")return"webp";
+return"jpg";
+}
+
+function baseName(name){
+return name.replace(/\.[^/.]+$/,"");
+}
+
+function savedPercent(original,newSize){
+
+if(original<=0)return 0;
+
+return Math.max(
+0,
+Math.round((1-newSize/original)*100)
+);
+}
+
+function createCanvas(img,outputWidth,outputHeight,type){
+
+const canvas=document.createElement("canvas");
+
+canvas.width=outputWidth;
+canvas.height=outputHeight;
+
+const ctx=canvas.getContext("2d");
+
+if(type==="image/jpeg"){
+
+ctx.fillStyle="#ffffff";
+
+ctx.fillRect(
+0,
+0,
+outputWidth,
+outputHeight
+);
+}
+
+const crop=getCropRect(img.width,img.height);
+
+ctx.drawImage(
+img,
+crop.x,
+crop.y,
+crop.width,
+crop.height,
+0,
+0,
+outputWidth,
+outputHeight
+);
+
+return canvas;
+}
+
+function canvasToBlob(canvas,type,qualityValue){
+
+return new Promise(resolve=>{
+
+canvas.toBlob(
+blob=>resolve(blob),
+type,
+qualityValue
+);
+
+});
+}
+
+async function createImage(
+file,
+width,
+height,
+type,
+qualityValue
+){
+
+const img=await loadImage(file);
+
+const canvas=createCanvas(
+img,
+width,
+height,
+type
+);
+
+return await canvasToBlob(
+canvas,
+type,
+qualityValue
+);
+
+}
+
+async function compressToTarget(
+file,
+width,
+height,
+type,
+targetBytes
+){
+
+if(file.size<=targetBytes){
+
+return{
+blob:await createImage(
+file,
+width,
+height,
+type,
+type==="image/png"?undefined:.92
+),
+reached:true
+};
+
+}
+
+if(type==="image/png"){
+
+const blob=await createImage(
+file,
+width,
+height,
+type,
+undefined
+);
+
+return{
+blob,
+reached:blob.size<=targetBytes
+};
+
+}
+
+let low=.05;
+let high=1;
+let bestBlob=null;
+
+for(let i=0;i<10;i++){
+
+const mid=(low+high)/2;
+
+const blob=await createImage(
+file,
+width,
+height,
+type,
+mid
+);
+
+if(blob.size<=targetBytes){
+
+bestBlob=blob;
+low=mid;
+
+}else{
+
+high=mid;
+}
+}
+
+if(bestBlob){
+
+return{
+blob:bestBlob,
+reached:true
+};
+
+}
+
+const fallback=await createImage(
+file,
+width,
+height,
+type,
+.05
+);
+
+return{
+blob:fallback,
+reached:fallback.size<=targetBytes
+};
+
+}
+
+async function processFiles(){
+
+if(!files.length)return;
+
+results.innerHTML="";
+resultsSection.classList.remove("hidden");
+progressWrap.classList.remove("hidden");
+
+processBtn.disabled=true;
+
+for(let i=0;i<files.length;i++){
+
+const file=files[i];
+
+try{
+
+progressText.textContent=
+`Processing ${i+1} of ${files.length}: ${file.name}`;
+
+progress.style.width=
+Math.round((i/files.length)*100)+"%";
+
+if(toolMode==="convert"){
+
+await convertFile(file);
+
+}else if(toolMode==="resize"){
+
+await resizeFile(file);
+
+}else{
+
+await compressFile(file);
+
+}
+
+}catch(error){
+
+console.error(error);
+
+addErrorResult(
+file,
+error.message||"Could not process this image."
+);
+
+}
+
+progress.style.width=
+Math.round(((i+1)/files.length)*100)+"%";
+
+}
+
+progressText.textContent="Processing complete.";
+
+processBtn.disabled=false;
+
+startOverBtn.classList.remove("hidden");
+
+}
+
+async function convertFile(file){
+
+const type=formatSelect.value;
+
+const img=await loadImage(file);
+
+const oldCropMode=cropMode.value;
+
+cropMode.value="none";
+
+const blob=await createImage(
+file,
+img.width,
+img.height,
+type,
+type==="image/png"?undefined:.92
+);
+
+cropMode.value=oldCropMode;
+
+addResult(
+file,
+blob,
+type,
+img.width,
+img.height,
+`Converted to ${extensionFor(type).toUpperCase()}`
+);
+
+}
+
+async function resizeFile(file){
+
+const img=await loadImage(file);
+
+let width=Number(widthInput.value)||img.width;
+let height=Number(heightInput.value)||img.height;
+
+if(resizePreset.value!=="custom"){
+
+const presetWidth=Number(resizePreset.value);
+
+width=Math.min(presetWidth,img.width);
+
+height=Math.round(
+width*img.height/img.width
+);
+
+}else if(aspect.checked){
+
+width=Math.max(1,width);
+
+height=Math.round(
+width*img.height/img.width
+);
+
+}
+
+if(
+cropMode.value==="crop" &&
+cropRatio.value!=="free"
+){
+
+const crop=getCropRect(
+img.width,
+img.height
+);
+
+const cropRatioValue=crop.width/crop.height;
+
+height=Math.round(
+width/cropRatioValue
+);
+
+}
+
+width=Math.max(1,Math.round(width));
+height=Math.max(1,Math.round(height));
+
+const type=formatSelect.value;
+
+const q=
+type==="image/png"
+?undefined
+:Number(resizeQuality.value);
+
+const blob=await createImage(
+file,
+width,
+height,
+type,
+q
+);
+
+addResult(
+file,
+blob,
+type,
+width,
+height,
+`📐 Resized to ${width} × ${height}px`
+);
+
+}
+
+async function compressFile(file){
+
+const img=await loadImage(file);
+
+let width=Number(widthInput.value)||img.width;
+let height=Number(heightInput.value)||img.height;
+
+if(aspect.checked){
+
+const ratio=img.width/img.height;
+
+height=Math.round(width/ratio);
+
+}
+
+if(
+cropMode.value==="crop" &&
+cropRatio.value!=="free"
+){
+
+const crop=getCropRect(
+img.width,
+img.height
+);
+
+const cropRatioValue=crop.width/crop.height;
+
+height=Math.round(
+width/cropRatioValue
+);
+
+}
+
+width=Math.max(1,Math.round(width));
+height=Math.max(1,Math.round(height));
+
+const type=formatSelect.value;
+
+let blob;
+let statusText="Compressed successfully";
+
+if(compressionMode.value==="target"){
+
+let targetBytes=Number(targetSize.value)||200;
+
+if(targetUnit.value==="KB"){
+targetBytes*=1024;
+}else{
+targetBytes*=1024*1024;
+}
+
+const result=await compressToTarget(
+file,
+width,
+height,
+type,
+targetBytes
+);
+
+blob=result.blob;
+
+if(result.reached){
+
+statusText=
+`🎯 Target reached — ${formatBytes(blob.size)}`;
+
+}else{
+
+statusText=
+`⚠️ Closest result — ${formatBytes(blob.size)}`;
+
+}
+
+}else{
+
+let q;
+
+if(qualityPreset.value==="custom"){
+q=Number(quality.value);
+}else{
+q=Number(qualityPreset.value);
+}
+
+if(type==="image/png"){
+q=undefined;
+}
+
+blob=await createImage(
+file,
+width,
+height,
+type,
+q
+);
+
+}
+
+addResult(
+file,
+blob,
+type,
+width,
+height,
+statusText
+);
+
+}
+
+function addResult(
+file,
+blob,
+type,
+width,
+height,
+statusText
+){
+
+const saved=savedPercent(
+file.size,
+blob.size
+);
+
+const card=document.createElement("div");
+
+card.className="result";
+
+const url=URL.createObjectURL(blob);
+
+const extension=extensionFor(type);
+
+let suffix="";
+
+if(toolMode==="resize"){
+suffix="-resized";
+}else if(toolMode==="convert"){
+suffix="-converted";
+}else{
+suffix="-compressed";
+}
+
+const downloadName=
+`${baseName(file.name)}${suffix}.${extension}`;
+
+card.innerHTML=`
+
+<h4>${escapeHtml(file.name)}</h4>
+
+<div class="result-grid">
+
+<div class="stat">
+Original
+<strong>${formatBytes(file.size)}</strong>
+</div>
+
+<div class="stat">
+New Size
+<strong>${formatBytes(blob.size)}</strong>
+</div>
+
+<div class="stat">
+Saved
+<strong>${saved}%</strong>
+</div>
+
+</div>
+
+<div class="stat">
+
+${statusText}
+
+<br>
+
+<strong>${width} × ${height}px</strong>
+
+</div>
+
+<br>
+
+<a href="${url}" download="${downloadName}" style="text-decoration:none">
+
+<button type="button" class="download">
+Download
+</button>
+
+</a>
+`;
+
+results.appendChild(card);
+
+}
+
+function addErrorResult(file,message){
+
+const card=document.createElement("div");
+
+card.className="result";
+
+card.innerHTML=`
+
+<h4>${escapeHtml(file.name)}</h4>
+
+<div class="info warning">
+⚠️ ${escapeHtml(message)}
+</div>
+`;
+
+results.appendChild(card);
+
+}
+
+processBtn.addEventListener("click",processFiles);
+startOverBtn.addEventListener("click",resetAll);
+
+function resetAll(){
+
+files=[];
+fileInput.value="";
+fileList.innerHTML="";
+
+toolCard.classList.add("hidden");
+resultsSection.classList.add("hidden");
+
+results.innerHTML="";
+
+progressWrap.classList.add("hidden");
+startOverBtn.classList.add("hidden");
+
+processBtn.disabled=false;
+
+progress.style.width="0%";
+progressText.textContent="Processing...";
+
+originalWidth=0;
+originalHeight=0;
+
+widthInput.value="";
+heightInput.value="";
+
+cropMode.value="none";
+cropRatio.value="free";
+
+qualityPreset.value="0.90";
+quality.value="0.90";
+
+resizePreset.value="custom";
+resizeQuality.value="0.90";
+
+formatSelect.value="image/jpeg";
+
+updateQualityVisibility();
+
+setMode("process");
+updateCropUI();
+
+}
+
+/* SEO DEEP-LINK SETTINGS */
+
+function applyUrlSettings(){
+
+const params=new URLSearchParams(window.location.search);
+
+const target=params.get("target");
+const resize=params.get("resize");
+const convert=params.get("convert");
+const crop=params.get("crop");
+
+if(target==="200kb" || target==="100kb" || target==="500kb"){
+
+const kb=
+target==="100kb"
+?100
+:target==="200kb"
+?200
+:500;
 
 setMode("process");
 
