@@ -1466,6 +1466,7 @@ const params=new URLSearchParams(window.location.search);
 const target=params.get("target");
 const resize=params.get("resize");
 const convert=params.get("convert");
+const crop=params.get("crop");
 
 if(target==="200kb" || target==="100kb"){
 
@@ -1504,6 +1505,17 @@ formatSelect.value="image/webp";
 if(convert==="jpg"){
 formatSelect.value="image/jpeg";
 }
+
+}
+
+if(crop==="true"){
+
+setMode("process");
+
+cropMode.value="crop";
+cropRatio.value="free";
+
+updateCropUI();
 
 }
 
