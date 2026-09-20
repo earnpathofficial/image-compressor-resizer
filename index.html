@@ -1201,6 +1201,11 @@ Choose a specific tool below or use the full ImageTools editor above.
 <span>Compress an image to around 500 KB for uploads and sharing.</span>
 </a>
 
+<a class="tool-link" href="compress-image-to-1mb.html">
+<strong>🎯 Compress Image to 1MB</strong>
+<span>Compress an image to around 1 MB for uploads, websites and sharing.</span>
+</a>
+
 <a class="tool-link" href="resize-image-online.html">
 <strong>🖼️ Resize Image Online</strong>
 <span>Resize JPG, PNG and WebP images to custom or common dimensions.</span>
@@ -1372,6 +1377,14 @@ No. Convert Format keeps the original image dimensions.
 <p>
 Choose Compress & Resize, select Target File Size,
 enter 200 KB and process the image.
+</p>
+</details>
+
+<details>
+<summary>Can I compress an image to 1MB?</summary>
+<p>
+Yes. Open the Compress Image to 1MB tool, select your image,
+and ImageTools will use a 1 MB target file size.
 </p>
 </details>
 
@@ -2676,26 +2689,47 @@ params.get("convert");
 const crop=
 params.get("crop");
 
+/* TARGET FILE SIZE DEEP LINKS */
+
 if(
 target==="200kb" ||
 target==="100kb" ||
-target==="500kb"
+target==="500kb" ||
+target==="1mb"
 ){
 
-const kb=
-target==="100kb"
-?100
-:target==="200kb"
-?200
-:500;
+let targetValue;
+let targetValueUnit;
+
+if(target==="100kb"){
+
+targetValue=100;
+targetValueUnit="KB";
+
+}else if(target==="200kb"){
+
+targetValue=200;
+targetValueUnit="KB";
+
+}else if(target==="500kb"){
+
+targetValue=500;
+targetValueUnit="KB";
+
+}else{
+
+targetValue=1;
+targetValueUnit="MB";
+
+}
 
 setMode("process");
 
 compressionMode.value="target";
 
-targetSize.value=kb;
+targetSize.value=targetValue;
 
-targetUnit.value="KB";
+targetUnit.value=targetValueUnit;
 
 qualityControl.classList.add(
 "hidden"
