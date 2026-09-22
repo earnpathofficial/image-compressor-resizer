@@ -2,1010 +2,1393 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 
-<title>Compress PDF Online Free — Reduce PDF Size | ImageTools</title>
-<meta name="description" content="Compress PDF files online for free. Reduce PDF size directly in your browser with Basic, Balanced, and Strong compression. Your files stay on your device.">
-<meta name="robots" content="index, follow">
+<title>Compress PDF Online Free | ImageTools</title>
+
+<meta name="description" content="Compress PDF files online for free. Reduce PDF file size with Basic, Balanced or Strong compression directly in your browser.">
+<meta name="robots" content="index,follow">
+<meta name="author" content="ImageTools">
+
 <link rel="canonical" href="https://earnpathofficial.github.io/image-compressor-resizer/compress-pdf-online.html">
 
-<meta property="og:title" content="Compress PDF Online Free — ImageTools">
-<meta property="og:description" content="Reduce PDF file size directly in your browser. Free, private and easy to use.">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://earnpathofficial.github.io/image-compressor-resizer/compress-pdf-online.html">
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
-
 <style>
-* {
-  box-sizing: border-box;
+*{
+box-sizing:border-box;
 }
 
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #f5f7fb;
-  color: #172033;
+html{
+overflow-x:hidden;
 }
 
-.container {
-  width: min(760px, 92%);
-  margin: 0 auto;
-  padding: 25px 0 50px;
+body{
+margin:0;
+font-family:Arial,Helvetica,sans-serif;
+background:#f5f7fb;
+color:#172033;
+overflow-x:hidden;
 }
 
-header {
-  text-align: center;
-  margin-bottom: 25px;
+header{
+background:#fff;
+border-bottom:1px solid #e5e7eb;
+padding:18px 15px;
+text-align:center;
 }
 
-.logo {
-  font-size: 28px;
-  font-weight: 800;
-  color: #2563eb;
-  text-decoration: none;
+header a{
+color:#2563eb;
+text-decoration:none;
+font-weight:bold;
 }
 
-h1 {
-  margin: 14px 0 10px;
-  font-size: 32px;
+header h1{
+margin:8px 0 0;
+font-size:24px;
 }
 
-.subtitle {
-  color: #64748b;
-  line-height: 1.6;
-  margin: 0 auto;
-  max-width: 620px;
+main{
+max-width:800px;
+margin:auto;
+padding:25px 15px 50px;
 }
 
-.card {
-  background: white;
-  border-radius: 18px;
-  padding: 22px;
-  box-shadow: 0 8px 30px rgba(15, 23, 42, 0.08);
-  margin-bottom: 20px;
+.hero{
+text-align:center;
+margin-bottom:22px;
 }
 
-.upload-box {
-  border: 2px dashed #94a3b8;
-  border-radius: 16px;
-  padding: 35px 20px;
-  text-align: center;
-  cursor: pointer;
-  transition: 0.2s;
+.hero h2{
+font-size:32px;
+margin:0 0 10px;
 }
 
-.upload-box:hover {
-  border-color: #2563eb;
-  background: #f8fbff;
+.hero p{
+color:#667085;
+line-height:1.6;
+margin:0 auto;
+max-width:680px;
 }
 
-.upload-box.dragover {
-  border-color: #2563eb;
-  background: #eff6ff;
+.card{
+background:#fff;
+border-radius:16px;
+padding:20px;
+margin-bottom:20px;
+box-shadow:0 5px 20px rgba(0,0,0,.06);
 }
 
-.upload-icon {
-  font-size: 42px;
-  margin-bottom: 10px;
+.upload{
+border:2px dashed #98a2b3;
+border-radius:14px;
+padding:35px 15px;
+text-align:center;
+background:#fafbfc;
 }
 
-.upload-title {
-  font-size: 19px;
-  font-weight: 700;
-  margin-bottom: 7px;
+.upload.dragover{
+border-color:#2563eb;
+background:#eff6ff;
 }
 
-.upload-note {
-  color: #64748b;
-  font-size: 14px;
+.upload-icon{
+font-size:42px;
+margin-bottom:8px;
 }
 
-input[type="file"] {
-  display: none;
+.upload strong{
+display:block;
+font-size:18px;
+margin-bottom:7px;
 }
 
-.file-info {
-  display: none;
-  margin-top: 15px;
-  padding: 14px;
-  background: #f1f5f9;
-  border-radius: 12px;
-  word-break: break-word;
+.upload span{
+color:#667085;
+font-size:14px;
 }
 
-.file-name {
-  font-weight: 700;
+input[type=file]{
+display:none;
 }
 
-.file-size {
-  color: #64748b;
-  margin-top: 5px;
-  font-size: 14px;
+button{
+font:inherit;
+border:0;
+border-radius:10px;
+padding:12px 17px;
+min-height:46px;
+cursor:pointer;
+touch-action:manipulation;
 }
 
-.level-title {
-  font-weight: 700;
-  margin-bottom: 12px;
+.primary{
+background:#2563eb;
+color:#fff;
 }
 
-.levels {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
+.secondary{
+background:#eef2f7;
+color:#172033;
 }
 
-.level {
-  position: relative;
+button:disabled{
+opacity:.55;
+cursor:not-allowed;
 }
 
-.level input {
-  position: absolute;
-  opacity: 0;
-  pointer-events: none;
+.file-info{
+margin-top:15px;
+padding:13px;
+background:#f8fafc;
+border-radius:10px;
+font-size:14px;
+line-height:1.5;
+overflow-wrap:anywhere;
 }
 
-.level label {
-  display: block;
-  padding: 15px 10px;
-  border: 2px solid #e2e8f0;
-  border-radius: 13px;
-  text-align: center;
-  cursor: pointer;
-  height: 100%;
+.levels{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:10px;
+margin:18px 0;
 }
 
-.level input:checked + label {
-  border-color: #2563eb;
-  background: #eff6ff;
+.level{
+border:1px solid #d0d5dd;
+border-radius:12px;
+padding:15px 10px;
+background:#fff;
+cursor:pointer;
+text-align:left;
+min-height:100%;
 }
 
-.level-name {
-  display: block;
-  font-weight: 700;
-  margin-bottom: 5px;
+.level.active{
+border-color:#2563eb;
+background:#eff6ff;
+box-shadow:0 0 0 2px rgba(37,99,235,.08);
 }
 
-.level-desc {
-  display: block;
-  color: #64748b;
-  font-size: 12px;
-  line-height: 1.4;
+.level strong{
+display:block;
+font-size:16px;
+margin-bottom:5px;
 }
 
-.compress-btn,
-.download-btn {
-  width: 100%;
-  border: 0;
-  border-radius: 13px;
-  padding: 15px;
-  font-size: 16px;
-  font-weight: 700;
-  cursor: pointer;
+.level span{
+display:block;
+font-size:13px;
+color:#667085;
+line-height:1.4;
 }
 
-.compress-btn {
-  background: #2563eb;
-  color: white;
-  margin-top: 18px;
+#compressBtn{
+width:100%;
+margin-top:4px;
+font-weight:bold;
 }
 
-.compress-btn:disabled {
-  background: #94a3b8;
-  cursor: not-allowed;
+.progress-wrap{
+margin-top:18px;
 }
 
-.download-btn {
-  background: #16a34a;
-  color: white;
-  margin-top: 15px;
+.progress-bar{
+height:9px;
+background:#e5e7eb;
+border-radius:20px;
+overflow:hidden;
 }
 
-.progress-section {
-  display: none;
-  margin-top: 20px;
+.progress{
+height:100%;
+width:0;
+background:#2563eb;
+transition:.2s;
 }
 
-.progress-text {
-  font-size: 14px;
-  color: #475569;
-  margin-bottom: 8px;
+.progress-text{
+font-size:13px;
+color:#667085;
+margin-top:8px;
 }
 
-.progress-bar {
-  height: 10px;
-  background: #e2e8f0;
-  border-radius: 20px;
-  overflow: hidden;
+.result{
+margin-top:20px;
+border:1px solid #e5e7eb;
+border-radius:12px;
+padding:16px;
 }
 
-.progress-fill {
-  height: 100%;
-  width: 0%;
-  background: #2563eb;
-  transition: width 0.2s;
+.result h3{
+margin:0 0 15px;
 }
 
-.results {
-  display: none;
+.result-grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:8px;
+margin-bottom:14px;
 }
 
-.stats {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-  margin-top: 15px;
+.stat{
+background:#f8fafc;
+padding:11px;
+border-radius:9px;
+font-size:13px;
+line-height:1.45;
 }
 
-.stat {
-  background: #f8fafc;
-  border-radius: 12px;
-  padding: 15px 10px;
-  text-align: center;
+.stat strong{
+display:block;
+font-size:15px;
+margin-top:3px;
 }
 
-.stat-label {
-  display: block;
-  color: #64748b;
-  font-size: 12px;
-  margin-bottom: 5px;
+.success{
+background:#ecfdf3;
+color:#166534;
+padding:12px;
+border-radius:9px;
+font-size:14px;
+line-height:1.5;
+margin-bottom:14px;
 }
 
-.stat-value {
-  display: block;
-  font-size: 18px;
-  font-weight: 800;
+.notice{
+background:#eff6ff;
+color:#1e40af;
+padding:12px;
+border-radius:9px;
+font-size:14px;
+line-height:1.5;
+margin-top:15px;
 }
 
-.message {
-  margin-top: 15px;
-  padding: 13px;
-  border-radius: 11px;
-  background: #f1f5f9;
-  color: #475569;
-  line-height: 1.5;
-  font-size: 14px;
+.download{
+display:block;
+width:100%;
+background:#16a34a;
+color:#fff;
+text-align:center;
+text-decoration:none;
+border-radius:10px;
+padding:14px;
+font-weight:bold;
+min-height:48px;
 }
 
-.privacy {
-  text-align: center;
-  color: #64748b;
-  font-size: 14px;
-  line-height: 1.6;
-}
-
-.info-section h2 {
-  font-size: 22px;
-  margin-top: 0;
+.info-section h2{
+font-size:21px;
+margin-top:0;
 }
 
 .info-section p,
-.info-section li {
-  color: #475569;
-  line-height: 1.7;
+.info-section li{
+color:#667085;
+line-height:1.65;
 }
 
-.small-note {
-  font-size: 12px;
-  color: #64748b;
-  margin-top: 12px;
-  line-height: 1.5;
+.info-section ol{
+padding-left:22px;
 }
 
-@media (max-width: 600px) {
-  h1 {
-    font-size: 27px;
-  }
+.hidden{
+display:none!important;
+}
 
-  .levels {
-    grid-template-columns: 1fr;
-  }
+footer{
+text-align:center;
+padding:25px 15px 40px;
+color:#667085;
+font-size:13px;
+line-height:1.5;
+}
 
-  .stats {
-    grid-template-columns: 1fr;
-  }
+@media(max-width:650px){
 
-  .card {
-    padding: 17px;
-  }
+main{
+padding:20px 12px 40px;
+}
 
-  .upload-box {
-    padding: 28px 15px;
-  }
+.hero h2{
+font-size:26px;
+}
+
+.card{
+padding:16px;
+border-radius:14px;
+}
+
+.levels{
+grid-template-columns:1fr;
+gap:9px;
+}
+
+.level{
+min-height:0;
+}
+
+.result-grid{
+grid-template-columns:1fr;
+}
+
+button{
+width:100%;
+min-height:48px;
+}
+
+}
+
+@media(max-width:420px){
+
+main{
+padding-left:10px;
+padding-right:10px;
+}
+
+.hero h2{
+font-size:23px;
+}
+
+.hero p{
+font-size:14px;
+}
+
+.upload{
+padding:28px 10px;
+}
+
+.card{
+padding:14px;
+}
+
 }
 </style>
 </head>
 
 <body>
 
-<div class="container">
+<header>
 
-  <header>
-    <a class="logo" href="index.html">ImageTools</a>
+<a href="index.html">ImageTools</a>
 
-    <h1>Compress PDF Online</h1>
+<h1>Compress PDF Online</h1>
 
-    <p class="subtitle">
-      Reduce PDF file size for free. Choose your compression level and process
-      your PDF directly in your browser.
-    </p>
-  </header>
+</header>
 
-  <div class="card">
+<main>
 
-    <label class="upload-box" id="uploadBox" for="pdfInput">
-      <div class="upload-icon">📄</div>
-      <div class="upload-title">Choose a PDF file</div>
-      <div class="upload-note">
-        Or drag and drop your PDF here
-      </div>
-    </label>
+<section class="hero">
 
-    <input
-      type="file"
-      id="pdfInput"
-      accept="application/pdf,.pdf"
-    >
+<h2>Compress PDF Online</h2>
 
-    <div class="file-info" id="fileInfo">
-      <div class="file-name" id="fileName"></div>
-      <div class="file-size" id="fileSize"></div>
-    </div>
+<p>
+Reduce PDF file size for free. Choose your compression level
+and process your PDF directly in your browser.
+</p>
 
-    <div style="margin-top:22px;">
-      <div class="level-title">Compression level</div>
+</section>
 
-      <div class="levels">
+<section class="card">
 
-        <div class="level">
-          <input type="radio" id="basic" name="level" value="basic">
-          <label for="basic">
-            <span class="level-name">Basic</span>
-            <span class="level-desc">
-              Light compression with better quality
-            </span>
-          </label>
-        </div>
+<div class="upload" id="dropZone">
 
-        <div class="level">
-          <input type="radio" id="balanced" name="level" value="balanced" checked>
-          <label for="balanced">
-            <span class="level-name">Balanced</span>
-            <span class="level-desc">
-              Good balance between size and quality
-            </span>
-          </label>
-        </div>
+<div class="upload-icon">📄</div>
 
-        <div class="level">
-          <input type="radio" id="strong" name="level" value="strong">
-          <label for="strong">
-            <span class="level-name">Strong</span>
-            <span class="level-desc">
-              Smaller file with lower image quality
-            </span>
-          </label>
-        </div>
+<strong>Choose a PDF file</strong>
 
-      </div>
-    </div>
+<span>Or drag and drop your PDF here</span>
 
-    <button class="compress-btn" id="compressBtn" disabled>
-      Compress PDF
-    </button>
+<br><br>
 
-    <div class="progress-section" id="progressSection">
-      <div class="progress-text" id="progressText">
-        Preparing...
-      </div>
+<label>
 
-      <div class="progress-bar">
-        <div class="progress-fill" id="progressFill"></div>
-      </div>
-    </div>
+<button
+type="button"
+class="primary"
+id="chooseBtn">
+Choose PDF
+</button>
 
-  </div>
+<input
+type="file"
+id="fileInput"
+accept="application/pdf">
 
-  <div class="card results" id="results">
-
-    <h2 style="margin-top:0;">Compression Result</h2>
-
-    <div class="stats">
-
-      <div class="stat">
-        <span class="stat-label">Original size</span>
-        <span class="stat-value" id="originalSize">—</span>
-      </div>
-
-      <div class="stat">
-        <span class="stat-label">Compressed size</span>
-        <span class="stat-value" id="compressedSize">—</span>
-      </div>
-
-      <div class="stat">
-        <span class="stat-label">Saved</span>
-        <span class="stat-value" id="savedPercent">—</span>
-      </div>
-
-    </div>
-
-    <div class="message" id="resultMessage"></div>
-
-    <button class="download-btn" id="downloadBtn">
-      Download Compressed PDF
-    </button>
-
-  </div>
-
-  <div class="card">
-    <div class="privacy">
-      🔒 <strong>Privacy first:</strong>
-      Your PDF is processed locally in your browser.
-      Your original PDF is not uploaded to our server.
-    </div>
-  </div>
-
-  <div class="card info-section">
-
-    <h2>Compress PDF Online for Free</h2>
-
-    <p>
-      ImageTools PDF Compressor helps reduce the size of PDF documents
-      directly in your browser. It can be useful when a PDF is too large
-      for email, online forms, uploads, or messaging applications.
-    </p>
-
-    <p>
-      Start with <strong>Basic</strong> compression for lighter processing,
-      <strong>Balanced</strong> for a general-purpose result, or
-      <strong>Strong</strong> when reducing file size is more important.
-    </p>
-
-    <h2>How it works</h2>
-
-    <ol>
-      <li>Select your PDF.</li>
-      <li>Choose a compression level.</li>
-      <li>Tap <strong>Compress PDF</strong>.</li>
-      <li>Download the resulting PDF.</li>
-    </ol>
-
-    <p>
-      The compressor first attempts structural PDF optimization. If that
-      does not produce a smaller file, the selected compression level can
-      use browser-based page compression as a fallback.
-    </p>
-
-    <p class="small-note">
-      PDF structural optimization uses qpdf WebAssembly. qpdf is distributed
-      under the Apache License 2.0. The browser-based fallback uses PDF.js
-      and pdf-lib.
-    </p>
-
-  </div>
+</label>
 
 </div>
 
+<div
+id="fileInfo"
+class="file-info hidden">
+</div>
+
+<h3>Compression level</h3>
+
+<div class="levels">
+
+<button
+type="button"
+class="level active"
+data-level="basic">
+
+<strong>Basic</strong>
+
+<span>
+Light compression with better quality
+</span>
+
+</button>
+
+<button
+type="button"
+class="level"
+data-level="balanced">
+
+<strong>Balanced</strong>
+
+<span>
+Good balance between size and quality
+</span>
+
+</button>
+
+<button
+type="button"
+class="level"
+data-level="strong">
+
+<strong>Strong</strong>
+
+<span>
+Smaller file with lower image quality
+</span>
+
+</button>
+
+</div>
+
+<button
+type="button"
+class="primary"
+id="compressBtn"
+disabled>
+Compress PDF
+</button>
+
+<div
+id="progressWrap"
+class="progress-wrap hidden">
+
+<div class="progress-bar">
+
+<div
+class="progress"
+id="progress">
+</div>
+
+</div>
+
+<div
+class="progress-text"
+id="progressText">
+Preparing...
+</div>
+
+</div>
+
+<div
+id="result"
+class="result hidden">
+
+<h3>Compression Result</h3>
+
+<div class="result-grid">
+
+<div class="stat">
+Original size
+<strong id="originalSize">—</strong>
+</div>
+
+<div class="stat">
+Compressed size
+<strong id="compressedSize">—</strong>
+</div>
+
+<div class="stat">
+Saved
+<strong id="savedPercent">—</strong>
+</div>
+
+</div>
+
+<div
+id="resultMessage"
+class="success">
+</div>
+
+<a
+id="downloadBtn"
+class="download"
+download>
+Download Compressed PDF
+</a>
+
+</div>
+
+<div
+id="errorBox"
+class="notice hidden">
+</div>
+
+</section>
+
+<section class="card info-section">
+
+<h2>🔒 Privacy first</h2>
+
+<p>
+Your PDF is processed locally in your browser.
+Your original PDF is not uploaded to our server.
+</p>
+
+</section>
+
+<section class="card info-section">
+
+<h2>Compress PDF Online for Free</h2>
+
+<p>
+ImageTools PDF Compressor helps reduce the size of PDF documents
+directly in your browser. It can be useful when a PDF is too large
+for email, online forms, uploads, or messaging applications.
+</p>
+
+<p>
+Start with <strong>Basic</strong> compression for lighter processing,
+<strong>Balanced</strong> for a general-purpose result, or
+<strong>Strong</strong> when reducing file size is more important.
+</p>
+
+<h2>How it works</h2>
+
+<ol>
+<li>Select your PDF.</li>
+<li>Choose a compression level.</li>
+<li>Tap Compress PDF.</li>
+<li>Download the resulting PDF.</li>
+</ol>
+
+<p>
+The compressor first attempts structural PDF optimization.
+If the selected compression level can produce a smaller browser-based
+version, ImageTools compares the results and keeps the smaller file.
+</p>
+
+<p>
+PDF structural optimization uses qpdf WebAssembly.
+qpdf is distributed under the Apache License 2.0.
+The browser-based fallback uses PDF.js and pdf-lib.
+</p>
+
+</section>
+
+</main>
+
+<footer>
+
+<strong>ImageTools</strong>
+
+<p>
+Free browser-based image and PDF tools.
+</p>
+
+<p>
+© 2026 ImageTools. All rights reserved.
+</p>
+
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+
 <script>
-pdfjsLib.GlobalWorkerOptions.workerSrc =
-  "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
 
-const pdfInput = document.getElementById("pdfInput");
-const uploadBox = document.getElementById("uploadBox");
-const fileInfo = document.getElementById("fileInfo");
-const fileName = document.getElementById("fileName");
-const fileSize = document.getElementById("fileSize");
-const compressBtn = document.getElementById("compressBtn");
+pdfjsLib.GlobalWorkerOptions.workerSrc=
+"https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
 
-const progressSection = document.getElementById("progressSection");
-const progressText = document.getElementById("progressText");
-const progressFill = document.getElementById("progressFill");
+const fileInput=
+document.getElementById("fileInput");
 
-const results = document.getElementById("results");
-const originalSizeEl = document.getElementById("originalSize");
-const compressedSizeEl = document.getElementById("compressedSize");
-const savedPercentEl = document.getElementById("savedPercent");
-const resultMessage = document.getElementById("resultMessage");
-const downloadBtn = document.getElementById("downloadBtn");
+const chooseBtn=
+document.getElementById("chooseBtn");
 
-let selectedFile = null;
-let compressedBlob = null;
-let qpdfModulePromise = null;
+const dropZone=
+document.getElementById("dropZone");
 
-function formatBytes(bytes) {
-  if (!bytes) return "0 Bytes";
+const fileInfo=
+document.getElementById("fileInfo");
 
-  const units = ["Bytes", "KB", "MB", "GB"];
-  const i = Math.floor(Math.log(bytes) / Math.log(1024));
+const compressBtn=
+document.getElementById("compressBtn");
 
-  return (
-    (bytes / Math.pow(1024, i)).toFixed(i === 0 ? 0 : 2) +
-    " " +
-    units[i]
-  );
+const levels=
+document.querySelectorAll(".level");
+
+const progressWrap=
+document.getElementById("progressWrap");
+
+const progress=
+document.getElementById("progress");
+
+const progressText=
+document.getElementById("progressText");
+
+const result=
+document.getElementById("result");
+
+const originalSize=
+document.getElementById("originalSize");
+
+const compressedSize=
+document.getElementById("compressedSize");
+
+const savedPercent=
+document.getElementById("savedPercent");
+
+const resultMessage=
+document.getElementById("resultMessage");
+
+const downloadBtn=
+document.getElementById("downloadBtn");
+
+const errorBox=
+document.getElementById("errorBox");
+
+let selectedFile=null;
+let selectedLevel="basic";
+let qpdfModulePromise=null;
+let currentDownloadUrl=null;
+
+const settings={
+
+basic:{
+scale:.95,
+quality:.82
+},
+
+balanced:{
+scale:.82,
+quality:.65
+},
+
+strong:{
+scale:.68,
+quality:.45
 }
 
-function setProgress(percent, text) {
-  progressFill.style.width = Math.max(0, Math.min(100, percent)) + "%";
-  progressText.textContent = text;
-}
+};
 
-function getLevelSettings() {
-  const level = document.querySelector(
-    'input[name="level"]:checked'
-  ).value;
+chooseBtn.addEventListener("click",()=>{
 
-  if (level === "basic") {
-    return {
-      level: "basic",
-      scale: 1.20,
-      quality: 0.82
-    };
-  }
+fileInput.click();
 
-  if (level === "strong") {
-    return {
-      level: "strong",
-      scale: 0.75,
-      quality: 0.45
-    };
-  }
-
-  return {
-    level: "balanced",
-    scale: 1.00,
-    quality: 0.65
-  };
-}
-
-pdfInput.addEventListener("change", () => {
-  if (pdfInput.files && pdfInput.files.length) {
-    selectFile(pdfInput.files[0]);
-  }
 });
 
-uploadBox.addEventListener("dragover", (event) => {
-  event.preventDefault();
-  uploadBox.classList.add("dragover");
+fileInput.addEventListener("change",()=>{
+
+if(fileInput.files.length){
+
+selectFile(
+fileInput.files[0]
+);
+
+}
+
 });
 
-uploadBox.addEventListener("dragleave", () => {
-  uploadBox.classList.remove("dragover");
+dropZone.addEventListener("dragover",event=>{
+
+event.preventDefault();
+
+dropZone.classList.add(
+"dragover"
+);
+
 });
 
-uploadBox.addEventListener("drop", (event) => {
-  event.preventDefault();
-  uploadBox.classList.remove("dragover");
+dropZone.addEventListener("dragleave",()=>{
 
-  const file = event.dataTransfer.files[0];
+dropZone.classList.remove(
+"dragover"
+);
 
-  if (file && file.type === "application/pdf") {
-    selectFile(file);
-  } else {
-    alert("Please choose a PDF file.");
-  }
 });
 
-function selectFile(file) {
-  selectedFile = file;
+dropZone.addEventListener("drop",event=>{
 
-  fileName.textContent = file.name;
-  fileSize.textContent = formatBytes(file.size);
+event.preventDefault();
 
-  fileInfo.style.display = "block";
-  compressBtn.disabled = false;
+dropZone.classList.remove(
+"dragover"
+);
 
-  results.style.display = "none";
-  compressedBlob = null;
+const file=
+event.dataTransfer.files[0];
+
+if(file){
+
+selectFile(file);
+
 }
 
-compressBtn.addEventListener("click", compressPDF);
-
-downloadBtn.addEventListener("click", () => {
-  if (!compressedBlob) return;
-
-  const baseName = selectedFile.name.replace(/\.pdf$/i, "");
-  const url = URL.createObjectURL(compressedBlob);
-
-  const a = document.createElement("a");
-  a.href = url;
-  a.download = baseName + "-compressed.pdf";
-
-  document.body.appendChild(a);
-  a.click();
-  a.remove();
-
-  setTimeout(() => URL.revokeObjectURL(url), 1000);
 });
 
-async function loadQPDF() {
-  if (!qpdfModulePromise) {
-    qpdfModulePromise = import(
-      "https://cdn.jsdelivr.net/npm/qpdf-wasm-esm-embedded@1.1.1/qpdf.mjs"
-    ).then(async (module) => {
-      const factory = module.default || module;
+levels.forEach(button=>{
 
-      if (typeof factory !== "function") {
-        throw new Error("qpdf module could not be initialized.");
-      }
+button.addEventListener("click",()=>{
 
-      return await factory();
-    });
-  }
+levels.forEach(item=>
+item.classList.remove("active")
+);
 
-  return await qpdfModulePromise;
+button.classList.add("active");
+
+selectedLevel=
+button.dataset.level;
+
+});
+
+});
+
+function formatBytes(bytes){
+
+if(bytes<1024){
+
+return bytes+" B";
+
 }
 
-async function optimizeWithQPDF(inputBytes) {
-  const qpdf = await loadQPDF();
+if(bytes<1024*1024){
 
-  const inputName =
-    "/imagetools-input-" + Date.now() + ".pdf";
+return(
+bytes/1024
+).toFixed(2)+" KB";
 
-  const outputName =
-    "/imagetools-output-" + Date.now() + ".pdf";
-
-  qpdf.FS.writeFile(
-    inputName,
-    new Uint8Array(inputBytes)
-  );
-
-  let exitCode = 0;
-
-  try {
-    exitCode = qpdf.callMain([
-      "--stream-data=compress",
-      "--object-streams=generate",
-      "--recompress-flate",
-      "--compression-level=9",
-      inputName,
-      outputName
-    ]);
-  } catch (error) {
-    try {
-      qpdf.FS.unlink(inputName);
-    } catch (_) {}
-
-    throw error;
-  }
-
-  if (exitCode !== 0) {
-    try {
-      qpdf.FS.unlink(inputName);
-    } catch (_) {}
-
-    throw new Error(
-      "qpdf could not optimize this PDF."
-    );
-  }
-
-  const output = qpdf.FS.readFile(outputName);
-
-  try {
-    qpdf.FS.unlink(inputName);
-  } catch (_) {}
-
-  try {
-    qpdf.FS.unlink(outputName);
-  } catch (_) {}
-
-  return new Uint8Array(output);
 }
 
-async function rasterCompress(inputBytes, settings) {
+return(
+bytes/(1024*1024)
+).toFixed(2)+" MB";
 
-  const loadingTask = pdfjsLib.getDocument({
-    data: inputBytes
-  });
-
-  const pdf = await loadingTask.promise;
-
-  const outputPdf = await PDFLib.PDFDocument.create();
-
-  for (let pageNumber = 1; pageNumber <= pdf.numPages; pageNumber++) {
-
-    const percent =
-      20 +
-      Math.round(
-        ((pageNumber - 1) / pdf.numPages) * 65
-      );
-
-    setProgress(
-      percent,
-      "Compressing page " +
-      pageNumber +
-      " of " +
-      pdf.numPages +
-      "..."
-    );
-
-    const page = await pdf.getPage(pageNumber);
-
-    const viewport = page.getViewport({
-      scale: settings.scale
-    });
-
-    const canvas = document.createElement("canvas");
-
-    const width = Math.max(
-      1,
-      Math.floor(viewport.width)
-    );
-
-    const height = Math.max(
-      1,
-      Math.floor(viewport.height)
-    );
-
-    canvas.width = width;
-    canvas.height = height;
-
-    const context = canvas.getContext("2d", {
-      alpha: false
-    });
-
-    context.fillStyle = "#ffffff";
-    context.fillRect(
-      0,
-      0,
-      width,
-      height
-    );
-
-    await page.render({
-      canvasContext: context,
-      viewport: viewport
-    }).promise;
-
-    const dataUrl = canvas.toDataURL(
-      "image/jpeg",
-      settings.quality
-    );
-
-    const imageBytes = dataURLToUint8Array(
-      dataUrl
-    );
-
-    const image = await outputPdf.embedJpg(
-      imageBytes
-    );
-
-    const outputPage =
-      outputPdf.addPage([
-        width,
-        height
-      ]);
-
-    outputPage.drawImage(image, {
-      x: 0,
-      y: 0,
-      width: width,
-      height: height
-    });
-
-    canvas.width = 1;
-    canvas.height = 1;
-  }
-
-  setProgress(
-    90,
-    "Creating compressed PDF..."
-  );
-
-  const outputBytes =
-    await outputPdf.save({
-      useObjectStreams: true,
-      addDefaultPage: false
-    });
-
-  return new Uint8Array(outputBytes);
 }
 
-function dataURLToUint8Array(dataUrl) {
-  const base64 =
-    dataUrl.split(",")[1];
+function calculateSaved(original,newSize){
 
-  const binary =
-    atob(base64);
+if(original<=0){
 
-  const bytes =
-    new Uint8Array(binary.length);
+return 0;
 
-  for (let i = 0; i < binary.length; i++) {
-    bytes[i] =
-      binary.charCodeAt(i);
-  }
-
-  return bytes;
 }
 
-async function compressPDF() {
+return Math.max(
+0,
+Math.round(
+(1-newSize/original)*100
+)
+);
 
-  if (!selectedFile) return;
-
-  compressBtn.disabled = true;
-  results.style.display = "none";
-  progressSection.style.display = "block";
-
-  setProgress(
-    5,
-    "Reading your PDF..."
-  );
-
-  try {
-
-    const inputBuffer =
-      await selectedFile.arrayBuffer();
-
-    const originalBytes =
-      new Uint8Array(inputBuffer);
-
-    const originalSize =
-      originalBytes.byteLength;
-
-    const settings =
-      getLevelSettings();
-
-    let bestBytes = originalBytes;
-    let methodUsed = "original";
-
-    /*
-     * STEP 1
-     * Try structural/lossless qpdf optimization.
-     */
-    setProgress(
-      10,
-      "Optimizing PDF structure..."
-    );
-
-    try {
-
-      const qpdfBytes =
-        await optimizeWithQPDF(
-          originalBytes
-        );
-
-      if (
-        qpdfBytes &&
-        qpdfBytes.byteLength < bestBytes.byteLength
-      ) {
-        bestBytes = qpdfBytes;
-        methodUsed = "qpdf";
-      }
-
-    } catch (qpdfError) {
-
-      console.warn(
-        "qpdf optimization was not available:",
-        qpdfError
-      );
-    }
-
-    /*
-     * STEP 2
-     * If qpdf did not make it smaller,
-     * use the existing browser raster fallback.
-     */
-    if (
-      bestBytes.byteLength >= originalSize
-    ) {
-
-      setProgress(
-        18,
-        "Trying image compression..."
-      );
-
-      try {
-
-        const rasterBytes =
-          await rasterCompress(
-            originalBytes,
-            settings
-          );
-
-        if (
-          rasterBytes &&
-          rasterBytes.byteLength < bestBytes.byteLength
-        ) {
-          bestBytes = rasterBytes;
-          methodUsed = "raster";
-        }
-
-      } catch (rasterError) {
-
-        console.error(
-          "Raster fallback failed:",
-          rasterError
-        );
-      }
-    }
-
-    setProgress(
-      100,
-      "Finished."
-    );
-
-    await new Promise(resolve =>
-      setTimeout(resolve, 300)
-    );
-
-    const compressedSize =
-      bestBytes.byteLength;
-
-    compressedBlob =
-      new Blob(
-        [bestBytes],
-        { type: "application/pdf" }
-      );
-
-    const saved =
-      originalSize > 0
-        ? ((originalSize - compressedSize) /
-            originalSize) * 100
-        : 0;
-
-    originalSizeEl.textContent =
-      formatBytes(originalSize);
-
-    compressedSizeEl.textContent =
-      formatBytes(compressedSize);
-
-    savedPercentEl.textContent =
-      Math.max(0, saved).toFixed(1) + "%";
-
-    if (compressedSize < originalSize) {
-
-      if (methodUsed === "qpdf") {
-
-        resultMessage.textContent =
-          "Your PDF was reduced using structural optimization while preserving the PDF's original structure and content.";
-
-      } else {
-
-        resultMessage.textContent =
-          "Your PDF was reduced using browser-based page compression. Strong compression may reduce image quality and remove selectable text.";
-
-      }
-
-    } else {
-
-      compressedBlob =
-        new Blob(
-          [originalBytes],
-          { type: "application/pdf" }
-        );
-
-      compressedSizeEl.textContent =
-        formatBytes(originalSize);
-
-      savedPercentEl.textContent =
-        "0.0%";
-
-      resultMessage.textContent =
-        "This PDF could not be made smaller with the selected level. The original PDF is available for download instead.";
-    }
-
-    results.style.display = "block";
-
-    results.scrollIntoView({
-      behavior: "smooth",
-      block: "start"
-    });
-
-  } catch (error) {
-
-    console.error(error);
-
-    alert(
-      "Sorry, this PDF could not be processed. Please try another PDF."
-    );
-
-  } finally {
-
-    compressBtn.disabled = false;
-  }
 }
+
+function selectFile(file){
+
+if(
+file.type!=="application/pdf" &&
+!file.name.toLowerCase().endsWith(".pdf")
+){
+
+showError(
+"Please select a PDF file."
+);
+
+return;
+
+}
+
+selectedFile=file;
+
+fileInfo.innerHTML=`
+<strong>${escapeHtml(file.name)}</strong>
+<br>
+${formatBytes(file.size)}
+`;
+
+fileInfo.classList.remove(
+"hidden"
+);
+
+compressBtn.disabled=false;
+
+result.classList.add(
+"hidden"
+);
+
+errorBox.classList.add(
+"hidden"
+);
+
+}
+
+function escapeHtml(value){
+
+return value.replace(
+/[&<>"']/g,
+character=>({
+
+"&":"&amp;",
+"<":"&lt;",
+">":"&gt;",
+'"':"&quot;",
+"'":"&#039;"
+
+}[character])
+
+);
+
+}
+
+function setProgress(value,text){
+
+progress.style.width=
+Math.max(
+0,
+Math.min(100,value)
+)+"%";
+
+progressText.textContent=text;
+
+}
+
+async function loadQPDF(){
+
+if(!qpdfModulePromise){
+
+qpdfModulePromise=
+import(
+"https://cdn.jsdelivr.net/npm/qpdf-wasm-esm-embedded@1.1.1/qpdf.mjs"
+)
+.then(async module=>{
+
+const factory=
+module.default || module;
+
+if(
+typeof factory!=="function"
+){
+
+throw new Error(
+"qpdf module could not be initialized."
+);
+
+}
+
+return await factory();
+
+});
+
+}
+
+return await qpdfModulePromise;
+
+}
+
+async function optimizeWithQPDF(
+inputBytes
+){
+
+const qpdf=
+await loadQPDF();
+
+const stamp=
+Date.now()+"-"+Math.random()
+.toString(36)
+.slice(2);
+
+const inputName=
+"/imagetools-input-"+stamp+".pdf";
+
+const outputName=
+"/imagetools-output-"+stamp+".pdf";
+
+qpdf.FS.writeFile(
+inputName,
+new Uint8Array(inputBytes)
+);
+
+let exitCode=0;
+
+try{
+
+exitCode=
+qpdf.callMain([
+
+"--stream-data=compress",
+
+"--object-streams=generate",
+
+"--recompress-flate",
+
+"--compression-level=9",
+
+inputName,
+
+outputName
+
+]);
+
+}catch(error){
+
+try{
+qpdf.FS.unlink(inputName);
+}catch(_){}
+
+throw error;
+
+}
+
+if(exitCode!==0){
+
+try{
+qpdf.FS.unlink(inputName);
+}catch(_){}
+
+throw new Error(
+"qpdf could not optimize this PDF."
+);
+
+}
+
+const output=
+qpdf.FS.readFile(outputName);
+
+try{
+qpdf.FS.unlink(inputName);
+}catch(_){}
+
+try{
+qpdf.FS.unlink(outputName);
+}catch(_){}
+
+return new Uint8Array(output);
+
+}
+
+async function rasterCompress(
+file,
+level
+){
+
+const setting=
+settings[level];
+
+const inputBuffer=
+await file.arrayBuffer();
+
+const pdf=
+await pdfjsLib.getDocument({
+data:new Uint8Array(inputBuffer)
+}).promise;
+
+const outputPdf=
+await PDFLib.PDFDocument.create();
+
+for(
+let pageNumber=1;
+pageNumber<=pdf.numPages;
+pageNumber++
+){
+
+const page=
+await pdf.getPage(pageNumber);
+
+const originalViewport=
+page.getViewport({
+scale:1
+});
+
+const scale=
+setting.scale;
+
+const viewport=
+page.getViewport({
+scale:scale
+});
+
+const canvas=
+document.createElement("canvas");
+
+canvas.width=
+Math.max(
+1,
+Math.round(viewport.width)
+);
+
+canvas.height=
+Math.max(
+1,
+Math.round(viewport.height)
+);
+
+const context=
+canvas.getContext(
+"2d",
+{
+alpha:false
+}
+);
+
+context.fillStyle="#ffffff";
+
+context.fillRect(
+0,
+0,
+canvas.width,
+canvas.height
+);
+
+await page.render({
+
+canvasContext:context,
+
+viewport:viewport
+
+}).promise;
+
+const jpegUrl=
+canvas.toDataURL(
+"image/jpeg",
+setting.quality
+);
+
+const base64=
+jpegUrl.split(",")[1];
+
+const binary=
+atob(base64);
+
+const bytes=
+new Uint8Array(
+binary.length
+);
+
+for(
+let i=0;
+i<binary.length;
+i++
+){
+
+bytes[i]=
+binary.charCodeAt(i);
+
+}
+
+const image=
+await outputPdf.embedJpg(bytes);
+
+const outputPage=
+outputPdf.addPage([
+viewport.width,
+viewport.height
+]);
+
+outputPage.drawImage(
+image,
+{
+x:0,
+y:0,
+width:viewport.width,
+height:viewport.height
+}
+);
+
+setProgress(
+
+20+
+Math.round(
+(pageNumber/pdf.numPages)*55
+),
+
+`${level.charAt(0).toUpperCase()+level.slice(1)} compression: page ${pageNumber} of ${pdf.numPages}`
+
+);
+
+}
+
+const bytes=
+await outputPdf.save({
+useObjectStreams:true
+});
+
+return new Uint8Array(bytes);
+
+}
+
+async function compressPDF(){
+
+if(!selectedFile){
+
+return;
+
+}
+
+compressBtn.disabled=true;
+
+result.classList.add(
+"hidden"
+);
+
+errorBox.classList.add(
+"hidden"
+);
+
+progressWrap.classList.remove(
+"hidden"
+);
+
+setProgress(
+5,
+"Reading PDF..."
+);
+
+try{
+
+const originalBytes=
+new Uint8Array(
+await selectedFile.arrayBuffer()
+);
+
+let structuralBytes=null;
+
+try{
+
+setProgress(
+15,
+"Optimizing PDF structure..."
+);
+
+structuralBytes=
+await optimizeWithQPDF(
+originalBytes
+);
+
+}catch(error){
+
+console.warn(
+"qpdf optimization failed:",
+error
+);
+
+}
+
+let bestBytes=
+originalBytes;
+
+let method=
+"original PDF";
+
+if(
+structuralBytes &&
+structuralBytes.length<
+bestBytes.length
+){
+
+bestBytes=
+structuralBytes;
+
+method=
+"structural optimization";
+
+}
+
+setProgress(
+25,
+"Applying selected compression level..."
+);
+
+const rasterBytes=
+await rasterCompress(
+selectedFile,
+selectedLevel
+);
+
+if(
+rasterBytes.length<
+bestBytes.length
+){
+
+bestBytes=
+rasterBytes;
+
+method=
+`${selectedLevel} browser compression`;
+
+}
+
+if(bestBytes.length>=originalBytes.length){
+
+bestBytes=
+originalBytes;
+
+method=
+"original PDF";
+
+}
+
+setProgress(
+92,
+"Preparing compressed PDF..."
+);
+
+const blob=
+new Blob(
+[bestBytes],
+{
+type:"application/pdf"
+}
+);
+
+const saved=
+calculateSaved(
+selectedFile.size,
+blob.size
+);
+
+if(currentDownloadUrl){
+
+URL.revokeObjectURL(
+currentDownloadUrl
+);
+
+}
+
+currentDownloadUrl=
+URL.createObjectURL(blob);
+
+originalSize.textContent=
+formatBytes(
+selectedFile.size
+);
+
+compressedSize.textContent=
+formatBytes(
+blob.size
+);
+
+savedPercent.textContent=
+saved+"%";
+
+if(
+method==="original PDF"
+){
+
+resultMessage.textContent=
+"The selected compression settings could not produce a smaller PDF. The original PDF is available instead.";
+
+resultMessage.style.background=
+"#fff7ed";
+
+resultMessage.style.color=
+"#9a3412";
+
+}else if(
+method==="structural optimization"
+){
+
+resultMessage.textContent=
+`Your PDF was reduced by ${saved}% using structural optimization while preserving the PDF's original structure and content.`;
+
+resultMessage.style.background=
+"";
+
+resultMessage.style.color=
+"";
+
+}else{
+
+resultMessage.textContent=
+`Your PDF was reduced by ${saved}% using ${selectedLevel} browser-based compression. This method rasterizes PDF pages, so selectable text and some original PDF structure may not be preserved.`;
+
+resultMessage.style.background=
+"";
+
+resultMessage.style.color=
+"";
+
+}
+
+const baseName=
+selectedFile.name.replace(
+/\.pdf$/i,
+""
+);
+
+downloadBtn.href=
+currentDownloadUrl;
+
+downloadBtn.download=
+`${baseName}-compressed.pdf`;
+
+setProgress(
+100,
+"Finished."
+);
+
+result.classList.remove(
+"hidden"
+);
+
+}catch(error){
+
+console.error(error);
+
+showError(
+error.message ||
+"Something went wrong while compressing the PDF."
+);
+
+}finally{
+
+compressBtn.disabled=false;
+
+}
+
+}
+
+function showError(message){
+
+errorBox.textContent=
+"⚠️ "+message;
+
+errorBox.classList.remove(
+"hidden"
+);
+
+progressWrap.classList.add(
+"hidden"
+);
+
+compressBtn.disabled=
+!selectedFile;
+
+}
+
+compressBtn.addEventListener(
+"click",
+compressPDF
+);
+
 </script>
 
 </body>
