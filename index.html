@@ -6,27 +6,27 @@
 
 <meta name="google-site-verification" content="rjiAn6FY46_tcN-DQzYyTKr8FttbQp1F48o9rE9gR50" />
 
-<title>Free Image Compressor, Resizer, Cropper & Converter | ImageTools</title>
-<meta name="description" content="Free online image compressor, resizer, cropper, background remover and converter. Compress images, resize photos, remove backgrounds, crop pictures and convert JPG, PNG and WebP directly in your browser.">
-<meta name="keywords" content="image compressor, compress image, image resizer, resize image, image cropper, crop image, image converter, background remover, remove background, AI background remover, JPG compressor, PNG compressor, WebP converter, JPG to WebP, JPG to PNG, WebP to PNG, PNG to JPG, resize photo">
+<title>Free Image & PDF Tools — Compress, Resize, Crop & Convert | ImageTools</title>
+<meta name="description" content="Free online image and PDF tools. Compress images and PDFs, resize photos, remove backgrounds, crop pictures and convert JPG, PNG and WebP directly in your browser.">
+<meta name="keywords" content="image compressor, compress image, PDF compressor, compress PDF, image resizer, resize image, image cropper, crop image, image converter, background remover, remove background, AI background remover, JPG compressor, PNG compressor, WebP converter, JPG to WebP, JPG to PNG, WebP to PNG, PNG to JPG, resize photo">
 <meta name="robots" content="index, follow">
 <meta name="author" content="ImageTools">
 
 <meta property="og:type" content="website">
-<meta property="og:title" content="Free Image Compressor, Resizer, Cropper & Converter | ImageTools">
-<meta property="og:description" content="Compress, resize, crop, remove backgrounds and convert JPG, PNG and WebP images directly in your browser.">
+<meta property="og:title" content="Free Image & PDF Tools | ImageTools">
+<meta property="og:description" content="Compress images and PDFs, resize, crop, remove backgrounds and convert files directly in your browser.">
 <meta property="og:site_name" content="ImageTools">
 
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Free Image Compressor, Resizer, Cropper & Converter | ImageTools">
-<meta name="twitter:description" content="Free browser-based tools to compress, resize, crop, remove backgrounds and convert JPG, PNG and WebP images.">
+<meta name="twitter:title" content="Free Image & PDF Tools | ImageTools">
+<meta name="twitter:description" content="Free browser-based tools for images and PDFs.">
 
 <script type="application/ld+json">
 {
   "@context":"https://schema.org",
   "@type":"WebApplication",
   "name":"ImageTools",
-  "description":"Free browser-based image compression, resizing, cropping, background removal and conversion tools.",
+  "description":"Free browser-based image and PDF compression, resizing, cropping, background removal and conversion tools.",
   "applicationCategory":"MultimediaApplication",
   "operatingSystem":"Web Browser",
   "isAccessibleForFree":true
@@ -105,7 +105,6 @@ margin-bottom:20px;
 box-shadow:0 5px 20px rgba(0,0,0,.06);
 }
 
-/* Adsterra banner */
 .ad-container{
 width:100%;
 max-width:320px;
@@ -447,6 +446,16 @@ background:#eff6ff;
 transform:scale(.99);
 }
 
+.pdf-tool{
+border-color:#bfdbfe;
+background:#eff6ff;
+}
+
+.pdf-tool:hover{
+border-color:#2563eb;
+background:#dbeafe;
+}
+
 .faq details{
 border-bottom:1px solid #eee;
 padding:13px 0;
@@ -750,7 +759,7 @@ padding:11px;
 
 <header>
 <h1>ImageTools</h1>
-<p>Free Image Tools</p>
+<p>Free Image & PDF Tools</p>
 </header>
 
 <main>
@@ -1055,7 +1064,6 @@ Start Over
 
 </section>
 
-<!-- Adsterra 320x50 Banner -->
 <section class="ad-container" aria-label="Advertisement">
 <script>
   atOptions = {
@@ -1135,14 +1143,19 @@ without uploading them.
 
 <section class="card">
 
-<h3>Popular Image Tools</h3>
+<h3>Popular Image & PDF Tools</h3>
 
 <p>
-Quickly access our most useful free image tools.
+Quickly access our most useful free image and PDF tools.
 Choose a specific tool below or use the full ImageTools editor above.
 </p>
 
 <div class="tool-navigation">
+
+<a class="tool-link pdf-tool" href="compress-pdf-online.html">
+<strong>📄 Compress PDF Online</strong>
+<span>Reduce PDF file size directly in your browser with Basic, Balanced and Strong compression.</span>
+</a>
 
 <a class="tool-link" href="compress-image-online.html">
 <strong>🗜️ Compress Image Online</strong>
@@ -1220,6 +1233,22 @@ Choose a specific tool below or use the full ImageTools editor above.
 </a>
 
 </div>
+
+</section>
+
+<section class="card">
+
+<h3>PDF Tools</h3>
+
+<p>
+More browser-based PDF tools are being added to ImageTools.
+Your files are processed locally whenever the tool supports local processing.
+</p>
+
+<a class="tool-link pdf-tool" href="compress-pdf-online.html">
+<strong>📄 Compress PDF Online</strong>
+<span>Reduce PDF file size with Basic, Balanced or Strong compression.</span>
+</a>
 
 </section>
 
@@ -1360,6 +1389,22 @@ ImageTools supports JPG, PNG and WebP output.
 </p>
 </details>
 
+<details>
+<summary>Can I compress a PDF?</summary>
+<p>
+Yes. Open Compress PDF Online to reduce PDF file size directly
+in your browser using Basic, Balanced or Strong compression.
+</p>
+</details>
+
+<details>
+<summary>Are PDFs uploaded to a server?</summary>
+<p>
+The ImageTools PDF Compressor processes the PDF locally in your
+browser rather than uploading the original PDF to our server.
+</p>
+</details>
+
 </section>
 
 </main>
@@ -1369,8 +1414,8 @@ ImageTools supports JPG, PNG and WebP output.
 <strong>ImageTools</strong>
 
 <p>
-Free image compression, resizing, cropping, background removal
-and conversion tools.
+Free image compression, resizing, cropping, background removal,
+conversion and PDF compression tools.
 </p>
 
 <p>
@@ -2611,8 +2656,6 @@ updateCropUI();
 
 }
 
-/* SEO DEEP-LINK SETTINGS */
-
 function applyUrlSettings(){
 
 const params=
@@ -2631,8 +2674,6 @@ params.get("convert");
 
 const crop=
 params.get("crop");
-
-/* TARGET FILE SIZE DEEP LINKS */
 
 if(
 target==="200kb" ||
@@ -2758,8 +2799,6 @@ updateCropUI();
 }
 
 }
-
-/* START */
 
 setMode("process");
 
