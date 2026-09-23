@@ -72,6 +72,43 @@ color:#667085;
 font-size:14px;
 }
 
+/* Step 37A — Internal navigation */
+.site-nav{
+max-width:900px;
+margin:0 auto;
+padding:10px 15px;
+display:flex;
+justify-content:center;
+align-items:center;
+gap:8px;
+flex-wrap:wrap;
+background:#fff;
+border-bottom:1px solid #e5e7eb;
+}
+
+.site-nav a{
+display:inline-block;
+text-decoration:none;
+color:#344054;
+background:#f8fafc;
+border:1px solid #e5e7eb;
+border-radius:9px;
+padding:8px 12px;
+font-size:13px;
+font-weight:600;
+transition:.15s;
+}
+
+.site-nav a:hover{
+color:#2563eb;
+border-color:#2563eb;
+background:#eff6ff;
+}
+
+.site-nav a:active{
+transform:scale(.98);
+}
+
 main{
 max-width:900px;
 margin:auto;
@@ -487,6 +524,16 @@ main{
 padding:20px 12px 40px;
 }
 
+.site-nav{
+padding:9px 12px;
+gap:6px;
+}
+
+.site-nav a{
+padding:8px 10px;
+font-size:12px;
+}
+
 .hero{
 margin-bottom:20px;
 }
@@ -562,6 +609,16 @@ font-size:13px;
 
 main{
 padding:16px 10px 35px;
+}
+
+.site-nav{
+padding:8px 8px;
+gap:5px;
+}
+
+.site-nav a{
+padding:8px 9px;
+font-size:11px;
 }
 
 .hero h2{
@@ -723,6 +780,16 @@ padding-left:8px;
 padding-right:8px;
 }
 
+.site-nav{
+padding-left:5px;
+padding-right:5px;
+}
+
+.site-nav a{
+font-size:10px;
+padding:7px 8px;
+}
+
 .card{
 padding:12px;
 }
@@ -762,6 +829,13 @@ padding:11px;
 <p>Free Image & PDF Tools</p>
 </header>
 
+<nav class="site-nav" aria-label="Primary navigation">
+<a href="#image-tools">Image Tools</a>
+<a href="#pdf-tools">PDF Tools</a>
+<a href="#popular-tools">Popular Tools</a>
+<a href="#faq">FAQs</a>
+</nav>
+
 <main>
 
 <section class="hero">
@@ -773,7 +847,7 @@ Everything happens directly in your browser.
 </p>
 </section>
 
-<section class="card">
+<section class="card" id="image-tools">
 
 <div class="upload" id="dropZone">
 <div class="upload-icon">🖼️</div>
@@ -1141,7 +1215,7 @@ without uploading them.
 
 </section>
 
-<section class="card">
+<section class="card" id="popular-tools">
 
 <h3>Popular Image & PDF Tools</h3>
 
@@ -1301,7 +1375,7 @@ Choose a specific tool below or use the full ImageTools editor above.
 
 </section>
 
-<section class="card">
+<section class="card" id="pdf-tools">
 
 <h3>PDF Tools</h3>
 
@@ -1382,7 +1456,7 @@ Your files are processed locally whenever the tool supports local processing.
 
 </section>
 
-<section class="card faq">
+<section class="card faq" id="faq">
 
 <h3>Frequently Asked Questions</h3>
 
