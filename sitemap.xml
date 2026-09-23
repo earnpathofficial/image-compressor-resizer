@@ -2,10 +2,12 @@
 
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
+  <!-- Homepage -->
   <url>
     <loc>https://earnpathofficial.github.io/image-compressor-resizer/</loc>
   </url>
 
+  <!-- Image Tools -->
   <url>
     <loc>https://earnpathofficial.github.io/image-compressor-resizer/compress-image-online.html</loc>
   </url>
@@ -20,6 +22,10 @@
 
   <url>
     <loc>https://earnpathofficial.github.io/image-compressor-resizer/compress-image-to-500kb.html</loc>
+  </url>
+
+  <url>
+    <loc>https://earnpathofficial.github.io/image-compressor-resizer/compress-image-to-1mb.html</loc>
   </url>
 
   <url>
@@ -62,6 +68,7 @@
     <loc>https://earnpathofficial.github.io/image-compressor-resizer/remove-background.html</loc>
   </url>
 
+  <!-- PDF Tools -->
   <url>
     <loc>https://earnpathofficial.github.io/image-compressor-resizer/compress-pdf-online.html</loc>
   </url>
