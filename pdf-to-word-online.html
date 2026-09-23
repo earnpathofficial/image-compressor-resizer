@@ -7,9 +7,7 @@
 <title>PDF to Word Converter Online — Free PDF to DOCX | ImageTools</title>
 
 <meta name="description" content="Convert PDF files to editable Word DOCX documents for free. Extract text from PDFs and download a Word file directly in your browser with ImageTools.">
-
 <meta name="keywords" content="PDF to Word, PDF to DOCX, convert PDF to Word, PDF converter, PDF text to Word, PDF to editable Word, free PDF to Word converter">
-
 <meta name="robots" content="index, follow">
 <meta name="author" content="ImageTools">
 
@@ -37,9 +35,7 @@
 </script>
 
 <style>
-*{
-box-sizing:border-box;
-}
+*{box-sizing:border-box}
 
 html{
 overflow-x:hidden;
@@ -138,7 +134,7 @@ line-height:1.5;
 color:#667085;
 }
 
-input[type=file]{
+.file-input{
 display:none;
 }
 
@@ -238,7 +234,7 @@ margin-top:0;
 }
 
 .download{
-display:inline-block;
+display:block;
 width:100%;
 text-align:center;
 text-decoration:none;
@@ -376,7 +372,6 @@ font-size:13px;
 }
 
 }
-
 </style>
 </head>
 
@@ -412,8 +407,6 @@ Your PDF is processed directly in your browser.
 
 <br><br>
 
-<label>
-
 <button
 type="button"
 class="primary"
@@ -422,15 +415,17 @@ Choose PDF
 </button>
 
 <input
+class="file-input"
 type="file"
 id="fileInput"
 accept="application/pdf">
 
-</label>
-
 </div>
 
-<div id="fileInfo" class="file-info hidden"></div>
+<div
+id="fileInfo"
+class="file-info hidden">
+</div>
 
 <div class="info" style="margin-top:18px;">
 📝 This tool extracts selectable text from your PDF and places it
@@ -558,8 +553,8 @@ Yes. Extracted PDF text is placed into an editable DOCX document.
 <details>
 <summary>Will the original PDF layout be preserved?</summary>
 <p>
-The first version focuses on extracting text into an editable
-Word document. Complex PDF layouts, columns, graphics and exact
+This version focuses on extracting text into an editable Word
+document. Complex PDF layouts, columns, graphics and exact
 positioning may not be preserved exactly.
 </p>
 </details>
@@ -575,8 +570,8 @@ selectable text. This version does not perform OCR.
 <details>
 <summary>Can I use PDF to Word on my phone?</summary>
 <p>
-Yes. The tool is designed to work in modern mobile browsers as
-well as desktop browsers.
+Yes. The tool is designed to work in modern mobile browsers
+as well as desktop browsers.
 </p>
 </details>
 
@@ -606,24 +601,15 @@ conversion and PDF tools.
 
 </footer>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.4.168/pdf.min.mjs" type="module"></script>
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/docx/9.0.1/docx.umd.min.js"></script>
 
 <script type="module">
 
-import * as pdfjsLib
-from "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.4.168/pdf.min.mjs";
+import * as pdfjsLib from
+"https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.4.168/pdf.min.mjs";
 
 pdfjsLib.GlobalWorkerOptions.workerSrc =
 "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.4.168/pdf.worker.min.mjs";
-
-const {
-Document,
-Packer,
-Paragraph,
-TextRun
-}=window.docx;
 
 const fileInput =
 document.getElementById("fileInput");
@@ -664,40 +650,6 @@ document.getElementById("downloadBtn");
 let selectedFile=null;
 let downloadUrl=null;
 
-chooseBtn.addEventListener("click",()=>{
-fileInput.click();
-});
-
-fileInput.addEventListener("change",()=>{
-if(fileInput.files.length){
-selectFile(fileInput.files[0]);
-}
-});
-
-dropZone.addEventListener("dragover",event=>{
-event.preventDefault();
-dropZone.classList.add("dragover");
-});
-
-dropZone.addEventListener("dragleave",()=>{
-dropZone.classList.remove("dragover");
-});
-
-dropZone.addEventListener("drop",event=>{
-
-event.preventDefault();
-
-dropZone.classList.remove("dragover");
-
-const file=
-event.dataTransfer.files[0];
-
-if(file){
-selectFile(file);
-}
-
-});
-
 function formatBytes(bytes){
 
 if(bytes<1024){
@@ -721,14 +673,39 @@ return name.replace(
 
 }
 
+function escapeHtml(text){
+
+return String(text).replace(
+/[&<>"']/g,
+char=>({
+
+"&":"&amp;",
+"<":"&lt;",
+">":"&gt;",
+'"':"&quot;",
+"'":"&#039;"
+
+})[char]
+);
+
+}
+
 function selectFile(file){
 
-if(file.type!=="application/pdf"){
+if(!file){
+
+return;
+}
+
+if(
+file.type!=="application/pdf" &&
+!file.name.toLowerCase().endsWith(".pdf")
+){
 
 fileInfo.classList.remove("hidden");
 
 fileInfo.innerHTML=
-`⚠️ Please choose a PDF file.`;
+"⚠️ Please choose a PDF file.";
 
 convertBtn.classList.add("hidden");
 
@@ -740,8 +717,7 @@ selectedFile=file;
 
 fileInfo.classList.remove("hidden");
 
-fileInfo.innerHTML=
-`
+fileInfo.innerHTML=`
 <div class="file-name">
 ${escapeHtml(file.name)}
 </div>
@@ -756,33 +732,77 @@ startOverBtn.classList.remove("hidden");
 
 resultSection.classList.add("hidden");
 
-}
+progressWrap.classList.add("hidden");
 
-function escapeHtml(text){
+progress.style.width="0%";
 
-return text.replace(/[&<>"']/g,char=>({
-
-"&":"&amp;",
-"<":"&lt;",
-">":"&gt;",
-'"':"&quot;",
-"'":"&#039;"
-
-})[char]);
+status.textContent="Preparing...";
 
 }
+
+chooseBtn.addEventListener(
+"click",
+()=>{
+fileInput.click();
+}
+);
+
+fileInput.addEventListener(
+"change",
+()=>{
+if(fileInput.files.length){
+selectFile(fileInput.files[0]);
+}
+}
+);
+
+dropZone.addEventListener(
+"dragover",
+event=>{
+event.preventDefault();
+dropZone.classList.add("dragover");
+}
+);
+
+dropZone.addEventListener(
+"dragleave",
+()=>{
+dropZone.classList.remove("dragover");
+}
+);
+
+dropZone.addEventListener(
+"drop",
+event=>{
+
+event.preventDefault();
+
+dropZone.classList.remove("dragover");
+
+const file=
+event.dataTransfer.files[0];
+
+if(file){
+selectFile(file);
+}
+
+}
+);
 
 async function extractText(file){
 
 const arrayBuffer=
 await file.arrayBuffer();
 
-const pdf=
-await pdfjsLib.getDocument({
+const loadingTask=
+pdfjsLib.getDocument({
 data:arrayBuffer
-}).promise;
+});
 
-let pages=[];
+const pdf=
+await loadingTask.promise;
+
+const pages=[];
 
 for(
 let pageNumber=1;
@@ -792,11 +812,6 @@ pageNumber++
 
 status.textContent=
 `Extracting text from page ${pageNumber} of ${pdf.numPages}...`;
-
-progress.style.width=
-Math.round(
-((pageNumber-1)/pdf.numPages)*100
-)+"%";
 
 const page=
 await pdf.getPage(pageNumber);
@@ -808,7 +823,9 @@ let lines=[];
 let currentLine=[];
 let lastY=null;
 
-for(const item of content.items){
+for(
+const item of content.items
+){
 
 const text=
 item.str || "";
@@ -874,10 +891,24 @@ pages:pdf.numPages
 
 async function createWordDocument(text){
 
+if(!window.docx){
+
+throw new Error(
+"Word document library could not be loaded. Please refresh the page and try again."
+);
+
+}
+
+const {
+Document,
+Packer,
+Paragraph,
+TextRun
+}=window.docx;
+
 const paragraphs=
-text
-.split(/\n/)
-.map(line=>
+text.split(/\n/).map(
+line=>
 new Paragraph({
 children:[
 new TextRun({
@@ -909,7 +940,10 @@ convertBtn.addEventListener(
 "click",
 async()=>{
 
-if(!selectedFile)return;
+if(!selectedFile){
+
+return;
+}
 
 convertBtn.disabled=true;
 
@@ -999,7 +1033,8 @@ convertBtn.disabled=false;
 
 }
 
-});
+}
+);
 
 startOverBtn.addEventListener(
 "click",
@@ -1046,7 +1081,8 @@ downloadUrl=null;
 
 }
 
-});
+}
+);
 
 </script>
 
