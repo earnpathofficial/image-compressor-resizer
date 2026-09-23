@@ -46,7 +46,7 @@ body {
 }
 
 header {
-  background: #ffffff;
+  background: #fff;
   border-bottom: 1px solid #e5e7eb;
   padding: 18px 16px;
 }
@@ -80,7 +80,7 @@ header {
 
 main {
   max-width: 900px;
-  margin: 0 auto;
+  margin: auto;
   padding: 38px 16px 60px;
 }
 
@@ -97,17 +97,17 @@ main {
 
 .hero p {
   max-width: 700px;
-  margin: 0 auto;
+  margin: auto;
   color: #667085;
   font-size: 17px;
   line-height: 1.6;
 }
 
 .tool-card {
-  background: #ffffff;
+  background: #fff;
   border-radius: 18px;
   padding: 24px;
-  box-shadow: 0 8px 30px rgba(15, 23, 42, 0.08);
+  box-shadow: 0 8px 30px rgba(15,23,42,.08);
 }
 
 .drop-zone {
@@ -116,7 +116,6 @@ main {
   padding: 42px 18px;
   text-align: center;
   background: #f8fafc;
-  transition: 0.2s ease;
 }
 
 .drop-zone.dragover {
@@ -157,7 +156,7 @@ main {
 
 .primary-btn {
   background: #2563eb;
-  color: #ffffff;
+  color: #fff;
 }
 
 .primary-btn:hover {
@@ -167,10 +166,6 @@ main {
 .secondary-btn {
   background: #e5e7eb;
   color: #172033;
-}
-
-.secondary-btn:hover {
-  background: #dbe0e7;
 }
 
 .file-info {
@@ -210,9 +205,8 @@ main {
 .progress-label {
   display: flex;
   justify-content: space-between;
-  gap: 10px;
-  font-size: 14px;
   margin-bottom: 8px;
+  font-size: 14px;
   color: #475467;
 }
 
@@ -224,10 +218,10 @@ main {
 }
 
 .progress-fill {
-  width: 0%;
+  width: 0;
   height: 100%;
   background: #2563eb;
-  transition: width 0.25s ease;
+  transition: width .25s ease;
 }
 
 .status {
@@ -275,7 +269,7 @@ main {
   display: inline-block;
   text-decoration: none;
   background: #16a34a;
-  color: white;
+  color: #fff;
   padding: 13px 20px;
   border-radius: 10px;
   font-weight: 700;
@@ -285,14 +279,18 @@ main {
   margin-top: 12px;
 }
 
-.privacy {
+.privacy,
+.content-section {
   margin-top: 22px;
-  background: #ffffff;
+  background: #fff;
   border: 1px solid #e5e7eb;
-  border-radius: 14px;
-  padding: 18px;
-  line-height: 1.6;
+  border-radius: 16px;
+  padding: 24px;
+}
+
+.privacy {
   color: #475467;
+  line-height: 1.6;
 }
 
 .privacy strong {
@@ -307,14 +305,6 @@ main {
   border-radius: 12px;
   padding: 14px;
   line-height: 1.5;
-}
-
-.content-section {
-  margin-top: 34px;
-  background: #ffffff;
-  border-radius: 16px;
-  padding: 24px;
-  border: 1px solid #e5e7eb;
 }
 
 .content-section h2 {
@@ -348,7 +338,7 @@ footer {
   padding: 30px 16px;
 }
 
-@media (max-width: 600px) {
+@media (max-width:600px) {
   main {
     padding-top: 28px;
   }
@@ -384,183 +374,173 @@ footer {
 
 <main>
 
-  <section class="hero">
-    <h1>PDF to Word Converter Online</h1>
+<section class="hero">
+  <h1>PDF to Word Converter Online</h1>
+  <p>
+    Convert PDF files into editable Word DOCX documents for free.
+    Your PDF is processed directly in your browser.
+  </p>
+</section>
+
+<section class="tool-card">
+
+  <div class="drop-zone" id="dropZone">
+    <div class="drop-icon">📄</div>
+
+    <h2>Choose a PDF file</h2>
+
     <p>
-      Convert PDF files into editable Word DOCX documents for free.
-      Your PDF is processed directly in your browser.
+      Select a PDF from your device or drag and drop it here.
     </p>
-  </section>
 
-  <section class="tool-card">
-
-    <div
-      class="drop-zone"
-      id="dropZone"
+    <input
+      type="file"
+      id="fileInput"
+      accept="application/pdf,.pdf"
     >
-      <div class="drop-icon">📄</div>
 
-      <h2>Choose a PDF file</h2>
+    <button
+      type="button"
+      class="primary-btn"
+      id="chooseBtn"
+    >
+      Choose PDF
+    </button>
+  </div>
 
-      <p>
-        Select a PDF from your device or drag and drop it here.
-      </p>
+  <div class="file-info" id="fileInfo">
+    <strong id="fileName"></strong>
+    <span class="file-size" id="fileSize"></span>
+  </div>
 
-      <input
-        type="file"
-        id="fileInput"
-        accept="application/pdf,.pdf"
-      >
+  <div class="warning">
+    ⚠️ Scanned or image-only PDFs require OCR.
+    This version extracts text that already exists inside the PDF.
+  </div>
 
-      <button
-        type="button"
-        class="primary-btn"
-        id="chooseBtn"
-      >
-        Choose PDF
-      </button>
+  <div class="action-area" id="actionArea">
+    <button
+      type="button"
+      class="primary-btn"
+      id="convertBtn"
+    >
+      Convert to Word
+    </button>
+  </div>
+
+  <div class="progress-area" id="progressArea">
+    <div class="progress-label">
+      <span id="progressText">Preparing...</span>
+      <span id="progressPercent">0%</span>
     </div>
 
-    <div class="file-info" id="fileInfo">
-      <strong id="fileName"></strong>
-      <span class="file-size" id="fileSize"></span>
+    <div class="progress-bar">
+      <div class="progress-fill" id="progressFill"></div>
     </div>
+  </div>
 
-    <div class="warning">
-      ⚠️ Scanned or image-only PDFs require OCR.
-      This version extracts text that already exists inside the PDF.
-    </div>
+  <div class="status" id="status"></div>
 
-    <div class="action-area" id="actionArea">
-      <button
-        type="button"
-        class="primary-btn"
-        id="convertBtn"
-      >
-        Convert to Word
-      </button>
-    </div>
-
-    <div class="progress-area" id="progressArea">
-
-      <div class="progress-label">
-        <span id="progressText">Preparing...</span>
-        <span id="progressPercent">0%</span>
-      </div>
-
-      <div class="progress-bar">
-        <div
-          class="progress-fill"
-          id="progressFill"
-        ></div>
-      </div>
-
-    </div>
-
-    <div class="status" id="status"></div>
-
-    <div class="result" id="result">
-
-      <h3>✅ Word document ready</h3>
-
-      <p>
-        Your editable Word document has been created successfully.
-      </p>
-
-      <a
-        id="downloadBtn"
-        class="download-btn"
-        href="#"
-        download
-      >
-        Download Word Document
-      </a>
-
-      <div class="start-over">
-        <button
-          type="button"
-          class="secondary-btn"
-          id="startOverBtn"
-        >
-          Start Over
-        </button>
-      </div>
-
-    </div>
-
-  </section>
-
-  <section class="privacy">
-    <strong>🔒 Private browser processing</strong><br>
-    Your PDF is processed directly inside your browser.
-    The original PDF is not uploaded to our server.
-  </section>
-
-  <section class="content-section">
-
-    <h2>PDF to Word Converter</h2>
+  <div class="result" id="result">
+    <h3>✅ Word document ready</h3>
 
     <p>
-      ImageTools PDF to Word converts selectable text from PDF files
-      into editable Microsoft Word DOCX documents.
+      Your editable Word document has been created successfully.
     </p>
 
-    <p>
-      The conversion runs locally in your browser, so your original PDF
-      does not need to be uploaded to a remote server.
-    </p>
+    <a
+      id="downloadBtn"
+      class="download-btn"
+      href="#"
+      download
+    >
+      Download Word Document
+    </a>
 
-    <h2>How to convert PDF to Word</h2>
+    <div class="start-over">
+      <button
+        type="button"
+        class="secondary-btn"
+        id="startOverBtn"
+      >
+        Start Over
+      </button>
+    </div>
+  </div>
 
-    <ol>
-      <li>Select your PDF file.</li>
-      <li>Wait for the PDF text to be extracted.</li>
-      <li>Tap <strong>Convert to Word</strong>.</li>
-      <li>Download the generated DOCX file.</li>
-    </ol>
+</section>
 
-    <h2>Frequently Asked Questions</h2>
+<section class="privacy">
+  <strong>🔒 Private browser processing</strong><br>
+  Your PDF is processed directly inside your browser.
+  The original PDF is not uploaded to our server.
+</section>
 
-    <details>
-      <summary>Is this PDF to Word converter free?</summary>
-      <p>
-        Yes. ImageTools PDF to Word is free to use.
-      </p>
-    </details>
+<section class="content-section">
 
-    <details>
-      <summary>Is my PDF uploaded?</summary>
-      <p>
-        No. The PDF is processed directly in your browser.
-      </p>
-    </details>
+<h2>PDF to Word Converter</h2>
 
-    <details>
-      <summary>Can I edit the converted Word document?</summary>
-      <p>
-        Yes. The result is a standard DOCX document containing
-        extracted PDF text that can be edited in compatible word
-        processing applications.
-      </p>
-    </details>
+<p>
+ImageTools PDF to Word converts selectable text from PDF files
+into editable Microsoft Word DOCX documents.
+</p>
 
-    <details>
-      <summary>Can scanned PDFs be converted?</summary>
-      <p>
-        This version extracts text that already exists inside the PDF.
-        Scanned or image-only PDFs require OCR.
-      </p>
-    </details>
+<p>
+The conversion runs locally in your browser, so your original PDF
+does not need to be uploaded to a remote server.
+</p>
 
-    <details>
-      <summary>Does the original PDF remain on the server?</summary>
-      <p>
-        No. The conversion is performed locally in your browser and
-        the original PDF is not uploaded to ImageTools.
-      </p>
-    </details>
+<h2>How to convert PDF to Word</h2>
 
-  </section>
+<ol>
+  <li>Select your PDF file.</li>
+  <li>Tap <strong>Convert to Word</strong>.</li>
+  <li>Wait for the text to be extracted.</li>
+  <li>Download the generated DOCX file.</li>
+</ol>
+
+<h2>Frequently Asked Questions</h2>
+
+<details>
+  <summary>Is this PDF to Word converter free?</summary>
+  <p>
+    Yes. ImageTools PDF to Word is free to use.
+  </p>
+</details>
+
+<details>
+  <summary>Is my PDF uploaded?</summary>
+  <p>
+    No. The PDF is processed directly in your browser.
+  </p>
+</details>
+
+<details>
+  <summary>Can I edit the converted Word document?</summary>
+  <p>
+    Yes. The result is a standard DOCX document containing
+    extracted PDF text that can be edited in compatible
+    word-processing applications.
+  </p>
+</details>
+
+<details>
+  <summary>Can scanned PDFs be converted?</summary>
+  <p>
+    This version extracts text that already exists inside the PDF.
+    Scanned or image-only PDFs require OCR.
+  </p>
+</details>
+
+<details>
+  <summary>Does the original PDF remain on the server?</summary>
+  <p>
+    No. Conversion is performed locally in your browser and
+    the original PDF is not uploaded to ImageTools.
+  </p>
+</details>
+
+</section>
 
 </main>
 
@@ -569,20 +549,22 @@ footer {
 </footer>
 
 
-<!-- PDF.js -->
 <script type="module">
 
-import * as pdfjsLib
-  from "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.4.168/pdf.min.mjs";
-
+import * as pdfjsLib from
+  "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.4.168/pdf.min.mjs";
 
 /*
   IMPORTANT:
-  Use the browser UMD build of docx from jsDelivr.
-  It exposes the library as window.docx.
+  DOCX is now imported directly as an ES module.
+  No window.docx or UMD/global library is used.
 */
-const DOCX_CDN =
-  "https://cdn.jsdelivr.net/npm/docx@9.7.1/build/index.umd.js";
+import * as docx from
+  "https://cdn.jsdelivr.net/npm/docx@9.7.1/+esm";
+
+
+pdfjsLib.GlobalWorkerOptions.workerSrc =
+  "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.4.168/pdf.worker.min.mjs";
 
 
 const fileInput =
@@ -639,115 +621,6 @@ let extractedPages = [];
 let generatedUrl = null;
 
 
-/*
-  Configure PDF.js worker.
-*/
-pdfjsLib.GlobalWorkerOptions.workerSrc =
-  "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.4.168/pdf.worker.min.mjs";
-
-
-/*
-  Load docx dynamically and verify that window.docx exists.
-*/
-function loadDocxLibrary() {
-
-  return new Promise((resolve, reject) => {
-
-    if (
-      window.docx &&
-      window.docx.Document &&
-      window.docx.Packer
-    ) {
-      resolve(window.docx);
-      return;
-    }
-
-    const existing =
-      document.querySelector(
-        'script[data-imagetools-docx="true"]'
-      );
-
-    if (existing) {
-
-      const waitStart = Date.now();
-
-      const timer = setInterval(() => {
-
-        if (
-          window.docx &&
-          window.docx.Document &&
-          window.docx.Packer
-        ) {
-          clearInterval(timer);
-          resolve(window.docx);
-          return;
-        }
-
-        if (Date.now() - waitStart > 15000) {
-          clearInterval(timer);
-          reject(
-            new Error(
-              "Word document library did not become available."
-            )
-          );
-        }
-
-      }, 100);
-
-      return;
-    }
-
-
-    const script =
-      document.createElement("script");
-
-    script.src = DOCX_CDN;
-
-    script.async = true;
-
-    script.dataset.imagetoolsDocx = "true";
-
-
-    script.onload = () => {
-
-      if (
-        window.docx &&
-        window.docx.Document &&
-        window.docx.Packer
-      ) {
-        resolve(window.docx);
-      } else {
-        reject(
-          new Error(
-            "Word document library loaded but its API was unavailable."
-          )
-        );
-      }
-
-    };
-
-
-    script.onerror = () => {
-
-      reject(
-        new Error(
-          "Could not load the Word document library."
-        )
-      );
-
-    };
-
-
-    document.head.appendChild(script);
-
-  });
-
-}
-
-
-/*
-  Open file picker.
-*/
 chooseBtn.addEventListener(
   "click",
   () => {
@@ -756,29 +629,24 @@ chooseBtn.addEventListener(
 );
 
 
-/*
-  File selection.
-*/
 fileInput.addEventListener(
   "change",
   () => {
 
-    if (!fileInput.files || !fileInput.files.length) {
-      return;
+    if (
+      fileInput.files &&
+      fileInput.files.length
+    ) {
+      handleFile(fileInput.files[0]);
     }
-
-    handleFile(fileInput.files[0]);
 
   }
 );
 
 
-/*
-  Drag and drop.
-*/
 dropZone.addEventListener(
   "dragover",
-  (event) => {
+  event => {
 
     event.preventDefault();
 
@@ -800,27 +668,26 @@ dropZone.addEventListener(
 
 dropZone.addEventListener(
   "drop",
-  (event) => {
+  event => {
 
     event.preventDefault();
 
     dropZone.classList.remove("dragover");
 
-    const files = event.dataTransfer.files;
+    const files =
+      event.dataTransfer.files;
 
-    if (!files || !files.length) {
-      return;
+    if (
+      files &&
+      files.length
+    ) {
+      handleFile(files[0]);
     }
-
-    handleFile(files[0]);
 
   }
 );
 
 
-/*
-  Handle selected PDF.
-*/
 async function handleFile(file) {
 
   clearStatus();
@@ -850,7 +717,7 @@ async function handleFile(file) {
   }
 
 
-  if (file.size === 0) {
+  if (!file.size) {
 
     showStatus(
       "The selected PDF file is empty.",
@@ -863,23 +730,21 @@ async function handleFile(file) {
 
   selectedFile = file;
 
-
-  fileName.textContent = file.name;
+  fileName.textContent =
+    file.name;
 
   fileSize.textContent =
     formatBytes(file.size);
 
-  fileInfo.style.display = "block";
+  fileInfo.style.display =
+    "block";
 
-
-  actionArea.style.display = "block";
+  actionArea.style.display =
+    "block";
 
 }
 
 
-/*
-  Convert PDF to Word.
-*/
 convertBtn.addEventListener(
   "click",
   async () => {
@@ -899,9 +764,11 @@ convertBtn.addEventListener(
 
     chooseBtn.disabled = true;
 
-    progressArea.style.display = "block";
+    progressArea.style.display =
+      "block";
 
-    result.style.display = "none";
+    result.style.display =
+      "none";
 
     clearStatus();
 
@@ -914,13 +781,13 @@ convertBtn.addEventListener(
       );
 
 
-      const arrayBuffer =
+      const buffer =
         await selectedFile.arrayBuffer();
 
 
       const pdf =
         await pdfjsLib.getDocument({
-          data: arrayBuffer
+          data: buffer
         }).promise;
 
 
@@ -941,15 +808,15 @@ convertBtn.addEventListener(
           await pdf.getPage(pageNumber);
 
 
-        const textContent =
+        const content =
           await page.getTextContent();
 
 
-        let text = "";
+        let pageText = "";
 
 
         for (
-          const item of textContent.items
+          const item of content.items
         ) {
 
           if (
@@ -957,13 +824,12 @@ convertBtn.addEventListener(
             typeof item.str === "string"
           ) {
 
-            text += item.str;
+            pageText += item.str;
 
-            if (item.hasEOL) {
-              text += "\n";
-            } else {
-              text += " ";
-            }
+            pageText +=
+              item.hasEOL
+                ? "\n"
+                : " ";
 
           }
 
@@ -971,7 +837,7 @@ convertBtn.addEventListener(
 
 
         extractedPages.push(
-          text.trim()
+          pageText.trim()
         );
 
 
@@ -990,13 +856,13 @@ convertBtn.addEventListener(
       }
 
 
-      const fullText =
-        extractedPages
-          .filter(text => text.length > 0)
-          .join("\n\n");
+      const hasText =
+        extractedPages.some(
+          text => text.trim().length > 0
+        );
 
 
-      if (!fullText.trim()) {
+      if (!hasText) {
 
         throw new Error(
           "No selectable text was found in this PDF. The file may be scanned or image-only and require OCR."
@@ -1006,17 +872,7 @@ convertBtn.addEventListener(
 
 
       setProgress(
-        70,
-        "Loading Word document generator..."
-      );
-
-
-      const docx =
-        await loadDocxLibrary();
-
-
-      setProgress(
-        78,
+        72,
         "Creating editable Word document..."
       );
 
@@ -1025,55 +881,43 @@ convertBtn.addEventListener(
 
 
       extractedPages.forEach(
-        (pageText, index) => {
+        (pageText, pageIndex) => {
 
-          if (pageText.trim()) {
-
-            const pageParagraphs =
-              pageText
-                .split(/\n+/)
-                .map(
-                  line => line.trim()
-                )
-                .filter(Boolean);
+          const lines =
+            pageText
+              .split(/\n+/)
+              .map(
+                line => line.trim()
+              )
+              .filter(Boolean);
 
 
-            pageParagraphs.forEach(
-              line => {
+          lines.forEach(
+            line => {
 
-                paragraphs.push(
-                  new docx.Paragraph({
-                    children: [
-                      new docx.TextRun({
-                        text: line
-                      })
-                    ]
-                  })
-                );
+              paragraphs.push(
+                new docx.Paragraph({
+                  children: [
+                    new docx.TextRun({
+                      text: line
+                    })
+                  ]
+                })
+              );
 
-              }
-            );
-
-          }
+            }
+          );
 
 
-          /*
-            Add a page break between PDF pages
-            without adding one after the final page.
-          */
           if (
-            index <
+            pageIndex <
             extractedPages.length - 1
           ) {
 
             paragraphs.push(
               new docx.Paragraph({
-                children: [
-                  new docx.TextRun({
-                    text: ""
-                  })
-                ],
-                pageBreakBefore: true
+                pageBreakBefore: true,
+                children: []
               })
             );
 
@@ -1092,14 +936,17 @@ convertBtn.addEventListener(
       }
 
 
+      const baseName =
+        selectedFile.name
+          .replace(/\.pdf$/i, "");
+
+
       const document =
         new docx.Document({
 
           creator: "ImageTools",
 
-          title:
-            selectedFile.name
-              .replace(/\.pdf$/i, ""),
+          title: baseName,
 
           description:
             "Converted from PDF using ImageTools.",
@@ -1139,14 +986,8 @@ convertBtn.addEventListener(
         URL.createObjectURL(blob);
 
 
-      const baseName =
-        selectedFile.name
-          .replace(/\.pdf$/i, "");
-
-
       downloadBtn.href =
         generatedUrl;
-
 
       downloadBtn.download =
         `${baseName}.docx`;
@@ -1164,7 +1005,8 @@ convertBtn.addEventListener(
       );
 
 
-      result.style.display = "block";
+      result.style.display =
+        "block";
 
 
     } catch (error) {
@@ -1176,21 +1018,23 @@ convertBtn.addEventListener(
 
 
       showStatus(
-        error && error.message
-          ? error.message
-          : "Something went wrong while converting the PDF.",
+        error?.message ||
+        "Something went wrong while converting the PDF.",
         "error"
       );
 
 
-      progressArea.style.display = "none";
+      progressArea.style.display =
+        "none";
 
 
     } finally {
 
-      convertBtn.disabled = false;
+      convertBtn.disabled =
+        false;
 
-      chooseBtn.disabled = false;
+      chooseBtn.disabled =
+        false;
 
     }
 
@@ -1198,9 +1042,6 @@ convertBtn.addEventListener(
 );
 
 
-/*
-  Start over.
-*/
 startOverBtn.addEventListener(
   "click",
   () => {
@@ -1222,21 +1063,29 @@ startOverBtn.addEventListener(
 
     fileInput.value = "";
 
-    fileInfo.style.display = "none";
+    fileInfo.style.display =
+      "none";
 
-    actionArea.style.display = "none";
+    actionArea.style.display =
+      "none";
 
-    progressArea.style.display = "none";
+    progressArea.style.display =
+      "none";
 
-    result.style.display = "none";
+    result.style.display =
+      "none";
 
-    progressFill.style.width = "0%";
+    progressFill.style.width =
+      "0%";
 
-    progressPercent.textContent = "0%";
+    progressPercent.textContent =
+      "0%";
 
-    progressText.textContent = "Preparing...";
+    progressText.textContent =
+      "Preparing...";
 
     clearStatus();
+
 
     window.scrollTo({
       top: 0,
@@ -1247,31 +1096,16 @@ startOverBtn.addEventListener(
 );
 
 
-/*
-  Progress helper.
-*/
 function setProgress(
   percent,
   message
 ) {
 
-  const safePercent =
-    Math.max(
-      0,
-      Math.min(
-        100,
-        percent
-      )
-    );
-
-
   progressFill.style.width =
-    `${safePercent}%`;
-
+    `${percent}%`;
 
   progressPercent.textContent =
-    `${safePercent}%`;
-
+    `${percent}%`;
 
   progressText.textContent =
     message;
@@ -1279,15 +1113,13 @@ function setProgress(
 }
 
 
-/*
-  Status helpers.
-*/
 function showStatus(
   message,
   type
 ) {
 
-  status.textContent = message;
+  status.textContent =
+    message;
 
   status.className =
     `status ${type}`;
@@ -1297,24 +1129,25 @@ function showStatus(
 
 function clearStatus() {
 
-  status.textContent = "";
+  status.textContent =
+    "";
 
-  status.className = "status";
+  status.className =
+    "status";
 
 }
 
 
-/*
-  File size helper.
-*/
 function formatBytes(bytes) {
 
   if (bytes < 1024) {
     return `${bytes} B`;
   }
 
-
-  if (bytes < 1024 * 1024) {
+  if (
+    bytes <
+    1024 * 1024
+  ) {
 
     return `${(
       bytes / 1024
@@ -1322,27 +1155,12 @@ function formatBytes(bytes) {
 
   }
 
-
   return `${(
-    bytes / (1024 * 1024)
+    bytes /
+    (1024 * 1024)
   ).toFixed(2)} MB`;
 
 }
-
-
-/*
-  Preload the Word library after the page becomes usable.
-  This means the user can open the page immediately while
-  the library loads in the background.
-*/
-loadDocxLibrary().catch(
-  error => {
-    console.warn(
-      "DOCX library preload:",
-      error
-    );
-  }
-);
 
 </script>
 
