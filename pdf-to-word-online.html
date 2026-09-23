@@ -1,0 +1,1054 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<title>PDF to Word Converter Online — Free PDF to DOCX | ImageTools</title>
+
+<meta name="description" content="Convert PDF files to editable Word DOCX documents for free. Extract text from PDFs and download a Word file directly in your browser with ImageTools.">
+
+<meta name="keywords" content="PDF to Word, PDF to DOCX, convert PDF to Word, PDF converter, PDF text to Word, PDF to editable Word, free PDF to Word converter">
+
+<meta name="robots" content="index, follow">
+<meta name="author" content="ImageTools">
+
+<link rel="canonical" href="https://earnpathofficial.github.io/image-compressor-resizer/pdf-to-word-online.html">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="PDF to Word Converter Online | ImageTools">
+<meta property="og:description" content="Convert PDF files to editable Word DOCX documents directly in your browser.">
+<meta property="og:site_name" content="ImageTools">
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="PDF to Word Converter Online | ImageTools">
+<meta name="twitter:description" content="Convert PDF files to editable Word DOCX documents directly in your browser.">
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"WebApplication",
+  "name":"PDF to Word Converter Online",
+  "description":"Free browser-based PDF to Word DOCX converter.",
+  "applicationCategory":"BusinessApplication",
+  "operatingSystem":"Web Browser",
+  "isAccessibleForFree":true
+}
+</script>
+
+<style>
+*{
+box-sizing:border-box;
+}
+
+html{
+overflow-x:hidden;
+scroll-behavior:smooth;
+}
+
+body{
+margin:0;
+font-family:Arial,Helvetica,sans-serif;
+background:#f5f7fb;
+color:#172033;
+overflow-x:hidden;
+-webkit-text-size-adjust:100%;
+-webkit-tap-highlight-color:transparent;
+}
+
+header{
+background:#fff;
+border-bottom:1px solid #e5e7eb;
+padding:18px 20px;
+text-align:center;
+}
+
+header h1{
+margin:0;
+font-size:24px;
+line-height:1.2;
+}
+
+header p{
+margin:5px 0 0;
+color:#667085;
+font-size:14px;
+}
+
+main{
+max-width:900px;
+margin:auto;
+padding:25px 15px 50px;
+}
+
+.hero{
+text-align:center;
+margin-bottom:25px;
+}
+
+.hero h2{
+font-size:32px;
+margin:10px 0;
+line-height:1.2;
+}
+
+.hero p{
+color:#667085;
+line-height:1.6;
+max-width:760px;
+margin:0 auto;
+}
+
+.card{
+background:#fff;
+border-radius:16px;
+padding:20px;
+margin-bottom:20px;
+box-shadow:0 5px 20px rgba(0,0,0,.06);
+}
+
+.upload{
+border:2px dashed #98a2b3;
+border-radius:14px;
+padding:35px 15px;
+text-align:center;
+background:#fafbfc;
+transition:.2s;
+}
+
+.upload.dragover{
+border-color:#2563eb;
+background:#eff6ff;
+}
+
+.upload-icon{
+font-size:42px;
+line-height:1;
+}
+
+.upload strong{
+display:block;
+font-size:18px;
+margin:10px 0 7px;
+}
+
+.upload span{
+display:inline-block;
+line-height:1.5;
+color:#667085;
+}
+
+input[type=file]{
+display:none;
+}
+
+button{
+font:inherit;
+border:0;
+border-radius:10px;
+padding:11px 16px;
+cursor:pointer;
+min-height:46px;
+touch-action:manipulation;
+transition:transform .12s ease,box-shadow .12s ease,background .12s ease;
+}
+
+button:active{
+transform:scale(.98);
+}
+
+.primary{
+background:#2563eb;
+color:#fff;
+box-shadow:0 2px 6px rgba(37,99,235,.18);
+}
+
+.secondary{
+background:#eef2f7;
+color:#172033;
+}
+
+button:disabled{
+opacity:.55;
+cursor:not-allowed;
+transform:none;
+}
+
+.file-info{
+margin-top:18px;
+padding:14px;
+background:#f8fafc;
+border-radius:10px;
+border:1px solid #e5e7eb;
+line-height:1.5;
+font-size:14px;
+}
+
+.file-name{
+font-weight:bold;
+overflow-wrap:anywhere;
+}
+
+.actions{
+margin-top:18px;
+display:flex;
+gap:10px;
+flex-wrap:wrap;
+}
+
+.actions button{
+flex:1;
+}
+
+.progress-wrap{
+margin-top:18px;
+}
+
+.progress-bar{
+width:100%;
+height:9px;
+background:#e5e7eb;
+border-radius:20px;
+overflow:hidden;
+}
+
+.progress{
+width:0;
+height:100%;
+background:#2563eb;
+transition:.2s;
+}
+
+#status{
+margin-top:10px;
+color:#667085;
+font-size:14px;
+line-height:1.5;
+}
+
+.result{
+border:1px solid #e5e7eb;
+border-radius:12px;
+padding:18px;
+background:#fff;
+}
+
+.result h3{
+margin-top:0;
+}
+
+.download{
+display:inline-block;
+width:100%;
+text-align:center;
+text-decoration:none;
+background:#16a34a;
+color:#fff;
+font-weight:600;
+border-radius:10px;
+padding:13px 16px;
+min-height:48px;
+}
+
+.info{
+background:#eff6ff;
+border-radius:10px;
+padding:13px;
+color:#1e40af;
+font-size:14px;
+line-height:1.55;
+margin-bottom:15px;
+}
+
+.warning{
+background:#fff7ed;
+color:#9a3412;
+}
+
+.hidden{
+display:none!important;
+}
+
+.faq details{
+border-bottom:1px solid #eee;
+padding:13px 0;
+}
+
+.faq summary{
+cursor:pointer;
+font-weight:bold;
+line-height:1.45;
+padding:4px 0;
+}
+
+.faq p{
+line-height:1.6;
+color:#667085;
+}
+
+footer{
+text-align:center;
+color:#667085;
+padding:30px 15px;
+font-size:13px;
+line-height:1.5;
+}
+
+@media(max-width:600px){
+
+main{
+padding:20px 12px 40px;
+}
+
+.hero h2{
+font-size:25px;
+}
+
+.hero p{
+font-size:14px;
+}
+
+.card{
+padding:16px;
+border-radius:14px;
+}
+
+.upload{
+padding:30px 12px;
+}
+
+.actions{
+flex-direction:column;
+}
+
+.actions button{
+width:100%;
+}
+
+}
+
+@media(max-width:480px){
+
+header{
+padding:16px 12px;
+}
+
+header h1{
+font-size:22px;
+}
+
+main{
+padding:16px 10px 35px;
+}
+
+.hero h2{
+font-size:23px;
+}
+
+.card{
+padding:14px;
+}
+
+.upload{
+padding:28px 10px;
+}
+
+.upload-icon{
+font-size:36px;
+}
+
+.upload strong{
+font-size:16px;
+}
+
+.upload span{
+font-size:13px;
+}
+
+button{
+width:100%;
+min-height:48px;
+font-size:15px;
+}
+
+.info{
+font-size:13px;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>ImageTools</h1>
+<p>Free Image & PDF Tools</p>
+</header>
+
+<main>
+
+<section class="hero">
+
+<h2>PDF to Word Converter Online</h2>
+
+<p>
+Convert PDF files to editable Word DOCX documents for free.
+Your PDF is processed directly in your browser.
+</p>
+
+</section>
+
+<section class="card">
+
+<div class="upload" id="dropZone">
+
+<div class="upload-icon">📄</div>
+
+<strong>Drop your PDF here</strong>
+
+<span>or choose a PDF file from your device</span>
+
+<br><br>
+
+<label>
+
+<button
+type="button"
+class="primary"
+id="chooseBtn">
+Choose PDF
+</button>
+
+<input
+type="file"
+id="fileInput"
+accept="application/pdf">
+
+</label>
+
+</div>
+
+<div id="fileInfo" class="file-info hidden"></div>
+
+<div class="info" style="margin-top:18px;">
+📝 This tool extracts selectable text from your PDF and places it
+into an editable Word DOCX document.
+</div>
+
+<div class="info">
+🔒 Your PDF is processed directly inside your browser.
+The original PDF is not uploaded to our server.
+</div>
+
+<div class="info warning">
+⚠️ Scanned or image-only PDFs require OCR. This version extracts
+text that already exists inside the PDF.
+</div>
+
+<div class="actions">
+
+<button
+type="button"
+class="primary hidden"
+id="convertBtn">
+Convert to Word
+</button>
+
+<button
+type="button"
+class="secondary hidden"
+id="startOverBtn">
+Start Over
+</button>
+
+</div>
+
+<div
+class="progress-wrap hidden"
+id="progressWrap">
+
+<div class="progress-bar">
+
+<div
+class="progress"
+id="progress">
+</div>
+
+</div>
+
+<p id="status">
+Preparing...
+</p>
+
+</div>
+
+</section>
+
+<section
+class="card hidden"
+id="resultSection">
+
+<div class="result">
+
+<h3>✅ Word Document Ready</h3>
+
+<p id="resultText"></p>
+
+<a
+id="downloadBtn"
+class="download"
+download>
+Download Word Document
+</a>
+
+</div>
+
+</section>
+
+<section class="card">
+
+<h3>How PDF to Word Works</h3>
+
+<div class="info">
+<strong>1. Choose your PDF</strong><br>
+Select a PDF file from your phone or computer.
+</div>
+
+<div class="info">
+<strong>2. Extract the text</strong><br>
+ImageTools reads the selectable text contained in the PDF.
+</div>
+
+<div class="info">
+<strong>3. Download Word</strong><br>
+The extracted content is packaged into an editable DOCX file.
+</div>
+
+</section>
+
+<section class="card faq">
+
+<h3>Frequently Asked Questions</h3>
+
+<details>
+<summary>Can I convert a PDF to Word for free?</summary>
+<p>
+Yes. ImageTools PDF to Word is free to use and processes the PDF
+directly in your browser.
+</p>
+</details>
+
+<details>
+<summary>Does the PDF get uploaded?</summary>
+<p>
+No. The PDF is processed locally in your browser. The original
+PDF is not uploaded to the ImageTools server.
+</p>
+</details>
+
+<details>
+<summary>Will the Word document be editable?</summary>
+<p>
+Yes. Extracted PDF text is placed into an editable DOCX document.
+</p>
+</details>
+
+<details>
+<summary>Will the original PDF layout be preserved?</summary>
+<p>
+The first version focuses on extracting text into an editable
+Word document. Complex PDF layouts, columns, graphics and exact
+positioning may not be preserved exactly.
+</p>
+</details>
+
+<details>
+<summary>Can I convert a scanned PDF?</summary>
+<p>
+Scanned image-only PDFs require OCR because they do not contain
+selectable text. This version does not perform OCR.
+</p>
+</details>
+
+<details>
+<summary>Can I use PDF to Word on my phone?</summary>
+<p>
+Yes. The tool is designed to work in modern mobile browsers as
+well as desktop browsers.
+</p>
+</details>
+
+<details>
+<summary>What file format does the converter create?</summary>
+<p>
+The result is downloaded as a Microsoft Word DOCX document.
+</p>
+</details>
+
+</section>
+
+</main>
+
+<footer>
+
+<strong>ImageTools</strong>
+
+<p>
+Free image compression, resizing, cropping, background removal,
+conversion and PDF tools.
+</p>
+
+<p>
+© 2026 ImageTools. All rights reserved.
+</p>
+
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.4.168/pdf.min.mjs" type="module"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/docx/9.0.1/docx.umd.min.js"></script>
+
+<script type="module">
+
+import * as pdfjsLib
+from "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.4.168/pdf.min.mjs";
+
+pdfjsLib.GlobalWorkerOptions.workerSrc =
+"https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.4.168/pdf.worker.min.mjs";
+
+const {
+Document,
+Packer,
+Paragraph,
+TextRun
+}=window.docx;
+
+const fileInput =
+document.getElementById("fileInput");
+
+const chooseBtn =
+document.getElementById("chooseBtn");
+
+const dropZone =
+document.getElementById("dropZone");
+
+const fileInfo =
+document.getElementById("fileInfo");
+
+const convertBtn =
+document.getElementById("convertBtn");
+
+const startOverBtn =
+document.getElementById("startOverBtn");
+
+const progressWrap =
+document.getElementById("progressWrap");
+
+const progress =
+document.getElementById("progress");
+
+const status =
+document.getElementById("status");
+
+const resultSection =
+document.getElementById("resultSection");
+
+const resultText =
+document.getElementById("resultText");
+
+const downloadBtn =
+document.getElementById("downloadBtn");
+
+let selectedFile=null;
+let downloadUrl=null;
+
+chooseBtn.addEventListener("click",()=>{
+fileInput.click();
+});
+
+fileInput.addEventListener("change",()=>{
+if(fileInput.files.length){
+selectFile(fileInput.files[0]);
+}
+});
+
+dropZone.addEventListener("dragover",event=>{
+event.preventDefault();
+dropZone.classList.add("dragover");
+});
+
+dropZone.addEventListener("dragleave",()=>{
+dropZone.classList.remove("dragover");
+});
+
+dropZone.addEventListener("drop",event=>{
+
+event.preventDefault();
+
+dropZone.classList.remove("dragover");
+
+const file=
+event.dataTransfer.files[0];
+
+if(file){
+selectFile(file);
+}
+
+});
+
+function formatBytes(bytes){
+
+if(bytes<1024){
+return bytes+" B";
+}
+
+if(bytes<1024*1024){
+return (bytes/1024).toFixed(2)+" KB";
+}
+
+return (bytes/(1024*1024)).toFixed(2)+" MB";
+
+}
+
+function baseName(name){
+
+return name.replace(
+/\.[^/.]+$/,
+""
+);
+
+}
+
+function selectFile(file){
+
+if(file.type!=="application/pdf"){
+
+fileInfo.classList.remove("hidden");
+
+fileInfo.innerHTML=
+`⚠️ Please choose a PDF file.`;
+
+convertBtn.classList.add("hidden");
+
+return;
+
+}
+
+selectedFile=file;
+
+fileInfo.classList.remove("hidden");
+
+fileInfo.innerHTML=
+`
+<div class="file-name">
+${escapeHtml(file.name)}
+</div>
+<div>
+${formatBytes(file.size)}
+</div>
+`;
+
+convertBtn.classList.remove("hidden");
+
+startOverBtn.classList.remove("hidden");
+
+resultSection.classList.add("hidden");
+
+}
+
+function escapeHtml(text){
+
+return text.replace(/[&<>"']/g,char=>({
+
+"&":"&amp;",
+"<":"&lt;",
+">":"&gt;",
+'"':"&quot;",
+"'":"&#039;"
+
+})[char]);
+
+}
+
+async function extractText(file){
+
+const arrayBuffer=
+await file.arrayBuffer();
+
+const pdf=
+await pdfjsLib.getDocument({
+data:arrayBuffer
+}).promise;
+
+let pages=[];
+
+for(
+let pageNumber=1;
+pageNumber<=pdf.numPages;
+pageNumber++
+){
+
+status.textContent=
+`Extracting text from page ${pageNumber} of ${pdf.numPages}...`;
+
+progress.style.width=
+Math.round(
+((pageNumber-1)/pdf.numPages)*100
+)+"%";
+
+const page=
+await pdf.getPage(pageNumber);
+
+const content=
+await page.getTextContent();
+
+let lines=[];
+let currentLine=[];
+let lastY=null;
+
+for(const item of content.items){
+
+const text=
+item.str || "";
+
+const y=
+item.transform
+? item.transform[5]
+: null;
+
+if(
+lastY!==null &&
+y!==null &&
+Math.abs(y-lastY)>4
+){
+
+if(currentLine.length){
+
+lines.push(
+currentLine.join(" ")
+);
+
+}
+
+currentLine=[];
+
+}
+
+if(text.trim()){
+
+currentLine.push(text);
+
+}
+
+lastY=y;
+
+}
+
+if(currentLine.length){
+
+lines.push(
+currentLine.join(" ")
+);
+
+}
+
+pages.push(
+lines.join("\n")
+);
+
+progress.style.width=
+Math.round(
+(pageNumber/pdf.numPages)*100
+)+"%";
+
+}
+
+return{
+text:pages.join("\n\n"),
+pages:pdf.numPages
+};
+
+}
+
+async function createWordDocument(text){
+
+const paragraphs=
+text
+.split(/\n/)
+.map(line=>
+new Paragraph({
+children:[
+new TextRun({
+text:line
+})
+]
+})
+);
+
+const document=
+new Document({
+
+sections:[
+{
+properties:{},
+children:paragraphs
+}
+]
+
+});
+
+return await Packer.toBlob(
+document
+);
+
+}
+
+convertBtn.addEventListener(
+"click",
+async()=>{
+
+if(!selectedFile)return;
+
+convertBtn.disabled=true;
+
+progressWrap.classList.remove(
+"hidden"
+);
+
+resultSection.classList.add(
+"hidden"
+);
+
+progress.style.width="0%";
+
+status.textContent=
+"Reading PDF...";
+
+try{
+
+const extracted=
+await extractText(
+selectedFile
+);
+
+if(!extracted.text.trim()){
+
+throw new Error(
+"No selectable text was found in this PDF. Scanned or image-only PDFs require OCR."
+);
+
+}
+
+status.textContent=
+"Creating Word document...";
+
+progress.style.width="95%";
+
+const blob=
+await createWordDocument(
+extracted.text
+);
+
+if(downloadUrl){
+
+URL.revokeObjectURL(
+downloadUrl
+);
+
+}
+
+downloadUrl=
+URL.createObjectURL(blob);
+
+const filename=
+`${baseName(selectedFile.name)}.docx`;
+
+downloadBtn.href=
+downloadUrl;
+
+downloadBtn.download=
+filename;
+
+resultText.textContent=
+`Extracted text from ${extracted.pages} page(s). Your editable Word document is ready.`;
+
+progress.style.width="100%";
+
+status.textContent=
+"Conversion complete.";
+
+resultSection.classList.remove(
+"hidden"
+);
+
+}catch(error){
+
+console.error(error);
+
+status.innerHTML=
+`⚠️ ${escapeHtml(
+error.message ||
+"Could not convert this PDF."
+)}`;
+
+}finally{
+
+convertBtn.disabled=false;
+
+}
+
+});
+
+startOverBtn.addEventListener(
+"click",
+()=>{
+
+selectedFile=null;
+
+fileInput.value="";
+
+fileInfo.innerHTML="";
+
+fileInfo.classList.add(
+"hidden"
+);
+
+convertBtn.classList.add(
+"hidden"
+);
+
+startOverBtn.classList.add(
+"hidden"
+);
+
+progressWrap.classList.add(
+"hidden"
+);
+
+resultSection.classList.add(
+"hidden"
+);
+
+progress.style.width="0%";
+
+status.textContent=
+"Preparing...";
+
+if(downloadUrl){
+
+URL.revokeObjectURL(
+downloadUrl
+);
+
+downloadUrl=null;
+
+}
+
+});
+
+</script>
+
+</body>
+</html>
