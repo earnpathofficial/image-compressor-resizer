@@ -1157,6 +1157,21 @@ Choose a specific tool below or use the full ImageTools editor above.
 <span>Reduce PDF file size directly in your browser with Basic, Balanced and Strong compression.</span>
 </a>
 
+<a class="tool-link pdf-tool" href="compress-pdf-to-100kb.html">
+<strong>🎯 Compress PDF to 100KB</strong>
+<span>Reduce a PDF toward a 100 KB target directly in your browser.</span>
+</a>
+
+<a class="tool-link pdf-tool" href="compress-pdf-to-200kb.html">
+<strong>🎯 Compress PDF to 200KB</strong>
+<span>Reduce a PDF toward a 200 KB target directly in your browser.</span>
+</a>
+
+<a class="tool-link pdf-tool" href="compress-pdf-to-500kb.html">
+<strong>🎯 Compress PDF to 500KB</strong>
+<span>Reduce a PDF toward a 500 KB target directly in your browser.</span>
+</a>
+
 <a class="tool-link pdf-tool" href="merge-pdf-online.html">
 <strong>📑 Merge PDF Online</strong>
 <span>Combine multiple PDF files into one document directly in your browser.</span>
@@ -1172,9 +1187,19 @@ Choose a specific tool below or use the full ImageTools editor above.
 <span>Convert PDF pages to JPG images directly in your browser.</span>
 </a>
 
+<a class="tool-link pdf-tool" href="convert-pdf-to-jpg.html">
+<strong>📄 Convert PDF to JPG</strong>
+<span>Learn about converting PDF files to JPG images and open the free browser-based converter.</span>
+</a>
+
 <a class="tool-link pdf-tool" href="pdf-to-png-online.html">
 <strong>🖼️ PDF to PNG Online</strong>
 <span>Convert PDF pages to PNG images directly in your browser.</span>
+</a>
+
+<a class="tool-link pdf-tool" href="convert-pdf-to-png.html">
+<strong>📄 Convert PDF to PNG</strong>
+<span>Learn about converting PDF files to PNG images and open the free browser-based converter.</span>
 </a>
 
 <a class="tool-link pdf-tool" href="pdf-to-text-online.html">
@@ -1182,9 +1207,19 @@ Choose a specific tool below or use the full ImageTools editor above.
 <span>Extract selectable text from PDF files and download it as a TXT file.</span>
 </a>
 
+<a class="tool-link pdf-tool" href="convert-pdf-to-text.html">
+<strong>📄 Convert PDF to Text</strong>
+<span>Learn how to extract text from PDF files and open the free browser-based PDF to Text tool.</span>
+</a>
+
 <a class="tool-link pdf-tool" href="pdf-to-word-online.html">
 <strong>📝 PDF to Word Online</strong>
 <span>Convert selectable text from PDF files into editable Word DOCX documents directly in your browser.</span>
+</a>
+
+<a class="tool-link pdf-tool" href="convert-pdf-to-word.html">
+<strong>📄 Convert PDF to Word</strong>
+<span>Learn about converting PDF files to editable Word documents and open the PDF to Word tool.</span>
 </a>
 
 <a class="tool-link" href="compress-image-online.html">
@@ -1280,6 +1315,21 @@ Your files are processed locally whenever the tool supports local processing.
 <span>Reduce PDF file size with Basic, Balanced or Strong compression.</span>
 </a>
 
+<a class="tool-link pdf-tool" href="compress-pdf-to-100kb.html">
+<strong>🎯 Compress PDF to 100KB</strong>
+<span>Reduce a PDF toward a 100 KB target.</span>
+</a>
+
+<a class="tool-link pdf-tool" href="compress-pdf-to-200kb.html">
+<strong>🎯 Compress PDF to 200KB</strong>
+<span>Reduce a PDF toward a 200 KB target.</span>
+</a>
+
+<a class="tool-link pdf-tool" href="compress-pdf-to-500kb.html">
+<strong>🎯 Compress PDF to 500KB</strong>
+<span>Reduce a PDF toward a 500 KB target.</span>
+</a>
+
 <a class="tool-link pdf-tool" href="merge-pdf-online.html">
 <strong>📑 Merge PDF Online</strong>
 <span>Combine multiple PDF files into one PDF and reorder them before merging.</span>
@@ -1295,19 +1345,39 @@ Your files are processed locally whenever the tool supports local processing.
 <span>Convert PDF pages to JPG images directly in your browser.</span>
 </a>
 
+<a class="tool-link pdf-tool" href="convert-pdf-to-jpg.html">
+<strong>📄 Convert PDF to JPG</strong>
+<span>Learn about PDF to JPG conversion and open the free converter.</span>
+</a>
+
 <a class="tool-link pdf-tool" href="pdf-to-png-online.html">
 <strong>🖼️ PDF to PNG Online</strong>
 <span>Convert PDF pages to PNG images directly in your browser.</span>
 </a>
 
+<a class="tool-link pdf-tool" href="convert-pdf-to-png.html">
+<strong>📄 Convert PDF to PNG</strong>
+<span>Learn about PDF to PNG conversion and open the free converter.</span>
+</a>
+
 <a class="tool-link pdf-tool" href="pdf-to-text-online.html">
 <strong>📝 PDF to Text Online</strong>
-<span>Extract selectable text from PDF files and download it as a TXT file.</span>
+<span>Extract selectable PDF text and download it as a TXT file.</span>
+</a>
+
+<a class="tool-link pdf-tool" href="convert-pdf-to-text.html">
+<strong>📄 Convert PDF to Text</strong>
+<span>Learn about PDF to Text conversion and open the free browser-based tool.</span>
 </a>
 
 <a class="tool-link pdf-tool" href="pdf-to-word-online.html">
 <strong>📝 PDF to Word Online</strong>
 <span>Convert selectable PDF text into editable Word DOCX documents directly in your browser.</span>
+</a>
+
+<a class="tool-link pdf-tool" href="convert-pdf-to-word.html">
+<strong>📄 Convert PDF to Word</strong>
+<span>Learn about PDF to Word conversion and open the browser-based tool.</span>
 </a>
 
 </section>
@@ -2806,23 +2876,15 @@ fileInput.value="";
 
 fileList.innerHTML="";
 
-toolCard.classList.add(
-"hidden"
-);
+toolCard.classList.add("hidden");
 
-resultsSection.classList.add(
-"hidden"
-);
+resultsSection.classList.add("hidden");
 
 results.innerHTML="";
 
-progressWrap.classList.add(
-"hidden"
-);
+progressWrap.classList.add("hidden");
 
-startOverBtn.classList.add(
-"hidden"
-);
+startOverBtn.classList.add("hidden");
 
 processBtn.disabled=false;
 
