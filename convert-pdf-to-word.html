@@ -134,6 +134,16 @@ ul{
   border-top:0;
 }
 
+.tool-link{
+  color:#2563eb;
+  font-weight:700;
+  text-decoration:none;
+}
+
+.tool-link:hover{
+  text-decoration:underline;
+}
+
 footer{
   margin-top:50px;
   padding:30px 0;
@@ -205,9 +215,9 @@ footer a{
     <h2>Convert PDF to Editable Word</h2>
 
     <p>
-      Need to edit information contained in a PDF? The ImageTools PDF to
-      Word converter can extract selectable text from a PDF and create
-      an editable Word DOCX document.
+      Need to edit information contained in a PDF? The ImageTools
+      <a class="tool-link" href="pdf-to-word-online.html">PDF to Word converter</a>
+      can extract selectable text from a PDF and create an editable Word DOCX document.
     </p>
 
     <p>
@@ -271,6 +281,12 @@ footer a{
       After conversion, you can open the document using Microsoft Word
       or another application that supports the DOCX format.
     </p>
+
+    <p>
+      If you only need the text rather than a Word document, you can also use
+      <a class="tool-link" href="convert-pdf-to-text.html">Convert PDF to Text</a>
+      to extract the available text as a TXT file.
+    </p>
   </div>
 
   <div class="card">
@@ -284,47 +300,79 @@ footer a{
   </div>
 
   <div class="card">
+    <h2>Related PDF Conversion Tools</h2>
+
+    <p>
+      ImageTools provides several PDF conversion options depending on the
+      format you need.
+    </p>
+
+    <ul>
+      <li>
+        <a class="tool-link" href="convert-pdf-to-jpg.html">
+          Convert PDF to JPG
+        </a>
+        — Convert PDF pages into JPG images.
+      </li>
+
+      <li>
+        <a class="tool-link" href="convert-pdf-to-png.html">
+          Convert PDF to PNG
+        </a>
+        — Convert PDF pages into PNG images.
+      </li>
+
+      <li>
+        <a class="tool-link" href="convert-pdf-to-text.html">
+          Convert PDF to Text
+        </a>
+        — Extract selectable text and save it as TXT.
+      </li>
+    </ul>
+  </div>
+
+  <div class="card">
     <h2>More PDF Tools</h2>
 
     <ul>
       <li>
-        <a href="pdf-to-word-online.html">PDF to Word Converter</a>
+        <a class="tool-link" href="pdf-to-word-online.html">PDF to Word Converter</a>
       </li>
 
       <li>
-        <a href="pdf-to-jpg-online.html">Convert PDF to JPG</a>
+        <a class="tool-link" href="pdf-to-jpg-online.html">Convert PDF to JPG</a>
       </li>
 
       <li>
-        <a href="pdf-to-png-online.html">Convert PDF to PNG</a>
+        <a class="tool-link" href="pdf-to-png-online.html">Convert PDF to PNG</a>
       </li>
 
       <li>
-        <a href="pdf-to-text-online.html">Convert PDF to Text</a>
+        <a class="tool-link" href="pdf-to-text-online.html">Convert PDF to Text</a>
       </li>
 
       <li>
-        <a href="compress-pdf-online.html">Compress PDF Online</a>
+        <a class="tool-link" href="compress-pdf-online.html">Compress PDF Online</a>
       </li>
 
       <li>
-        <a href="compress-pdf-to-100kb.html">Compress PDF to 100KB</a>
+        <a class="tool-link" href="compress-pdf-to-100kb.html">Compress PDF to 100KB</a>
       </li>
 
       <li>
-        <a href="compress-pdf-to-200kb.html">Compress PDF to 200KB</a>
+        <a class="tool-link" href="compress-pdf-to-200kb.html">Compress PDF to 200KB</a>
       </li>
 
       <li>
-        <a href="compress-pdf-to-500kb.html">Compress PDF to 500KB</a>
+        <a class="tool-link" href="compress-pdf-to-500kb.html">Compress PDF to 500KB</a>
       </li>
 
       <li>
-        <a href="merge-pdf-online.html">Merge PDF Files</a>
+        <a class="tool-link" href="merge-pdf-online.html">Merge PDF Files</a>
       </li>
 
       <li>
-        <a href="split-pdf-online.html">Split PDF Online</a>
+        <a class="tool-link" href="split-pdf-online.html">Split PDF Online</a>
       </li>
     </ul>
   </div>
@@ -336,8 +384,9 @@ footer a{
       <h3>Can I convert PDF to Word for free?</h3>
 
       <p>
-        Yes. ImageTools provides a free browser-based PDF to Word
-        conversion tool without requiring an account.
+        Yes. ImageTools provides a free browser-based
+        <a class="tool-link" href="pdf-to-word-online.html">PDF to Word conversion tool</a>
+        without requiring an account.
       </p>
     </div>
 
@@ -366,7 +415,8 @@ footer a{
       <p>
         Scanned or image-only PDFs may not contain selectable text.
         Those documents generally require OCR to accurately recognize
-        their text before conversion.
+        their text before conversion. The current ImageTools PDF to Word
+        converter does not perform OCR.
       </p>
     </div>
 
