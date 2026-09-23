@@ -371,11 +371,25 @@ input[type=file]{
   color:#4b5563;
 }
 
-.privacy{
-  text-align:center;
-  padding:18px;
-  color:#475569;
-  font-size:14px;
+.related-tools{
+  display:grid;
+  gap:10px;
+  margin-top:14px;
+}
+
+.tool-link{
+  display:block;
+  padding:12px 14px;
+  border:1px solid #dbe3ef;
+  border-radius:10px;
+  background:#f8fafc;
+  color:#2563eb;
+  text-decoration:none;
+  font-weight:700;
+}
+
+.tool-link:hover{
+  background:#eff6ff;
 }
 
 footer{
@@ -591,6 +605,9 @@ footer a{
     into one file directly in your browser. It is useful when you
     need to combine documents for applications, school work,
     business documents, email attachments, or online submissions.
+    If you need to reduce the size of a PDF after merging,
+    you can also use our
+    <a class="tool-link" href="compress-pdf-online.html">PDF Compressor</a>.
   </p>
 
   <h3>
@@ -639,6 +656,61 @@ footer a{
     Yes. You can select multiple PDF files and combine them
     into a single PDF document.
   </p>
+
+  <h3>
+    Related PDF Tools
+  </h3>
+
+  <p>
+    After merging your documents, you may need another PDF tool
+    to prepare the final file.
+  </p>
+
+  <div class="related-tools">
+
+    <a
+      class="tool-link"
+      href="split-pdf-online.html"
+    >
+      Split PDF Online
+    </a>
+
+    <a
+      class="tool-link"
+      href="compress-pdf-online.html"
+    >
+      Compress PDF Online
+    </a>
+
+    <a
+      class="tool-link"
+      href="pdf-to-jpg-online.html"
+    >
+      PDF to JPG Converter
+    </a>
+
+    <a
+      class="tool-link"
+      href="pdf-to-png-online.html"
+    >
+      PDF to PNG Converter
+    </a>
+
+    <a
+      class="tool-link"
+      href="pdf-to-text-online.html"
+    >
+      PDF to Text Converter
+    </a>
+
+    <a
+      class="tool-link"
+      href="pdf-to-word-online.html"
+    >
+      PDF to Word Converter
+    </a>
+
+  </div>
 
 </section>
 
@@ -732,7 +804,7 @@ function formatSize(bytes){
     bytes /
     1024
   ).toFixed(2) +
-  " KB";
+    " KB";
 
 }
 
