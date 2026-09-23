@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>PDF to Text Converter Online — Extract Text from PDF | ImageTools</title>
+
+  <meta name="description" content="Extract text from PDF files online for free. Convert PDF to TXT directly in your browser with private local processing. No upload required.">
+
+  <meta name="keywords" content="PDF to text, PDF text extractor, extract text from PDF, convert PDF to text, PDF to TXT, online PDF text converter, free PDF text extractor">
+
+  <link rel="canonical" href="https://earnpathofficial.github.io/image-compressor-resizer/pdf-to-text-online.html">
+
+  <meta property="og:title" content="PDF to Text Converter Online — ImageTools">
+  <meta property="og:description" content="Extract text from PDF files for free directly in your browser.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://earnpathofficial.github.io/image-compressor-resizer/pdf-to-text-online.html">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "PDF to Text Converter",
+    "url": "https://earnpathofficial.github.io/image-compressor-resizer/pdf-to-text-online.html",
+    "description": "Free online PDF to text converter that extracts text from PDF files directly in your browser.",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.10.38/pdf.min.mjs"
+          type="module"></script>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f5f7fb;
+      color: #172033;
+    }
+
+    header {
+      background: #ffffff;
+      border-bottom: 1px solid #e5e7eb;
+      padding: 18px 16px;
+      text-align: center;
+    }
+
+    header a {
+      color: #172033;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 21px;
+    }
+
+    main {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 28px 16px 50px;
+    }
+
+    .hero {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    h1 {
+      font-size: 32px;
+      margin: 0 0 12px;
+    }
+
+    .hero p {
+      max-width: 700px;
+      margin: 0 auto;
+      line-height: 1.6;
+      color: #5b6475;
+    }
+
+    .card {
+      background: #ffffff;
+      border: 1px solid #e3e7ef;
+      border-radius: 18px;
+      padding: 22px;
+      margin-bottom: 22px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.04);
+    }
+
+    .upload-area {
+      border: 2px dashed #aab4c5;
+      border-radius: 16px;
+      padding: 38px 18px;
+      text-align: center;
+      cursor: pointer;
+      background: #fafbfe;
+      transition: 0.2s;
+    }
+
+    .upload-area:hover {
+      border-color: #2563eb;
+      background: #f7faff;
+    }
+
+    .upload-area.dragover {
+      border-color: #2563eb;
+      background: #eff6ff;
+    }
+
+    .upload-icon {
+      font-size: 42px;
+      margin-bottom: 10px;
+    }
+
+    .upload-area strong {
+      display: block;
+      font-size: 19px;
+      margin-bottom: 7px;
+    }
+
+    .upload-area span {
+      color: #667085;
+      font-size: 14px;
+    }
+
+    input[type="file"] {
+      display: none;
+    }
+
+    .file-info {
+      display: none;
+      margin-top: 18px;
+      padding: 14px;
+      background: #f3f6fb;
+      border-radius: 12px;
+    }
+
+    .file-info strong {
+      display: block;
+      margin-bottom: 5px;
+      word-break: break-word;
+    }
+
+    .file-info span {
+      color: #667085;
+      font-size: 14px;
+    }
+
+    button {
+      border: 0;
+      border-radius: 12px;
+      padding: 13px 18px;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      touch-action: manipulation;
+    }
+
+    .primary-btn {
+      width: 100%;
+      margin-top: 18px;
+      background: #2563eb;
+      color: #ffffff;
+    }
+
+    .primary-btn:disabled {
+      background: #aeb8c8;
+      cursor: not-allowed;
+    }
+
+    .secondary-btn {
+      background: #eef2f7;
+      color: #172033;
+      margin-right: 8px;
+      margin-bottom: 8px;
+    }
+
+    .results {
+      display: none;
+    }
+
+    .status {
+      display: none;
+      margin-top: 16px;
+      padding: 13px 15px;
+      border-radius: 12px;
+      background: #eef6ff;
+      color: #174ea6;
+      line-height: 1.5;
+    }
+
+    .status.error {
+      background: #fff1f2;
+      color: #b42318;
+    }
+
+    .text-output {
+      width: 100%;
+      min-height: 360px;
+      resize: vertical;
+      border: 1px solid #d6dce7;
+      border-radius: 12px;
+      padding: 15px;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 15px;
+      line-height: 1.55;
+      color: #172033;
+      background: #ffffff;
+    }
+
+    .stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 15px 0;
+    }
+
+    .stat {
+      background: #f3f6fb;
+      border-radius: 10px;
+      padding: 9px 12px;
+      font-size: 14px;
+      color: #4b5565;
+    }
+
+    .privacy {
+      background: #ecfdf3;
+      border-color: #b7ebc9;
+    }
+
+    .privacy strong {
+      color: #147a3e;
+    }
+
+    .info h2,
+    .faq h2 {
+      margin-top: 0;
+      font-size: 22px;
+    }
+
+    .info p,
+    .faq p {
+      color: #5b6475;
+      line-height: 1.7;
+    }
+
+    .faq-item {
+      border-top: 1px solid #e5e7eb;
+      padding: 17px 0;
+    }
+
+    .faq-item:first-of-type {
+      border-top: 0;
+    }
+
+    .faq-item h3 {
+      font-size: 17px;
+      margin: 0 0 8px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 25px 16px 35px;
+      color: #667085;
+      font-size: 14px;
+    }
+
+    footer a {
+      color: #2563eb;
+      text-decoration: none;
+    }
+
+    @media (max-width: 600px) {
+      main {
+        padding: 22px 12px 40px;
+      }
+
+      h1 {
+        font-size: 27px;
+      }
+
+      .card {
+        padding: 17px;
+        border-radius: 15px;
+      }
+
+      .upload-area {
+        padding: 32px 14px;
+      }
+
+      .text-output {
+        min-height: 300px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <a href="index.html">ImageTools — Free Image &amp; PDF Tools</a>
+</header>
+
+<main>
+
+  <section class="hero">
+    <h1>PDF to Text Converter Online</h1>
+    <p>
+      Extract text from PDF files for free. Your PDF is processed directly
+      in your browser and can be downloaded as a TXT file.
+    </p>
+  </section>
+
+  <section class="card">
+
+    <label class="upload-area" id="uploadArea" for="pdfInput">
+      <div class="upload-icon">📄</div>
+      <strong>Choose a PDF file</strong>
+      <span>or drag and drop your PDF here</span>
+    </label>
+
+    <input
+      type="file"
+      id="pdfInput"
+      accept="application/pdf,.pdf"
+    >
+
+    <div class="file-info" id="fileInfo">
+      <strong id="fileName"></strong>
+      <span id="fileSize"></span>
+    </div>
+
+    <button
+      class="primary-btn"
+      id="extractBtn"
+      disabled
+    >
+      Extract Text from PDF
+    </button>
+
+    <div class="status" id="status"></div>
+
+  </section>
+
+  <section class="card results" id="results">
+
+    <h2>Extracted Text</h2>
+
+    <div class="stats">
+      <div class="stat" id="pageStat">Pages: 0</div>
+      <div class="stat" id="charStat">Characters: 0</div>
+    </div>
+
+    <textarea
+      class="text-output"
+      id="textOutput"
+      placeholder="Extracted text will appear here..."
+      spellcheck="false"
+    ></textarea>
+
+    <div style="margin-top:15px;">
+      <button class="secondary-btn" id="copyBtn">
+        Copy Text
+      </button>
+
+      <button class="secondary-btn" id="downloadBtn">
+        Download TXT
+      </button>
+    </div>
+
+  </section>
+
+  <section class="card privacy">
+    <strong>🔒 Private browser processing</strong>
+    <p>
+      Your PDF is processed locally in your browser. The file is not
+      uploaded to our server. This helps keep your documents private.
+    </p>
+  </section>
+
+  <section class="card info">
+    <h2>Free PDF to Text Converter</h2>
+
+    <p>
+      PDF to Text extracts selectable text from PDF documents and lets you
+      copy or download the result as a plain TXT file.
+    </p>
+
+    <p>
+      This tool is useful for extracting text from reports, notes,
+      documents, articles, invoices and other text-based PDF files.
+    </p>
+
+    <p>
+      Scanned PDFs that contain only images may not contain selectable text.
+      Those documents require OCR technology to recognize the text inside
+      images.
+    </p>
+  </section>
+
+  <section class="card faq">
+
+    <h2>Frequently Asked Questions</h2>
+
+    <div class="faq-item">
+      <h3>Is this PDF to Text converter free?</h3>
+      <p>
+        Yes. You can extract text from PDF files for free directly in your
+        browser.
+      </p>
+    </div>
+
+    <div class="faq-item">
+      <h3>Are my PDF files uploaded?</h3>
+      <p>
+        No. The PDF is processed locally in your browser and is not uploaded
+        to our server.
+      </p>
+    </div>
+
+    <div class="faq-item">
+      <h3>Can it extract text from scanned PDFs?</h3>
+      <p>
+        This version extracts text that already exists inside the PDF.
+        Scanned image-only PDFs require OCR to recognize their text.
+      </p>
+    </div>
+
+    <div class="faq-item">
+      <h3>Can I download the extracted text?</h3>
+      <p>
+        Yes. After extraction, you can copy the text or download it as a
+        TXT file.
+      </p>
+    </div>
+
+  </section>
+
+</main>
+
+<footer>
+  <div>
+    © 2026 ImageTools — Free Image &amp; PDF Tools
+  </div>
+
+  <div style="margin-top:8px;">
+    <a href="index.html">Home</a>
+  </div>
+</footer>
+
+<script type="module">
+  import * as pdfjsLib from
+    "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.10.38/pdf.min.mjs";
+
+  pdfjsLib.GlobalWorkerOptions.workerSrc =
+    "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.10.38/pdf.worker.min.mjs";
+
+  const pdfInput = document.getElementById("pdfInput");
+  const uploadArea = document.getElementById("uploadArea");
+  const fileInfo = document.getElementById("fileInfo");
+  const fileName = document.getElementById("fileName");
+  const fileSize = document.getElementById("fileSize");
+  const extractBtn = document.getElementById("extractBtn");
+  const status = document.getElementById("status");
+  const results = document.getElementById("results");
+  const textOutput = document.getElementById("textOutput");
+  const pageStat = document.getElementById("pageStat");
+  const charStat = document.getElementById("charStat");
+  const copyBtn = document.getElementById("copyBtn");
+  const downloadBtn = document.getElementById("downloadBtn");
+
+  let selectedFile = null;
+
+  function formatBytes(bytes) {
+    if (bytes < 1024) {
+      return bytes + " B";
+    }
+
+    if (bytes < 1024 * 1024) {
+      return (bytes / 1024).toFixed(1) + " KB";
+    }
+
+    return (bytes / (1024 * 1024)).toFixed(2) + " MB";
+  }
+
+  function showStatus(message, isError = false) {
+    status.textContent = message;
+    status.classList.toggle("error", isError);
+    status.style.display = "block";
+  }
+
+  function selectFile(file) {
+    if (!file) return;
+
+    const isPdf =
+      file.type === "application/pdf" ||
+      file.name.toLowerCase().endsWith(".pdf");
+
+    if (!isPdf) {
+      selectedFile = null;
+      extractBtn.disabled = true;
+      fileInfo.style.display = "none";
+      showStatus("Please select a PDF file.", true);
+      return;
+    }
+
+    selectedFile = file;
+
+    fileName.textContent = file.name;
+    fileSize.textContent = formatBytes(file.size);
+
+    fileInfo.style.display = "block";
+    extractBtn.disabled = false;
+
+    results.style.display = "none";
+    textOutput.value = "";
+
+    showStatus("PDF ready. Tap “Extract Text from PDF” to begin.");
+  }
+
+  pdfInput.addEventListener("change", () => {
+    selectFile(pdfInput.files[0]);
+  });
+
+  uploadArea.addEventListener("dragover", (event) => {
+    event.preventDefault();
+    uploadArea.classList.add("dragover");
+  });
+
+  uploadArea.addEventListener("dragleave", () => {
+    uploadArea.classList.remove("dragover");
+  });
+
+  uploadArea.addEventListener("drop", (event) => {
+    event.preventDefault();
+    uploadArea.classList.remove("dragover");
+
+    const file = event.dataTransfer.files[0];
+    selectFile(file);
+  });
+
+  extractBtn.addEventListener("click", async () => {
+    if (!selectedFile) return;
+
+    extractBtn.disabled = true;
+    results.style.display = "none";
+    textOutput.value = "";
+
+    try {
+      showStatus("Reading PDF...");
+
+      const arrayBuffer = await selectedFile.arrayBuffer();
+
+      const pdf = await pdfjsLib.getDocument({
+        data: arrayBuffer
+      }).promise;
+
+      let allText = "";
+
+      for (let pageNumber = 1; pageNumber <= pdf.numPages; pageNumber++) {
+
+        showStatus(
+          "Extracting text from page " +
+          pageNumber +
+          " of " +
+          pdf.numPages +
+          "..."
+        );
+
+        const page = await pdf.getPage(pageNumber);
+
+        const content = await page.getTextContent();
+
+        const pageText = content.items
+          .map(item => item.str)
+          .join(" ")
+          .replace(/\s+/g, " ")
+          .trim();
+
+        allText +=
+          "----- Page " +
+          pageNumber +
+          " -----\n\n" +
+          (pageText || "[No selectable text found on this page]") +
+          "\n\n";
+      }
+
+      allText = allText.trim();
+
+      textOutput.value = allText;
+
+      pageStat.textContent =
+        "Pages: " + pdf.numPages;
+
+      charStat.textContent =
+        "Characters: " + allText.length.toLocaleString();
+
+      results.style.display = "block";
+
+      if (allText.length > 0) {
+        showStatus(
+          "Done! Text extracted from " +
+          pdf.numPages +
+          " page(s)."
+        );
+      } else {
+        showStatus(
+          "No selectable text was found. This PDF may contain scanned images only.",
+          true
+        );
+      }
+
+      results.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+      });
+
+    } catch (error) {
+
+      console.error(error);
+
+      showStatus(
+        "Could not extract text from this PDF. Please try another PDF file.",
+        true
+      );
+
+    } finally {
+      extractBtn.disabled = false;
+    }
+  });
+
+  copyBtn.addEventListener("click", async () => {
+    const text = textOutput.value;
+
+    if (!text) {
+      showStatus("There is no extracted text to copy.", true);
+      return;
+    }
+
+    try {
+      await navigator.clipboard.writeText(text);
+      showStatus("Text copied to your clipboard.");
+    } catch (error) {
+      textOutput.select();
+      document.execCommand("copy");
+      showStatus("Text copied to your clipboard.");
+    }
+  });
+
+  downloadBtn.addEventListener("click", () => {
+    const text = textOutput.value;
+
+    if (!text) {
+      showStatus("There is no extracted text to download.", true);
+      return;
+    }
+
+    const blob = new Blob(
+      [text],
+      { type: "text/plain;charset=utf-8" }
+    );
+
+    const url = URL.createObjectURL(blob);
+
+    const link = document.createElement("a");
+
+    link.href = url;
+    link.download = "extracted-text.txt";
+
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+
+    URL.revokeObjectURL(url);
+
+    showStatus("TXT file downloaded.");
+  });
+</script>
+
+</body>
+</html>
