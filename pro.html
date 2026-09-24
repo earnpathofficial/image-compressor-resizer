@@ -246,7 +246,6 @@
     }
   </style>
 
-  <!-- Paddle.js -->
   <script src="https://cdn.paddle.com/paddle/v2/paddle.js"></script>
 </head>
 
@@ -474,11 +473,8 @@
     // Paddle Sandbox
     Paddle.Environment.set("sandbox");
 
-    // Replace the placeholder below with your own Paddle
-    // Sandbox client-side token beginning with test_
     Paddle.Initialize({
-      token: 
-        test_fae247538357e7b426d05a44c83
+      token: test_fae247538357e7b426d05a44c83
     });
 
     function openPaddleCheckout(event) {
@@ -487,7 +483,7 @@
       Paddle.Checkout.open({
         items: [
           {
-            priceId: "pri_01m3aanhzwa8y716smnnmd0y00",
+            priceId: "pri_01m3ahemrp74pps2xfbb611xhz",
             quantity: 1
           }
         ]
@@ -496,4 +492,4 @@
   </script>
 
 </body>
-</html>            
+</html>
