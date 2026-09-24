@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>ImageTools Pro — More Power, Less Limits</title>
+
+  <meta name="description" content="Upgrade to ImageTools Pro for more powerful image and PDF tools, larger usage limits, advanced controls, and an ad-free experience.">
+
+  <meta name="robots" content="index, follow">
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f5f7fb;
+      color: #172033;
+      line-height: 1.6;
+    }
+
+    header {
+      background: #ffffff;
+      border-bottom: 1px solid #e5e7eb;
+      padding: 22px 16px;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 30px;
+      color: #172033;
+    }
+
+    header p {
+      margin: 4px 0 0;
+      color: #64748b;
+      font-size: 15px;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      padding: 14px 16px;
+      background: #ffffff;
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #2563eb;
+      font-weight: 600;
+      font-size: 14px;
+      padding: 7px 10px;
+    }
+
+    .hero {
+      max-width: 850px;
+      margin: 0 auto;
+      padding: 45px 16px 25px;
+      text-align: center;
+    }
+
+    .hero h2 {
+      margin: 0 0 12px;
+      font-size: 38px;
+      line-height: 1.2;
+    }
+
+    .hero p {
+      max-width: 650px;
+      margin: 0 auto;
+      color: #64748b;
+      font-size: 17px;
+    }
+
+    .pricing-card {
+      max-width: 480px;
+      margin: 20px auto 45px;
+      background: #ffffff;
+      border: 2px solid #2563eb;
+      border-radius: 20px;
+      padding: 30px 22px;
+      text-align: center;
+      box-shadow: 0 8px 30px rgba(37, 99, 235, 0.08);
+    }
+
+    .badge {
+      display: inline-block;
+      background: #2563eb;
+      color: #ffffff;
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: bold;
+      margin-bottom: 15px;
+    }
+
+    .pricing-card h3 {
+      margin: 5px 0 8px;
+      font-size: 27px;
+    }
+
+    .price {
+      margin: 8px 0;
+      font-size: 44px;
+      font-weight: 800;
+      color: #172033;
+    }
+
+    .price span {
+      font-size: 16px;
+      font-weight: normal;
+      color: #64748b;
+    }
+
+    .price-note {
+      color: #64748b;
+      font-size: 14px;
+      margin-bottom: 22px;
+    }
+
+    .upgrade-button {
+      display: block;
+      width: 100%;
+      border: none;
+      border-radius: 12px;
+      background: #2563eb;
+      color: #ffffff;
+      padding: 15px 18px;
+      font-size: 17px;
+      font-weight: bold;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .upgrade-button:hover {
+      background: #1d4ed8;
+    }
+
+    .checkout-note {
+      margin: 12px 0 0;
+      color: #64748b;
+      font-size: 12px;
+    }
+
+    .section {
+      max-width: 950px;
+      margin: 0 auto 45px;
+      padding: 0 16px;
+    }
+
+    .section h2 {
+      text-align: center;
+      font-size: 27px;
+      margin-bottom: 22px;
+    }
+
+    .comparison {
+      width: 100%;
+      background: #ffffff;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid #e5e7eb;
+    }
+
+    .comparison-row {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr;
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    .comparison-row:last-child {
+      border-bottom: none;
+    }
+
+    .comparison-row > div {
+      padding: 15px 12px;
+      text-align: center;
+    }
+
+    .comparison-row > div:first-child {
+      text-align: left;
+      font-weight: 600;
+    }
+
+    .comparison-header {
+      background: #172033;
+      color: #ffffff;
+      font-weight: bold;
+    }
+
+    .check {
+      color: #16a34a;
+      font-weight: bold;
+    }
+
+    .dash {
+      color: #94a3b8;
+    }
+
+    .benefits {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .benefit {
+      background: #ffffff;
+      padding: 22px 18px;
+      border-radius: 16px;
+      border: 1px solid #e5e7eb;
+    }
+
+    .benefit h3 {
+      margin: 0 0 8px;
+      font-size: 18px;
+    }
+
+    .benefit p {
+      margin: 0;
+      color: #64748b;
+      font-size: 14px;
+    }
+
+    .faq {
+      max-width: 750px;
+      margin: 0 auto;
+    }
+
+    .faq-item {
+      background: #ffffff;
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      padding: 18px;
+      margin-bottom: 12px;
+    }
+
+    .faq-item h3 {
+      margin: 0 0 7px;
+      font-size: 17px;
+    }
+
+    .faq-item p {
+      margin: 0;
+      color: #64748b;
+      font-size: 14px;
+    }
+
+    .bottom-cta {
+      max-width: 700px;
+      margin: 0 auto 45px;
+      padding: 30px 20px;
+      background: #ffffff;
+      border-radius: 18px;
+      text-align: center;
+      border: 1px solid #e5e7eb;
+    }
+
+    .bottom-cta h2 {
+      margin-top: 0;
+    }
+
+    .bottom-cta p {
+      color: #64748b;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-top: 8px;
+      color: #2563eb;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    footer {
+      background: #ffffff;
+      border-top: 1px solid #e5e7eb;
+      text-align: center;
+      padding: 25px 16px;
+      color: #64748b;
+      font-size: 13px;
+    }
+
+    footer strong {
+      color: #172033;
+    }
+
+    @media (max-width: 700px) {
+      .hero {
+        padding-top: 32px;
+      }
+
+      .hero h2 {
+        font-size: 30px;
+      }
+
+      .benefits {
+        grid-template-columns: 1fr;
+      }
+
+      .comparison {
+        font-size: 13px;
+      }
+
+      .comparison-row > div {
+        padding: 12px 7px;
+      }
+
+      .price {
+        font-size: 40px;
+      }
+    }
+
+    @media (max-width: 430px) {
+      .comparison-row {
+        grid-template-columns: 1.3fr 0.85fr 0.85fr;
+      }
+
+      .comparison-row > div:first-child {
+        font-size: 12px;
+      }
+
+      .comparison-row > div {
+        font-size: 12px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>ImageTools</h1>
+    <p>Free Image &amp; PDF Tools</p>
+  </header>
+
+  <nav>
+    <a href="index.html">Image Tools</a>
+    <a href="index.html#pdf-tools">PDF Tools</a>
+    <a href="index.html#popular-tools">Popular Tools</a>
+    <a href="pro.html">Pro</a>
+  </nav>
+
+  <main>
+
+    <section class="hero">
+      <h2>Upgrade to ImageTools Pro</h2>
+      <p>
+        Get more from ImageTools with higher usage limits, advanced features,
+        larger batches and an ad-free experience.
+      </p>
+    </section>
+
+    <section class="pricing-card" aria-label="ImageTools Pro pricing">
+      <div class="badge">IMAGE TOOLS PRO</div>
+
+      <h3>Pro Monthly</h3>
+
+      <div class="price">
+        $3.99 <span>/ month</span>
+      </div>
+
+      <div class="price-note">
+        Simple monthly access. Cancel anytime.
+      </div>
+
+      <!-- Paddle checkout will be connected here later -->
+      <a
+        href="#"
+        class="upgrade-button"
+        onclick="showCheckoutMessage(event)"
+      >
+        Upgrade to Pro
+      </a>
+
+      <p class="checkout-note">
+        Secure checkout will be available when Pro payments are activated.
+      </p>
+    </section>
+
+    <section class="section">
+      <h2>Free vs Pro</h2>
+
+      <div class="comparison">
+
+        <div class="comparison-row comparison-header">
+          <div>Feature</div>
+          <div>Free</div>
+          <div>Pro</div>
+        </div>
+
+        <div class="comparison-row">
+          <div>Image compression</div>
+          <div class="check">✓</div>
+          <div class="check">✓</div>
+        </div>
+
+        <div class="comparison-row">
+          <div>Image resizing</div>
+          <div class="check">✓</div>
+          <div class="check">✓</div>
+        </div>
+
+        <div class="comparison-row">
+          <div>Image cropping</div>
+          <div class="check">✓</div>
+          <div class="check">✓</div>
+        </div>
+
+        <div class="comparison-row">
+          <div>Image format conversion</div>
+          <div class="check">✓</div>
+          <div class="check">✓</div>
+        </div>
+
+        <div class="comparison-row">
+          <div>PDF tools</div>
+          <div class="check">✓</div>
+          <div class="check">✓</div>
+        </div>
+
+        <div class="comparison-row">
+          <div>Higher usage limits</div>
+          <div class="dash">—</div>
+          <div class="check">✓</div>
+        </div>
+
+        <div class="comparison-row">
+          <div>Larger batch processing</div>
+          <div class="dash">—</div>
+          <div class="check">✓</div>
+        </div>
+
+        <div class="comparison-row">
+          <div>Advanced controls</div>
+          <div class="dash">—</div>
+          <div class="check">✓</div>
+        </div>
+
+        <div class="comparison-row">
+          <div>Ad-free experience</div>
+          <div class="dash">—</div>
+          <div class="check">✓</div>
+        </div>
+
+        <div class="comparison-row">
+          <div>Future Pro features</div>
+          <div class="dash">—</div>
+          <div class="check">✓</div>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>What Pro Gives You</h2>
+
+      <div class="benefits">
+
+        <div class="benefit">
+          <h3>⚡ Higher Limits</h3>
+          <p>
+            Process more files and use ImageTools more heavily when you need it.
+          </p>
+        </div>
+
+        <div class="benefit">
+          <h3>📦 Larger Batches</h3>
+          <p>
+            Work with larger groups of images and documents more efficiently.
+          </p>
+        </div>
+
+        <div class="benefit">
+          <h3>🎛️ Advanced Controls</h3>
+          <p>
+            Access additional controls as ImageTools Pro features continue to grow.
+          </p>
+        </div>
+
+        <div class="benefit">
+          <h3>🚫 No Ads</h3>
+          <p>
+            Use the Pro experience without advertising getting in the way.
+          </p>
+        </div>
+
+        <div class="benefit">
+          <h3>🚀 New Pro Features</h3>
+          <p>
+            Pro will receive additional premium capabilities as ImageTools expands.
+          </p>
+        </div>
+
+        <div class="benefit">
+          <h3>🔒 Browser-Based Privacy</h3>
+          <p>
+            ImageTools is designed around browser-based processing for supported tools.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Frequently Asked Questions</h2>
+
+      <div class="faq">
+
+        <div class="faq-item">
+          <h3>How much does ImageTools Pro cost?</h3>
+          <p>
+            ImageTools Pro is planned at $3.99 per month.
+          </p>
+        </div>
+
+        <div class="faq-item">
+          <h3>Is the free version going away?</h3>
+          <p>
+            No. ImageTools will continue to provide free image and PDF tools.
+          </p>
+        </div>
+
+        <div class="faq-item">
+          <h3>Do I need Pro to use ImageTools?</h3>
+          <p>
+            No. Pro is optional. You can continue using the available free tools.
+          </p>
+        </div>
+
+        <div class="faq-item">
+          <h3>When can I upgrade?</h3>
+          <p>
+            Pro checkout will be activated after the payment system is fully configured.
+          </p>
+        </div>
+
+        <div class="faq-item">
+          <h3>Will more Pro features be added?</h3>
+          <p>
+            Yes. ImageTools Pro is designed to expand as new premium tools and
+            capabilities are introduced.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="bottom-cta">
+      <h2>Keep using ImageTools for free</h2>
+
+      <p>
+        You can continue using the free ImageTools tools whenever you want.
+        Upgrade when you need the additional Pro capabilities.
+      </p>
+
+      <a class="back-link" href="index.html">
+        ← Back to ImageTools
+      </a>
+    </section>
+
+  </main>
+
+  <footer>
+    <strong>ImageTools</strong><br>
+    Free Image &amp; PDF Tools<br><br>
+    © 2026 ImageTools
+  </footer>
+
+  <script>
+    function showCheckoutMessage(event) {
+      event.preventDefault();
+
+      alert(
+        "ImageTools Pro checkout is being prepared. Payment will be activated after the Paddle setup is complete."
+      );
+    }
+  </script>
+
+</body>
+</html>
