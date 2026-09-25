@@ -151,6 +151,19 @@
       margin-top: 14px;
     }
 
+    .status-message {
+      display: none;
+      max-width: 480px;
+      margin: 20px auto 0;
+      padding: 15px 18px;
+      border-radius: 10px;
+      background: #ecfdf5;
+      border: 1px solid #a7f3d0;
+      color: #065f46;
+      text-align: center;
+      font-weight: 600;
+    }
+
     .section {
       max-width: 950px;
       margin: 55px auto;
@@ -302,6 +315,8 @@
       </div>
 
     </section>
+
+    <div id="statusMessage" class="status-message"></div>
 
     <section class="section">
 
@@ -474,15 +489,64 @@
   <script>
     // Paddle Sandbox
     Paddle.Environment.set("sandbox");
+
+    // Create a stable ImageTools customer ID for this browser.
+    // This is an identifier only; it is not a secret.
+    function getImageToolsCustomerId() {
+      const storageKey = "imagetools_customer_id";
+
+      let customerId = localStorage.getItem(storageKey);
+
+      if (!customerId) {
+        customerId =
+          "it_" +
+          Date.now().toString(36) +
+          "_" +
+          crypto.randomUUID().replace(/-/g, "");
+
+        localStorage.setItem(storageKey, customerId);
+      }
+
+      return customerId;
+    }
+
+    function showStatus(message) {
+      const statusMessage =
+        document.getElementById("statusMessage");
+
+      statusMessage.textContent = message;
+      statusMessage.style.display = "block";
+    }
+
     Paddle.Initialize({
-  token: "test_fae247538357e7b426d05a44c83",
-  eventCallback: function(data) {
-    alert(JSON.stringify(data));
-  }
-});
+      token: "test_fae247538357e7b426d05a44c83",
+
+      eventCallback: function(data) {
+        console.log("Paddle event:", data);
+
+        if (data.name === "checkout.completed") {
+          const transactionId =
+            data.data?.transaction_id || null;
+
+          if (transactionId) {
+            localStorage.setItem(
+              "imagetools_transaction_id",
+              transactionId
+            );
+          }
+
+          showStatus(
+            "Payment completed successfully. Your ImageTools Pro subscription is being activated."
+          );
+        }
+      }
+    });
 
     function openPaddleCheckout(event) {
       event.preventDefault();
+
+      const customerId =
+        getImageToolsCustomerId();
 
       Paddle.Checkout.open({
         items: [
@@ -490,7 +554,12 @@
             priceId: "pri_01m3ahemrp74pps2xfbb611xhz",
             quantity: 1
           }
-        ]
+        ],
+
+        customData: {
+          imagetools_customer_id: customerId,
+          product: "ImageTools Pro"
+        }
       });
     }
   </script>
