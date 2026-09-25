@@ -107,6 +107,20 @@ background:#eff6ff;
 transform:scale(.98);
 }
 
+/* ImageTools Pro navigation */
+.site-nav .pro-nav{
+background:#111827;
+color:#fff;
+border-color:#111827;
+font-weight:700;
+}
+
+.site-nav .pro-nav:hover{
+background:#1f2937;
+color:#fff;
+border-color:#1f2937;
+}
+
 main{
 max-width:900px;
 margin:auto;
@@ -130,6 +144,53 @@ line-height:1.6;
 margin-left:auto;
 margin-right:auto;
 max-width:760px;
+}
+
+/* ImageTools Pro homepage promotion */
+.pro-banner{
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:15px;
+margin:0 auto 25px;
+padding:16px 18px;
+background:#111827;
+color:#fff;
+border-radius:14px;
+box-shadow:0 5px 18px rgba(0,0,0,.08);
+}
+
+.pro-banner strong{
+display:block;
+font-size:16px;
+margin-bottom:3px;
+}
+
+.pro-banner span{
+display:block;
+font-size:13px;
+color:#d1d5db;
+line-height:1.4;
+}
+
+.pro-banner a{
+display:inline-block;
+flex-shrink:0;
+text-decoration:none;
+background:#fff;
+color:#111827;
+font-weight:700;
+padding:10px 15px;
+border-radius:9px;
+font-size:13px;
+}
+
+.pro-banner a:hover{
+background:#f3f4f6;
+}
+
+.pro-banner a:active{
+transform:scale(.98);
 }
 
 .card{
@@ -526,6 +587,27 @@ font-size:14px;
 line-height:1.55;
 }
 
+.pro-banner{
+flex-direction:column;
+align-items:stretch;
+text-align:center;
+padding:16px;
+}
+
+.pro-banner strong{
+font-size:15px;
+}
+
+.pro-banner span{
+font-size:12px;
+margin-top:4px;
+}
+
+.pro-banner a{
+width:100%;
+padding:11px;
+}
+
 .card{
 padding:16px;
 border-radius:14px;
@@ -592,6 +674,30 @@ font-size:11px;
 .hero p{
 font-size:14px;
 line-height:1.55;
+}
+
+.pro-banner{
+margin-bottom:20px;
+padding:15px 13px;
+border-radius:13px;
+}
+
+.pro-banner strong{
+font-size:15px;
+line-height:1.35;
+}
+
+.pro-banner span{
+font-size:12px;
+line-height:1.45;
+}
+
+.pro-banner a{
+font-size:14px;
+min-height:46px;
+display:flex;
+align-items:center;
+justify-content:center;
 }
 
 .card{
@@ -762,6 +868,7 @@ padding:7px 8px;
 <a href="#image-tools">Image Tools</a>
 <a href="#pdf-tools">PDF Tools</a>
 <a href="#popular-tools">Popular Tools</a>
+<a href="pro.html" class="pro-nav">⭐ Pro — $3.99/mo</a>
 <a href="#faq">FAQs</a>
 </nav>
 
@@ -774,6 +881,15 @@ Free online image tools for compressing, resizing, cropping,
 removing backgrounds and converting JPG, PNG and WebP images.
 Everything happens directly in your browser.
 </p>
+</section>
+
+<section class="pro-banner">
+<div>
+<strong>⭐ ImageTools Pro — $3.99/month</strong>
+<span>More usage, larger batches, advanced controls & ad-free tools.</span>
+</div>
+
+<a href="pro.html">View Pro</a>
 </section>
 
 <section class="card" id="image-tools">
