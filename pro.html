@@ -474,13 +474,12 @@
   <script>
     // Paddle Sandbox
     Paddle.Environment.set("sandbox");
-
     Paddle.Initialize({
-      token: "test_fae247538357e7b426d05a44c83
-      eventCallback: function(data) {
-        alert(JSON.stringify(data));
-      }
-    });
+  token: "test_fae247538357e7b426d05a44c83",
+  eventCallback: function(data) {
+    alert(JSON.stringify(data));
+  }
+});
 
     function openPaddleCheckout(event) {
       event.preventDefault();
