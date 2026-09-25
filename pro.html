@@ -490,6 +490,9 @@
     // Paddle Sandbox
     Paddle.Environment.set("sandbox");
 
+    const CHECK_PRO_URL =
+      "https://imagetools-pro-backend.netlify.app/.netlify/functions/check-pro";
+
     // Create a stable ImageTools customer ID for this browser.
     // This is an identifier only; it is not a secret.
     function getImageToolsCustomerId() {
@@ -518,13 +521,82 @@
       statusMessage.style.display = "block";
     }
 
+    function showProStatus(message) {
+      const statusMessage =
+        document.getElementById("statusMessage");
+
+      statusMessage.textContent = message;
+      statusMessage.style.display = "block";
+    }
+
+    async function checkProSubscription(subscriptionId) {
+      if (!subscriptionId) {
+        return false;
+      }
+
+      try {
+        const response = await fetch(CHECK_PRO_URL, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            subscriptionId: subscriptionId
+          })
+        });
+
+        const data = await response.json();
+
+        console.log("ImageTools Pro status:", data);
+
+        if (data.isPro === true) {
+          localStorage.setItem(
+            "imagetools_subscription_id",
+            data.subscriptionId || subscriptionId
+          );
+
+          localStorage.setItem(
+            "imagetools_pro",
+            "true"
+          );
+
+          showProStatus(
+            "✓ ImageTools Pro is active."
+          );
+
+          return true;
+        }
+
+        localStorage.removeItem("imagetools_pro");
+
+        showStatus(
+          "Your ImageTools Pro subscription is not currently active."
+        );
+
+        return false;
+
+      } catch (error) {
+        console.error(
+          "Unable to check ImageTools Pro status:",
+          error
+        );
+
+        showStatus(
+          "Payment was received, but Pro status is still being verified. Please try again shortly."
+        );
+
+        return false;
+      }
+    }
+
     Paddle.Initialize({
       token: "test_fae247538357e7b426d05a44c83",
 
-      eventCallback: function(data) {
+      eventCallback: async function(data) {
         console.log("Paddle event:", data);
 
         if (data.name === "checkout.completed") {
+
           const transactionId =
             data.data?.transaction_id || null;
 
@@ -535,9 +607,33 @@
             );
           }
 
-          showStatus(
-            "Payment completed successfully. Your ImageTools Pro subscription is being activated."
-          );
+          const subscriptionId =
+            data.data?.subscription_id ||
+            data.data?.subscriptionId ||
+            null;
+
+          if (subscriptionId) {
+            localStorage.setItem(
+              "imagetools_subscription_id",
+              subscriptionId
+            );
+
+            showStatus(
+              "Payment completed. Verifying your ImageTools Pro subscription..."
+            );
+
+            await checkProSubscription(subscriptionId);
+
+          } else {
+            showStatus(
+              "Payment completed successfully. Your ImageTools Pro subscription is being activated."
+            );
+
+            console.log(
+              "No subscription ID was available in checkout.completed:",
+              data
+            );
+          }
         }
       }
     });
@@ -562,6 +658,26 @@
         }
       });
     }
+
+    // Check a previously saved subscription when the page opens.
+    window.addEventListener("DOMContentLoaded", async function() {
+
+      const savedSubscriptionId =
+        localStorage.getItem(
+          "imagetools_subscription_id"
+        );
+
+      if (savedSubscriptionId) {
+        console.log(
+          "Checking saved ImageTools Pro subscription..."
+        );
+
+        await checkProSubscription(
+          savedSubscriptionId
+        );
+      }
+
+    });
   </script>
 
 </body>
