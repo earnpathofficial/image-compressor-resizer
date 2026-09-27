@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 
-<meta name="google-site-verification" content="rjiAn6FY46_tcN-DQzYyTKr8FttbQp1F48o9rE9gR50" />
+<meta name="google-site-verification" content="rjiAn6FY46_tcN-DQzYyTKr8FttbQp1F48o9rE9gR50">
 
 <title>Free Image & PDF Tools — Compress, Resize, Crop & Convert | ImageTools</title>
 <meta name="description" content="Free online image and PDF tools. Compress images and PDFs, resize photos, remove backgrounds, crop pictures, convert JPG, PNG and WebP, and convert PDF to JPG, PNG, text and Word directly in your browser.">
@@ -923,7 +923,7 @@ Everything happens directly in your browser.
 <span>or choose images from your device</span>
 <br><br>
 
-<label>
+<!-- FIXED: button is no longer wrapped inside the label -->
 <button type="button" class="primary" id="chooseBtn">
 Choose Images
 </button>
@@ -933,7 +933,6 @@ type="file"
 id="fileInput"
 accept="image/jpeg,image/png,image/webp"
 multiple>
-</label>
 
 <div id="planStatus" class="free-status">
 Checking your ImageTools plan...
@@ -1013,15 +1012,11 @@ Convert Format
 <div class="control-grid">
 
 <div class="control">
-
 <label>Target Size</label>
-
 <input type="number" id="targetSize" value="200" min="1">
-
 </div>
 
 <div class="control">
-
 <label>Unit</label>
 
 <select id="targetUnit">
@@ -1056,7 +1051,6 @@ Choose a preset or enter your own dimensions.
 <div class="control-grid">
 
 <div class="control">
-
 <label>Resize Preset</label>
 
 <select id="resizePreset">
@@ -1071,7 +1065,6 @@ Choose a preset or enter your own dimensions.
 </div>
 
 <div class="control">
-
 <label>Resize Quality</label>
 
 <select id="resizeQuality">
@@ -1108,29 +1101,20 @@ Conversion keeps the original image dimensions.
 <div class="control-grid">
 
 <div class="control">
-
 <label>Width (pixels)</label>
-
 <input type="number" id="width" min="1">
-
 </div>
 
 <div class="control">
-
 <label>Height (pixels)</label>
-
 <input type="number" id="height" min="1">
-
 </div>
 
 </div>
 
 <label class="checkbox">
-
 <input type="checkbox" id="aspect" checked>
-
 Keep original aspect ratio
-
 </label>
 
 </div>
@@ -1142,7 +1126,6 @@ Keep original aspect ratio
 <div class="control-grid">
 
 <div class="control">
-
 <label>Crop</label>
 
 <select id="cropMode">
@@ -1153,7 +1136,6 @@ Keep original aspect ratio
 </div>
 
 <div class="control hidden" id="cropRatioControl">
-
 <label>Crop Ratio</label>
 
 <select id="cropRatio">
@@ -1175,7 +1157,6 @@ using your selected ratio before resizing or compression.
 </div>
 
 <div class="control">
-
 <label>Output Format</label>
 
 <select id="format">
@@ -1183,7 +1164,6 @@ using your selected ratio before resizing or compression.
 <option value="image/png">PNG</option>
 <option value="image/webp">WebP</option>
 </select>
-
 </div>
 
 <button type="button" class="primary" id="processBtn">
@@ -1197,9 +1177,7 @@ Start Over
 <div class="progress-wrap hidden" id="progressWrap">
 
 <div class="progress-bar">
-
 <div class="progress" id="progress"></div>
-
 </div>
 
 <p id="progressText">Processing...</p>
@@ -1226,7 +1204,6 @@ atOptions={
 <section id="resultsSection" class="card hidden">
 
 <h3>Processed Images</h3>
-
 <div id="results"></div>
 
 </section>
@@ -1234,12 +1211,9 @@ atOptions={
 <section class="card">
 
 <div class="info">
-
 🔒 <strong>Your privacy matters</strong><br>
-
 Images are processed directly inside your browser.
 Your original images are not uploaded to our server by this tool.
-
 </div>
 
 </section>
@@ -1247,47 +1221,35 @@ Your original images are not uploaded to our server by this tool.
 <section class="feature-grid">
 
 <div class="feature">
-
 <div class="feature-icon">🎯</div>
-
 <h3>Target File Size</h3>
-
 <p>
 Need an image under 200 KB? Set your target size and let
 the browser find a suitable compression level.
 Try our <a href="compress-image-to-200kb.html">Compress Image to 200KB</a>
 tool for a specific target.
 </p>
-
 </div>
 
 <div class="feature">
-
 <div class="feature-icon">📐</div>
-
 <h3>Smart Resize</h3>
-
 <p>
 Resize images to common widths or enter custom dimensions
 while keeping the original proportions and controlling output quality.
 See <a href="resize-image-online.html">Resize Image Online</a>
 for more resizing options.
 </p>
-
 </div>
 
 <div class="feature">
-
 <div class="feature-icon">🔄</div>
-
 <h3>Convert Formats</h3>
-
 <p>
 Convert JPG, PNG and WebP images directly in your browser
 without uploading them. Try <a href="jpg-to-webp.html">JPG to WebP</a>
 or explore the other image conversion tools below.
 </p>
-
 </div>
 
 </section>
@@ -1449,7 +1411,6 @@ Choose a specific tool below or use the full ImageTools editor above.
 </a>
 
 </div>
-
 </section>
 
 <section class="card" id="pdf-tools">
@@ -1682,7 +1643,7 @@ Balanced or Strong compression.
 </details>
 
 <details>
-<summary>Are PDFs uploaded to a server?</summary>
+<summary>Are my PDF files uploaded to a server?</summary>
 <p>
 The ImageTools PDF Compressor processes the PDF locally in your
 browser rather than uploading the original PDF to our server.
@@ -1871,8 +1832,7 @@ function getImageToolsCustomerId(){
 
 const storageKey="imagetools_customer_id";
 
-let customerId=
-localStorage.getItem(storageKey);
+let customerId=localStorage.getItem(storageKey);
 
 if(!customerId){
 
@@ -1882,10 +1842,7 @@ Date.now().toString(36) +
 "_" +
 crypto.randomUUID().replace(/-/g,"");
 
-localStorage.setItem(
-storageKey,
-customerId
-);
+localStorage.setItem(storageKey,customerId);
 
 }
 
@@ -1895,23 +1852,19 @@ return customerId;
 
 async function checkProStatus(){
 
-const planStatus=
-document.getElementById("planStatus");
+const planStatus=document.getElementById("planStatus");
 
 planCheckComplete=false;
 isPro=false;
 
 planStatus.className="free-status";
-planStatus.textContent=
-"Checking your ImageTools plan...";
+planStatus.textContent="Checking your ImageTools plan...";
 
 try{
 
-const customerId=
-getImageToolsCustomerId();
+const customerId=getImageToolsCustomerId();
 
-const response=
-await fetch(
+const response=await fetch(
 PRO_STATUS_URL,
 {
 method:"POST",
@@ -1925,15 +1878,10 @@ customerId:customerId
 );
 
 if(!response.ok){
-
-throw new Error(
-"Pro status request failed."
-);
-
+throw new Error("Pro status request failed.");
 }
 
-const data=
-await response.json();
+const data=await response.json();
 
 if(
 data &&
@@ -1970,10 +1918,7 @@ FREE_BATCH_LIMIT +
 
 }catch(error){
 
-console.error(
-"Pro status check failed:",
-error
-);
+console.error("Pro status check failed:",error);
 
 isPro=false;
 
@@ -2048,43 +1993,74 @@ let toolMode="process";
 let originalWidth=0;
 let originalHeight=0;
 
-chooseBtn.addEventListener("click",()=>{
+/*
+  Direct file-picker activation.
+  The button is intentionally NOT wrapped inside a label.
+  This keeps Android/mobile file selection reliable.
+*/
+chooseBtn.addEventListener("click",function(){
+
 fileInput.click();
+
 });
 
-fileInput.addEventListener("change",()=>{
-addFiles(Array.from(fileInput.files));
+fileInput.addEventListener("change",function(){
+
+const selectedFiles=Array.from(fileInput.files || []);
+
+if(selectedFiles.length){
+
+addFiles(selectedFiles);
+
+}
+
 fileInput.value="";
+
 });
 
-dropZone.addEventListener("dragover",e=>{
+dropZone.addEventListener("dragover",function(e){
+
 e.preventDefault();
+
 dropZone.classList.add("dragover");
+
 });
 
-dropZone.addEventListener("dragleave",()=>{
+dropZone.addEventListener("dragleave",function(){
+
 dropZone.classList.remove("dragover");
+
 });
 
-dropZone.addEventListener("drop",e=>{
+dropZone.addEventListener("drop",function(e){
+
 e.preventDefault();
+
 dropZone.classList.remove("dragover");
-addFiles(Array.from(e.dataTransfer.files));
+
+addFiles(Array.from(e.dataTransfer.files || []));
+
 });
 
 function getBatchLimit(){
 
 return isPro
-? PRO_BATCH_LIMIT
-: FREE_BATCH_LIMIT;
+?PRO_BATCH_LIMIT
+:FREE_BATCH_LIMIT;
 
 }
 
 function addFiles(newFiles){
 
-const valid=newFiles.filter(file=>
-["image/jpeg","image/png","image/webp"].includes(file.type)
-);
+const valid=newFiles.filter(function(file){
+
+return [
+"image/jpeg",
+"image/png",
+"image/webp"
+].includes(file.type);
+
+});
 
 if(!valid.length){
 
@@ -2094,27 +2070,20 @@ return;
 
 const limit=getBatchLimit();
 
-const available=
-Math.max(
+const available=Math.max(
 0,
 limit-files.length
 );
 
 if(available<=0){
 
-showBatchLimitMessage(
-limit
-);
+showBatchLimitMessage(limit);
 
 return;
 
 }
 
-const accepted=
-valid.slice(
-0,
-available
-);
+const accepted=valid.slice(0,available);
 
 files=[
 ...files,
@@ -2126,15 +2095,14 @@ renderFileList();
 if(files.length){
 
 toolCard.classList.remove("hidden");
+
 loadFirstImageInfo();
 
 }
 
 if(valid.length>accepted.length){
 
-showBatchLimitMessage(
-limit
-);
+showBatchLimitMessage(limit);
 
 }
 
@@ -2142,16 +2110,13 @@ limit
 
 function showBatchLimitMessage(limit){
 
-const resultsSection=
-document.getElementById("resultsSection");
-
-let message=
-document.getElementById("batchLimitMessage");
+let message=document.getElementById(
+"batchLimitMessage"
+);
 
 if(!message){
 
-message=
-document.createElement("div");
+message=document.createElement("div");
 
 message.id="batchLimitMessage";
 message.className="info warning";
@@ -2187,7 +2152,7 @@ function renderFileList(){
 
 fileList.innerHTML="";
 
-files.forEach((file,index)=>{
+files.forEach(function(file,index){
 
 const row=document.createElement("div");
 
@@ -2243,31 +2208,43 @@ loadFirstImageInfo();
 
 function escapeHtml(text){
 
-return text.replace(/[&<>"']/g,char=>({
+return text.replace(
+/[&<>"']/g,
+function(char){
+
+return({
 "&":"&amp;",
 "<":"&lt;",
 ">":"&gt;",
 '"':"&quot;",
 "'":"&#039;"
-})[char]);
+})[char];
+
+});
 
 }
 
 function loadImage(file){
 
-return new Promise((resolve,reject)=>{
+return new Promise(function(resolve,reject){
 
 const url=URL.createObjectURL(file);
 const img=new Image();
 
-img.onload=()=>{
+img.onload=function(){
+
 URL.revokeObjectURL(url);
+
 resolve(img);
+
 };
 
-img.onerror=()=>{
+img.onerror=function(){
+
 URL.revokeObjectURL(url);
+
 reject(new Error("Could not load image."));
+
 };
 
 img.src=url;
@@ -2302,80 +2279,146 @@ function setMode(mode){
 
 toolMode=mode;
 
-processMode.classList.toggle("active",mode==="process");
-resizeMode.classList.toggle("active",mode==="resize");
-convertMode.classList.toggle("active",mode==="convert");
+processMode.classList.toggle(
+"active",
+mode==="process"
+);
 
-compressionPanel.classList.toggle("hidden",mode!=="process");
-resizerPanel.classList.toggle("hidden",mode!=="resize");
-converterPanel.classList.toggle("hidden",mode!=="convert");
+resizeMode.classList.toggle(
+"active",
+mode==="resize"
+);
 
-dimensionPanel.classList.toggle("hidden",mode==="convert");
-editingControls.classList.toggle("hidden",mode==="convert");
+convertMode.classList.toggle(
+"active",
+mode==="convert"
+);
+
+compressionPanel.classList.toggle(
+"hidden",
+mode!=="process"
+);
+
+resizerPanel.classList.toggle(
+"hidden",
+mode!=="resize"
+);
+
+converterPanel.classList.toggle(
+"hidden",
+mode!=="convert"
+);
+
+dimensionPanel.classList.toggle(
+"hidden",
+mode==="convert"
+);
+
+editingControls.classList.toggle(
+"hidden",
+mode==="convert"
+);
 
 if(mode==="process"){
-processBtn.textContent="Compress & Process Images";
+
+processBtn.textContent=
+"Compress & Process Images";
+
 }
 
 if(mode==="resize"){
-processBtn.textContent="Resize Images";
+
+processBtn.textContent=
+"Resize Images";
+
 }
 
 if(mode==="convert"){
-processBtn.textContent="Convert Images";
+
+processBtn.textContent=
+"Convert Images";
+
 }
 
 updateCropUI();
 
 }
 
-processMode.addEventListener("click",()=>{
+processMode.addEventListener("click",function(){
+
 setMode("process");
+
 });
 
-resizeMode.addEventListener("click",()=>{
+resizeMode.addEventListener("click",function(){
+
 setMode("resize");
+
 });
 
-convertMode.addEventListener("click",()=>{
+convertMode.addEventListener("click",function(){
+
 setMode("convert");
+
 });
 
-compressionMode.addEventListener("change",()=>{
+compressionMode.addEventListener("change",function(){
 
-const target=compressionMode.value==="target";
+const target=
+compressionMode.value==="target";
 
-qualityControl.classList.toggle("hidden",target);
+qualityControl.classList.toggle(
+"hidden",
+target
+);
 
-targetPanel.classList.toggle("hidden",!target);
+targetPanel.classList.toggle(
+"hidden",
+!target
+);
 
 if(!target){
+
 updateQualityVisibility();
+
 }
 
 });
 
-qualityPreset.addEventListener("change",updateQualityVisibility);
+qualityPreset.addEventListener(
+"change",
+updateQualityVisibility
+);
 
 function updateQualityVisibility(){
 
-const custom=qualityPreset.value==="custom";
+const custom=
+qualityPreset.value==="custom";
 
-customQualityControl.classList.toggle("hidden",!custom);
+customQualityControl.classList.toggle(
+"hidden",
+!custom
+);
 
 if(!custom){
-quality.value=qualityPreset.value;
-}
+
+quality.value=
+qualityPreset.value;
 
 }
 
-resizePreset.addEventListener("change",()=>{
+}
+
+resizePreset.addEventListener(
+"change",
+function(){
 
 if(resizePreset.value==="custom")return;
 
-if(!originalWidth||!originalHeight)return;
+if(!originalWidth || !originalHeight)return;
 
-const targetWidth=Number(resizePreset.value);
+const targetWidth=
+Number(resizePreset.value);
 
 const newWidth=Math.min(
 targetWidth,
@@ -2389,15 +2432,18 @@ newWidth*originalHeight/originalWidth
 widthInput.value=newWidth;
 heightInput.value=newHeight;
 
-});
+}
+);
 
-widthInput.addEventListener("input",()=>{
+widthInput.addEventListener(
+"input",
+function(){
 
 resizePreset.value="custom";
 
 if(
-!aspect.checked||
-!originalWidth||
+!aspect.checked ||
+!originalWidth ||
 !originalHeight
 )return;
 
@@ -2411,15 +2457,18 @@ width*originalHeight/originalWidth
 
 }
 
-});
+}
+);
 
-heightInput.addEventListener("input",()=>{
+heightInput.addEventListener(
+"input",
+function(){
 
 resizePreset.value="custom";
 
 if(
-!aspect.checked||
-!originalWidth||
+!aspect.checked ||
+!originalWidth ||
 !originalHeight
 )return;
 
@@ -2433,13 +2482,16 @@ height*originalWidth/originalHeight
 
 }
 
-});
+}
+);
 
-aspect.addEventListener("change",()=>{
+aspect.addEventListener(
+"change",
+function(){
 
 if(!aspect.checked)return;
 
-if(!originalWidth||!originalHeight)return;
+if(!originalWidth || !originalHeight)return;
 
 const width=Number(widthInput.value);
 
@@ -2451,10 +2503,18 @@ width*originalHeight/originalWidth
 
 }
 
-});
+}
+);
 
-cropMode.addEventListener("change",updateCropUI);
-cropRatio.addEventListener("change",updateCropUI);
+cropMode.addEventListener(
+"change",
+updateCropUI
+);
+
+cropRatio.addEventListener(
+"change",
+updateCropUI
+);
 
 function updateCropUI(){
 
@@ -2474,7 +2534,10 @@ cropInfo.classList.toggle(
 
 }
 
-function getCropRect(imageWidth,imageHeight){
+function getCropRect(
+imageWidth,
+imageHeight
+){
 
 if(cropMode.value!=="crop"){
 
@@ -2550,7 +2613,9 @@ height:cropHeight
 function formatBytes(bytes){
 
 if(bytes<1024){
+
 return bytes+" B";
+
 }
 
 if(bytes<1024*1024){
@@ -2586,7 +2651,10 @@ return name.replace(
 
 }
 
-function savedPercent(original,newSize){
+function savedPercent(
+original,
+newSize
+){
 
 if(original<=0)return 0;
 
@@ -2606,7 +2674,8 @@ outputHeight,
 type
 ){
 
-const canvas=document.createElement("canvas");
+const canvas=
+document.createElement("canvas");
 
 canvas.width=outputWidth;
 canvas.height=outputHeight;
@@ -2653,10 +2722,14 @@ type,
 qualityValue
 ){
 
-return new Promise(resolve=>{
+return new Promise(function(resolve){
 
 canvas.toBlob(
-blob=>resolve(blob),
+function(blob){
+
+resolve(blob);
+
+},
 type,
 qualityValue
 );
@@ -2751,6 +2824,7 @@ mid
 if(blob.size<=targetBytes){
 
 bestBlob=blob;
+
 low=mid;
 
 }else{
@@ -3340,17 +3414,10 @@ new URLSearchParams(
 window.location.search
 );
 
-const target=
-params.get("target");
-
-const resize=
-params.get("resize");
-
-const convert=
-params.get("convert");
-
-const crop=
-params.get("crop");
+const target=params.get("target");
+const resize=params.get("resize");
+const convert=params.get("convert");
+const crop=params.get("crop");
 
 if(
 target==="200kb" ||
@@ -3392,17 +3459,11 @@ targetSize.value=targetValue;
 
 targetUnit.value=targetValueUnit;
 
-qualityControl.classList.add(
-"hidden"
-);
+qualityControl.classList.add("hidden");
 
-customQualityControl.classList.add(
-"hidden"
-);
+customQualityControl.classList.add("hidden");
 
-targetPanel.classList.remove(
-"hidden"
-);
+targetPanel.classList.remove("hidden");
 
 }
 
@@ -3440,8 +3501,7 @@ if(convert==="webp"){
 
 setMode("convert");
 
-formatSelect.value=
-"image/webp";
+formatSelect.value="image/webp";
 
 }
 
@@ -3449,8 +3509,7 @@ if(convert==="png"){
 
 setMode("convert");
 
-formatSelect.value=
-"image/png";
+formatSelect.value="image/png";
 
 }
 
@@ -3458,8 +3517,7 @@ if(convert==="jpg"){
 
 setMode("convert");
 
-formatSelect.value=
-"image/jpeg";
+formatSelect.value="image/jpeg";
 
 }
 
@@ -3485,11 +3543,16 @@ updateQualityVisibility();
 
 applyUrlSettings();
 
+/*
+  Check Pro status after the page is ready.
+  This does not block the image picker.
+*/
 window.addEventListener(
 "load",
-()=>{
-applyUrlSettings();
+function(){
+
 checkProStatus();
+
 }
 );
 
