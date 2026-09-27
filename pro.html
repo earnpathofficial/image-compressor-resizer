@@ -492,13 +492,25 @@
 
   <script>
 
-    // Paddle Sandbox
+    /*
+      ImageTools Pro production flow.
+
+      IMPORTANT:
+      The old ?testpro=1 test mode has been permanently removed.
+      URL parameters cannot activate a test customer.
+    */
+
     Paddle.Environment.set("sandbox");
 
     const CHECK_PRO_URL =
       "https://imagetools-pro-backend.netlify.app/.netlify/functions/check-pro";
 
-    // Create a stable ImageTools customer ID for this browser.
+    const PADDLE_PRICE_ID =
+      "pri_01m3ahemrp74pps2xfbb611xhz";
+
+    const PADDLE_CLIENT_TOKEN =
+      "test_fae247538357e7b426d05a44c83";
+
     function getImageToolsCustomerId() {
 
       const storageKey =
@@ -538,20 +550,6 @@
         "block";
     }
 
-    function showProStatus(message) {
-
-      const statusMessage =
-        document.getElementById(
-          "statusMessage"
-        );
-
-      statusMessage.textContent =
-        message;
-
-      statusMessage.style.display =
-        "block";
-    }
-
     async function checkProSubscription(
       subscriptionId = null
     ) {
@@ -559,34 +557,35 @@
       const customerId =
         getImageToolsCustomerId();
 
-      if (!subscriptionId && !customerId) {
-        return false;
-      }
-
       try {
 
         const requestBody = {};
 
         if (subscriptionId) {
+
           requestBody.subscriptionId =
             subscriptionId;
         }
 
         if (customerId) {
+
           requestBody.customerId =
             customerId;
         }
 
         const response =
-          await fetch(CHECK_PRO_URL, {
-            method: "POST",
-            headers: {
-              "Content-Type":
-                "application/json"
-            },
-            body:
-              JSON.stringify(requestBody)
-          });
+          await fetch(
+            CHECK_PRO_URL,
+            {
+              method: "POST",
+              headers: {
+                "Content-Type":
+                  "application/json"
+              },
+              body:
+                JSON.stringify(requestBody)
+            }
+          );
 
         const data =
           await response.json();
@@ -611,7 +610,7 @@
             "true"
           );
 
-          showProStatus(
+          showStatus(
             "✓ ImageTools Pro is active."
           );
 
@@ -646,7 +645,7 @@
     Paddle.Initialize({
 
       token:
-        "test_fae247538357e7b426d05a44c83",
+        PADDLE_CLIENT_TOKEN,
 
       eventCallback:
         async function(data) {
@@ -657,8 +656,9 @@
           );
 
           if (
+            data &&
             data.name ===
-            "checkout.completed"
+              "checkout.completed"
           ) {
 
             const transactionId =
@@ -707,7 +707,9 @@
 
     function openPaddleCheckout(event) {
 
-      event.preventDefault();
+      if (event) {
+        event.preventDefault();
+      }
 
       const customerId =
         getImageToolsCustomerId();
@@ -717,7 +719,7 @@
         items: [
           {
             priceId:
-              "pri_01m3ahemrp74pps2xfbb611xhz",
+              PADDLE_PRICE_ID,
             quantity: 1
           }
         ],
@@ -725,6 +727,7 @@
         customData: {
           imagetools_customer_id:
             customerId,
+
           product:
             "ImageTools Pro"
         }
